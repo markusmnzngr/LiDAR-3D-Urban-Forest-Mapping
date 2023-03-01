@@ -285,7 +285,7 @@ ws_segments_cleaned <- terra::subset(ws_segments_cleaned,  ws_segments_cleaned$t
 ndsm_grid <- terra::mask(ndsm_grid, ws_segments_cleaned, inverse=FALSE, updatevalue=NA, touches=FALSE)
 
 # store as raster GeoTIFF
-ndsm_grid_out_path <- here::here("results/urban_forest_classification", paste0("chm_", tile_id, ".tif"))
+ndsm_grid_out_path <- here::here("results/urban_forest_classification", paste0("chm_grid.tif"))
 terra::writeRaster(ndsm_grid, ndsm_grid_out_path, overwrite = TRUE)
 
 # merge CHM to point cloud
@@ -295,7 +295,7 @@ lidar_surface_points <- lidR::merge_spatial(lidar_surface_points, ndsm_grid, att
 lidar_surface_points <- lidR::filter_poi(lidar_surface_points, !is.na(CHM))
 
 # store LiDAR point cloud as LAS
-lidar_chm_points_out_path <- here::here("results/urban_forest_classification", paste0("lidar_chm_points", tile_id, ".las"))
+lidar_chm_points_out_path <- here::here("results/urban_forest_classification", "lidar_chm_points.las"))
 lidR::writeLAS(lidar_surface_points, lidar_chm_points_out_path)
 
 # delete intermediate data
