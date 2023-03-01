@@ -1,0 +1,2724 @@
+#! <?xml version="1.0" encoding="UTF-8" ?>
+#! <WORKSPACE
+#    Command line to run this workspace:
+#        "C:\Program Files\FME\fme.exe" B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\src\fme_workbench\Create_3D_Tree_Models_geojson2citygml.fmw
+#          --DestDataset_CITYGML "B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\results\semantic_3d_tree_models\semantic_3D_tree_model_berlin_test_area.gml"
+#          --SourceDataset_SKP_3 "\"\"B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_1_trunk_9.skp\" \"B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_2_trunk_8.skp\" \"B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_3_trunk_7.skp\" \"B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_4_trunk_6.skp\" \"B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_5_trunk_5.skp\" \"B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_6_trunk_4.skp\" \"B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_7_trunk_3.skp\" \"B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_8_trunk_2.skp\" \"B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_9_trunk_1.skp\" \"B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_10_trunk_0.skp\"\""
+#          --FEATURE_TYPES ""
+#          --SourceDataset_GEOJSON "B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\results\parameterized_tree_crowns\tree_positions_parameterized.geojson"
+#          --FEATURE_TYPES_3 ""
+#          --FME_LAUNCH_VIEWER_APP "YES"
+#    
+#!   A0_PREVIEW_IMAGE="data:image/png;base64,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"
+#!   ARCGIS_COMPATIBILITY="ARCGIS_AUTO"
+#!   ATTR_TYPE_ENCODING="SDF"
+#!   BEGIN_PYTHON=""
+#!   BEGIN_TCL=""
+#!   CATEGORY="3D"
+#!   DESCRIPTION="&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt;&quot;&gt;Creates CityGML SolitaryVegetationObjects from parameterized tree positions and prototype tree models. &lt;/span&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt;&quot;&gt;3D tree models are created using space-efficient implicit modeling. &lt;/span&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt;&quot;&gt;Therefore the geometry of each tree model is stored only once and represented by an anchor point and a transformation matrix that unfolds the trees shape at the given positions. &lt;/span&gt;&lt;/p&gt;"
+#!   DESTINATION="NONE"
+#!   DESTINATION_ROUTING_FILE=""
+#!   DOC_EXTENTS="7375.48 1443.31"
+#!   DOC_TOP_LEFT="-3343.99 -1221.66"
+#!   END_PYTHON=""
+#!   END_TCL=""
+#!   EXPLICIT_BOOKMARK_ORDER="false"
+#!   FME_BUILD_NUM="22782"
+#!   FME_BULK_MODE_THRESHOLD="2000"
+#!   FME_DOCUMENT_GUID="060b2b04-28fd-499e-8932-353f2fe59486"
+#!   FME_DOCUMENT_PRIORGUID="0860a84a-ed8f-4cc2-b7fc-33795ec7d0db,636896d1-ac5e-462d-b4c5-ea052a6142e3"
+#!   FME_GEOMETRY_HANDLING="Enhanced"
+#!   FME_IMPLICIT_CSMAP_REPROJECTION_MODE="Auto"
+#!   FME_NAMES_ENCODING="UTF-8"
+#!   FME_REPROJECTION_ENGINE="FME"
+#!   FME_SERVER_SERVICES=""
+#!   FME_STROKE_MAX_DEVIATION="0"
+#!   HISTORY=""
+#!   IGNORE_READER_FAILURE="No"
+#!   LAST_SAVE_BUILD="FME(R) 2022.2.2.0 (20230106 - Build 22782 - WIN64)"
+#!   LAST_SAVE_DATE="2023-02-28T16:25:53"
+#!   LOG_FILE=""
+#!   LOG_MAX_RECORDED_FEATURES="200"
+#!   MARKDOWN_DESCRIPTION=""
+#!   MARKDOWN_USAGE=""
+#!   MAX_LOG_FEATURES="200"
+#!   MULTI_WRITER_DATASET_ORDER="BY_ID"
+#!   PASSWORD=""
+#!   PYTHON_COMPATIBILITY="37"
+#!   REDIRECT_TERMINATORS="NONE"
+#!   SAVE_ON_PROMPT_AND_RUN="Yes"
+#!   SHOW_ANNOTATIONS="true"
+#!   SHOW_INFO_NODES="true"
+#!   SOURCE="NONE"
+#!   SOURCE_ROUTING_FILE=""
+#!   TERMINATE_REJECTED="YES"
+#!   TITLE="Parameterized 3D tree modeling for CityGML SolitaryVegetationObjects"
+#!   USAGE=""
+#!   USE_MARKDOWN="NO"
+#!   VIEW_POSITION="-4042.51 857.38"
+#!   WARN_INVALID_XFORM_PARAM="Yes"
+#!   WORKSPACE_VERSION="1"
+#!   ZOOM_SCALE="78"
+#! >
+#! <DATASETS>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="SKP"
+#!   DATASET="$(SourceDataset_SKP_3)"
+#!   KEYWORD="SKP_1"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE=""
+#!   DEFLINE_ATTRS="false"
+#!   EXPOSABLE_ATTRS="fme_basename string fme_color string fme_dataset string fme_feature_type string fme_fill_color string fme_geometry string fme_primary_axis double fme_rotation double fme_secondary_axis double fme_start_angle double fme_sweep_angle double fme_text_size double fme_text_string string fme_type string multi_reader_full_id double multi_reader_id double multi_reader_keyword string multi_reader_type string skp_type string"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES=""
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILEDIR"
+#!   FTTR_TYPE="FEATURE_TYPES_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="22782"
+#!   COORDSYS=""
+#!   FEATURE_TYPES="$(FEATURE_TYPES)"
+#!   MAX_FEATURES=""
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="ADVANCED_PARMS"
+#!   VALUE="SKP_OUT_VERSION"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_DEFAULT_NAME"
+#!   VALUE="File1"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="FEATURE_TYPE_NAME"
+#!   VALUE="SketchUp File"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the SketchUp file(s)"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a folder for the SketchUp file"
+#! />
+#! </DATASET>
+#! <DATASET
+#!   IS_SOURCE="true"
+#!   ROLE="READER"
+#!   FORMAT="GEOJSON"
+#!   DATASET="$(SourceDataset_GEOJSON)"
+#!   KEYWORD="GEOJSON_1"
+#!   MULTI_GEOM_ALLOWED="false"
+#!   ATTR_MAX_LENGTH="0"
+#!   ATTR_CASE="ANY"
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE=""
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="fme_basename string fme_color string fme_dataset string fme_feature_type string fme_fill_color string fme_geometry string fme_primary_axis float fme_rotation float fme_secondary_axis float fme_start_angle float fme_sweep_angle float fme_text_size float fme_text_string string fme_type string multi_reader_full_id int multi_reader_id int multi_reader_keyword string multi_reader_type string"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES=""
+#!   ATTR_NAME_INVALID_CHARS=""
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILE"
+#!   FTTR_TYPE="FEATURE_TYPES_ENCODED"
+#!   GENERATE_FME_BUILD_NUM="22782"
+#!   COORDSYS=""
+#!   FEATURE_TYPES="$(FEATURE_TYPES_3)"
+#!   MAX_FEATURES=""
+#!   MAX_FEATURES_PER_FEATURE_TYPE=""
+#!   MIN_FEATURES=""
+#!   START_FEATURE=""
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="MIME_TYPE"
+#!   VALUE="application/geo+json ADD_DISPOSITION"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the GeoJSON file(s) or type the GeoJSON URL"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a name for the GeoJSON file"
+#! />
+#! </DATASET>
+#! <DATASET
+#!   IS_SOURCE="false"
+#!   ROLE="WRITER"
+#!   FORMAT="CITYGML"
+#!   DATASET="$(DestDataset_CITYGML)"
+#!   KEYWORD="CITYGML_1"
+#!   MULTI_GEOM_ALLOWED="true"
+#!   ATTR_MAX_LENGTH="500"
+#!   ATTR_CASE="ANY"
+#!   ALLOWED_FEAT_TYPES=""
+#!   WRITE_DEFS="true"
+#!   DEFLINE_TEMPLATE=""
+#!   DEFLINE_ATTRS="true"
+#!   EXPOSABLE_ATTRS="citygml_ambient_intensity xml_real64 citygml_border_color xml_buffer citygml_diffuse_color xml_buffer citygml_emissive_color xml_buffer citygml_image_uri xml_buffer citygml_is_front xml_boolean citygml_is_smooth xml_boolean citygml_level_of_detail xml_ubyte citygml_library_object xml_buffer citygml_lod_name xml_buffer citygml_mime_type xml_buffer citygml_orientation_matrix xml_buffer citygml_prefer_world_file xml_boolean citygml_shininess xml_real64 citygml_specular_color xml_buffer citygml_target xml_buffer citygml_target{}.coordinate_list{}.coordinates xml_buffer citygml_target{}.coordinate_list{}.ring xml_buffer citygml_target{}.uri xml_buffer citygml_target{}.world_to_texture_matrix xml_buffer citygml_texture_type xml_char(16) citygml_theme xml_buffer citygml_transformation_matrix xml_buffer citygml_transparency xml_real64 citygml_wrap_mode xml_char(16) fme_basename xml_char(50) fme_color xml_char(50) fme_dataset xml_char(50) fme_feature_type xml_char(50) fme_fill_color xml_char(50) fme_geometry xml_char(50) fme_primary_axis xml_real64 fme_rotation xml_real64 fme_secondary_axis xml_real64 fme_start_angle xml_real64 fme_sweep_angle xml_real64 fme_text_size xml_real64 fme_text_string xml_char(50) fme_type xml_char(50) gml_id xml_buffer gml_parent_id xml_buffer"
+#!   DEFLINE_PARMS=""
+#!   ATTR_INDEX_TYPES=""
+#!   ATTR_NAME_INVALID_CHARS="[]=%~!@$&amp;#[^?*&apos;+()\\/&quot;:"
+#!   SUPPORTS_FEATURE_TYPE_FANOUT="true"
+#!   ENABLED="true"
+#!   DYNAMIC_FEATURE_TYPES_LIST_ON_MERGE="true"
+#!   DATASET_TYPE="FILE_OR_URL"
+#!   FTTR_TYPE=""
+#!   GENERATE_FME_BUILD_NUM="19260"
+#!   COORDSYS=""
+#!   FANOUT_EXPRESSION="&lt;Unused&gt;"
+#!   FANOUT_GROUP="NO"
+#! >
+#! <METAFILE_PARAMETER
+#!   NAME="ADVANCED_PARMS"
+#!   VALUE="TEXTURE_DIRECTORY THEME_NAME"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="DATASET_NAME"
+#!   VALUE="CityGML file"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="READER_DATASET_HINT"
+#!   VALUE="Select the CityGML file(s)"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_ADD_FEATURE_TYPE_DEFAULT"
+#!   VALUE="import"
+#! />
+#! <METAFILE_PARAMETER
+#!   NAME="WRITER_DATASET_HINT"
+#!   VALUE="Specify a name for the CityGML file"
+#! />
+#! </DATASET>
+#! </DATASETS>
+#! <DATA_TYPES>
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="float"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="bool"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="double"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="SKP"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="boolean"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="float"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="float"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="int"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="string"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="GEOJSON"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_char(width)"
+#!   FME_TYPE="fme_varchar(width)"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_char(width)"
+#!   FME_TYPE="fme_varbinary(width)"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_char(width)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_char(width)"
+#!   FME_TYPE="fme_binary(width)"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_buffer"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_buffer"
+#!   FME_TYPE="fme_binarybuffer"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_buffer"
+#!   FME_TYPE="fme_json"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_xml"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_datetime"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_date"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_time"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_int64"
+#!   FME_TYPE="fme_int64"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_uint64"
+#!   FME_TYPE="fme_uint64"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_int32"
+#!   FME_TYPE="fme_int32"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_uint32"
+#!   FME_TYPE="fme_uint32"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_int16"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_uint16"
+#!   FME_TYPE="fme_uint16"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_byte"
+#!   FME_TYPE="fme_int8"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_ubyte"
+#!   FME_TYPE="fme_uint8"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_real32"
+#!   FME_TYPE="fme_real32"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_real64"
+#!   FME_TYPE="fme_real64"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_decimal(width,decimal)"
+#!   FME_TYPE="fme_decimal(width,decimal)"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_boolean"
+#!   FME_TYPE="fme_boolean"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_char(20)"
+#!   FME_TYPE="fme_datetime"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_char(8)"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_char(12)"
+#!   FME_TYPE="fme_time"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_geometry"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="citygml_uri"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="citygml_uri"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="citygml_csv"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="citygml_xml_string"
+#!   FME_TYPE="fme_xml"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="citygml_date"
+#!   FME_TYPE="fme_date"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_xml"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_char(1)"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_byte"
+#!   FME_TYPE="fme_int16"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="citygml_csv"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="citygml_xml_string"
+#!   FME_TYPE="fme_buffer"
+#!   FORMAT="CITYGML"
+#! />
+#! <DATA_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="citygml_xml_string"
+#!   FME_TYPE="fme_char(width)"
+#!   FORMAT="CITYGML"
+#! />
+#! </DATA_TYPES>
+#! <GEOM_TYPES>
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_model"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_surface"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_polygon"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_rectangle"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_rounded_rectangle"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_solid"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_ellipse"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_text"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_line"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_arc"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_no_geom"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_polygon"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_polygon"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_no_geom"
+#!   FME_TYPE="fme_feature_table"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="skp_polygon"
+#!   FME_TYPE="fme_voxel_grid"
+#!   FORMAT="SKP"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_line"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_polygon"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_text"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_ellipse"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_arc"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_rectangle"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_rounded_rectangle"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_raster"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_no_geom"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_collection"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_line"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_line"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_polygon"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_polygon"
+#!   FME_TYPE="fme_voxel_grid"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="true"
+#!   FORMAT_TYPE="json_no_geom"
+#!   FME_TYPE="fme_feature_table"
+#!   FORMAT="GEOJSON"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_no_geom"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="CITYGML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_point"
+#!   FME_TYPE="fme_point"
+#!   FORMAT="CITYGML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_line"
+#!   FME_TYPE="fme_line"
+#!   FORMAT="CITYGML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_area"
+#!   FME_TYPE="fme_area"
+#!   FORMAT="CITYGML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_aggregate"
+#!   FME_TYPE="fme_collection"
+#!   FORMAT="CITYGML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_text"
+#!   FME_TYPE="fme_text"
+#!   FORMAT="CITYGML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_area"
+#!   FME_TYPE="fme_ellipse"
+#!   FORMAT="CITYGML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_area"
+#!   FME_TYPE="fme_rectangle"
+#!   FORMAT="CITYGML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_area"
+#!   FME_TYPE="fme_rounded_rectangle"
+#!   FORMAT="CITYGML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_arc"
+#!   FME_TYPE="fme_arc"
+#!   FORMAT="CITYGML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_surface"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="CITYGML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_solid"
+#!   FME_TYPE="fme_solid"
+#!   FORMAT="CITYGML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_mesh"
+#!   FME_TYPE="fme_surface"
+#!   FORMAT="CITYGML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_area"
+#!   FME_TYPE="fme_raster"
+#!   FORMAT="CITYGML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_area"
+#!   FME_TYPE="fme_point_cloud"
+#!   FORMAT="CITYGML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_no_geom"
+#!   FME_TYPE="fme_feature_table"
+#!   FORMAT="CITYGML"
+#! />
+#! <GEOM_TYPE
+#!   IS_SOURCE="false"
+#!   FORMAT_TYPE="xml_raster"
+#!   FME_TYPE="fme_no_geom"
+#!   FORMAT="CITYGML"
+#! />
+#! </GEOM_TYPES>
+#! <FEATURE_TYPES>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="crown_1_trunk_9"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="2"
+#!   FEAT_GEOMTYPE="skp_model skp_no_geom skp_surface skp_polygon skp_rectangle skp_rounded_rectangle skp_solid skp_ellipse skp_point skp_text skp_line skp_arc"
+#!   POSITION="-3251.9865854948612 -1036.4142773996091"
+#!   BOUNDING_RECT="-3251.9865854948612 -1036.4142773996091 454 71"
+#!   ORDER="500000000000164"
+#!   COLLAPSED="false"
+#!   KEYWORD="SKP_1"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   HIDDEN_USER_ATTRS=""
+#!   MERGE_FILTER="*"
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="true"
+#!   DYNAMIC_SCHEMA="true"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="fme_feature_type" ATTR_TYPE="string"  EXPOSABLE_ATTR="true" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="true"
+#!   NODE_NAME="tree_positions_parameterized"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="3"
+#!   FEAT_GEOMTYPE="json_point"
+#!   POSITION="-3251.9865854948612 -687.55253128214872"
+#!   BOUNDING_RECT="-3251.9865854948612 -687.55253128214872 454 71"
+#!   ORDER="500000000000162"
+#!   COLLAPSED="true"
+#!   KEYWORD="GEOJSON_1"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   HIDDEN_USER_ATTRS=""
+#!   MERGE_FILTER="*"
+#!   MERGE_FILTER_TYPE="FILTER_TYPE_GLOB"
+#!   MERGE_FILTER_CASE_SENSITIVE="true"
+#!   DYNAMIC_SCHEMA="true"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="treeID" ATTR_TYPE="int" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="treeID_ioer" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="h_tree" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="h_crown" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="d_crown" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="h_trunk" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="X" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="Y" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="Z" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ch_width" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ch_length" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ch_orientation" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="ch_area" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="tree_model" ATTR_TYPE="string" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="crownvolume" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="crownsurface" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="n_pulses" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="mean_nor" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="mean_ndvi" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="z_max" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="z_min" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="z_mean" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="z_std" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="zq1" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="zq2" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="zq5" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="zq95" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="zq99" ATTR_TYPE="float" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="fme_feature_type" ATTR_TYPE="string"  EXPOSABLE_ATTR="true" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! <FEATURE_TYPE
+#!   IS_SOURCE="false"
+#!   NODE_NAME="SolitaryVegetationObject"
+#!   FEATURE_TYPE_NAME=""
+#!   FEATURE_TYPE_NAME_QUALIFIER=""
+#!   IS_EDITABLE="false"
+#!   IDENTIFIER="4"
+#!   FEAT_GEOMTYPE="All"
+#!   POSITION="3252.5488514141221 -457.51683807397558"
+#!   BOUNDING_RECT="3252.5488514141221 -457.51683807397558 619.00106825772946 71"
+#!   ORDER="500000000000178"
+#!   COLLAPSED="true"
+#!   KEYWORD="CITYGML_1"
+#!   PARMS_EDITED="true"
+#!   ENABLED="true"
+#!   SCHEMA_ATTRIBUTE_SOURCE="0"
+#! >
+#!     <FEAT_ATTRIBUTE ATTR_NAME="gml_id" ATTR_TYPE="xml_buffer"  EXPOSABLE_ATTR="true" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="citygml_lod_name" ATTR_TYPE="xml_char(200)"  EXPOSABLE_ATTR="true" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="citygml_level_of_detail" ATTR_TYPE="xml_char(200)"  EXPOSABLE_ATTR="true" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="citygml_transformation_matrix" ATTR_TYPE="xml_char(200)"  EXPOSABLE_ATTR="true" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="citygml_height" ATTR_TYPE="xml_real64" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="citygml_height_units" ATTR_TYPE="xml_char(200)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="citygml_crown_diameter" ATTR_TYPE="xml_real64" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="citygml_crown_diameter_units" ATTR_TYPE="xml_char(200)" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="h_crown" ATTR_TYPE="xml_real64" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="h_trunk" ATTR_TYPE="xml_real64" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="X" ATTR_TYPE="xml_real64" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="Y" ATTR_TYPE="xml_real64" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#!     <FEAT_ATTRIBUTE ATTR_NAME="Z" ATTR_TYPE="xml_real64" ATTR_HAS_PORT="true" ATTR_VALUE=""/>
+#! </FEATURE_TYPE>
+#! </FEATURE_TYPES>
+#! <FMESERVER>
+#! <READER_DATASETS>
+#! <DATASET
+#!   NAME="SKP_1"
+#!   OVERRIDE="-SKP_1_DATASET"
+#!   DATASET="SKP_1/crown_10_trunk_0.skp&quot;&quot;"
+#! />
+#! <DATASET
+#!   NAME="GEOJSON_1"
+#!   OVERRIDE="-GEOJSON_1_DATASET"
+#!   DATASET="GEOJSON_1/tree_positions_parameterized.geojson"
+#! />
+#! </READER_DATASETS>
+#! <WRITER_DATASETS>
+#! <DATASET
+#!   NAME="CITYGML_1"
+#!   OVERRIDE="-CITYGML_1_DATASET"
+#!   DATASET="CITYGML_1/semantic_3D_tree_model_berlin_test_area.gml"
+#! />
+#! </WRITER_DATASETS>
+#! </FMESERVER>
+#! <GLOBAL_PARAMETERS>
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI FILENAME DestDataset_CITYGML CityGML_Files(*.gml;*.xml)|*.gml;*.xml|CityGML_Files(*.gml)|*.gml|CityGML_Files(*.xml)|*.xml|All_Files|* Destination CityGML Document:"
+#!   DEFAULT_VALUE="B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\results\semantic_3d_tree_models\semantic_3D_tree_model_berlin_test_area.gml"
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_SKP_3 INCLUDE_WEB_BROWSER%SKP_Files(*.skp)|*.skp|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|All_Files(*)|* Source Trimble SketchUp File:"
+#!   DEFAULT_VALUE="&quot;&quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_1_trunk_9.skp&quot; &quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_2_trunk_8.skp&quot; &quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_3_trunk_7.skp&quot; &quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_4_trunk_6.skp&quot; &quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_5_trunk_5.skp&quot; &quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_6_trunk_4.skp&quot; &quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_7_trunk_3.skp&quot; &quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_8_trunk_2.skp&quot; &quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_9_trunk_1.skp&quot; &quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_10_trunk_0.skp&quot;&quot;"
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI OPTIONAL FEATURE_TYPES_ENCODED FEATURE_TYPES &lt;quote&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_1_trunk_9.skp&lt;quote&gt;&lt;space&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_2_trunk_8.skp&lt;quote&gt;&lt;space&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_3_trunk_7.skp&lt;quote&gt;&lt;space&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_4_trunk_6.skp&lt;quote&gt;&lt;space&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_5_trunk_5.skp&lt;quote&gt;&lt;space&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_6_trunk_4.skp&lt;quote&gt;&lt;space&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_7_trunk_3.skp&lt;quote&gt;&lt;space&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_8_trunk_2.skp&lt;quote&gt;&lt;space&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_9_trunk_1.skp&lt;quote&gt;&lt;space&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_10_trunk_0.skp&lt;quote&gt;&lt;quote&gt;,_FORMAT_OVERRIDE_,SKP,_DATASET_OVERRIDE_,SourceDataset_SKP_3,FME_GROUP_NAMED1,,READ_EDGES,No,READ_HIDDEN_ELEMENTS,Auto,COLOR_BY_LAYER,Auto,READ_TEXTURES,Yes,KEEP_ORIGINAL_TEXTURES,Yes,FME_GROUP_NAMED2,,COORDSYS_DATUM,WGS84,MOVE_TO_WORLD_COORDSYS,Yes,USE_SEARCH_ENVELOPE,NO,SEARCH_ENVELOPE_MINX,0,SEARCH_ENVELOPE_MINY,0,SEARCH_ENVELOPE_MAXX,0,SEARCH_ENVELOPE_MAXY,0,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,CLIP_TO_ENVELOPE,NO,NETWORK_AUTHENTICATION,,COORDSYS,,START_FEATURE,,MAX_FEATURES,,MAX_FEATURES_PER_FEATURE_TYPE,,MIN_FEATURES,,_MERGE_SCHEMAS,YES,DYNAMIC_WORKFLOW,yes,_MERGE_SCHEMAS,YES Feature Types to Read"
+#!   DEFAULT_VALUE=""
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI FILE_OR_URL SourceDataset_GEOJSON INCLUDE_WEB_BROWSER%GeoJSON_Documents(*.json;*.geojson)|*.json;*.geojson|GeoJSON_Documents(*.json)|*.json|GeoJSON_Documents(*.geojson)|*.geojson|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|All_Files(*)|* Source GeoJSON File or URL:"
+#!   DEFAULT_VALUE="B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\results\parameterized_tree_crowns\tree_positions_parameterized.geojson"
+#!   IS_STAND_ALONE="false"
+#! />
+#! <GLOBAL_PARAMETER
+#!   GUI_LINE="GUI OPTIONAL FEATURE_TYPES_ENCODED FEATURE_TYPES_3 B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;results&lt;backslash&gt;parameterized_tree_crowns&lt;backslash&gt;tree_positions_parameterized.geojson,_FORMAT_OVERRIDE_,GEOJSON,_DATASET_OVERRIDE_,SourceDataset_GEOJSON,USE_SEARCH_ENVELOPE,NO,SEARCH_ENVELOPE_MINX,0,SEARCH_ENVELOPE_MINY,0,SEARCH_ENVELOPE_MAXX,0,SEARCH_ENVELOPE_MAXY,0,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,CLIP_TO_ENVELOPE,NO,NETWORK_AUTHENTICATION,,COORDSYS,,START_FEATURE,,MAX_FEATURES,,MAX_FEATURES_PER_FEATURE_TYPE,,MIN_FEATURES,,_MERGE_SCHEMAS,YES,FLATTEN_MODE,ALL_LEVELS,DYNAMIC_WORKFLOW,yes,USE_BASENAME_AS_DEFAULT_FEATURE_TYPE,Yes,_MERGE_SCHEMAS,YES Feature Types to Read"
+#!   DEFAULT_VALUE=""
+#!   IS_STAND_ALONE="false"
+#! />
+#! </GLOBAL_PARAMETERS>
+#! <USER_PARAMETERS
+#!   FORM="eyJwYXJhbWV0ZXJzIjpbeyJhY2Nlc3NNb2RlIjoid3JpdGUiLCJkZWZhdWx0VmFsdWUiOiJCOlxcbXVlbnppbmdlclxcUl9TdHVkaW9cXExpREFSLTNELVVyYmFuLUZvcmVzdC1NYXBwaW5nXFxyZXN1bHRzXFxzZW1hbnRpY18zZF90cmVlX21vZGVsc1xcc2VtYW50aWNfM0RfdHJlZV9tb2RlbF9iZXJsaW5fdGVzdF9hcmVhLmdtbCIsImRlcHJlY2F0ZWRGbGFncyI6WyJub25lIl0sImZpbHRlcnMiOlt7ImRlc2NyaXB0aW9uIjoiQ2l0eUdNTCBGaWxlcyIsImZpbHRlciI6WyIqLmdtbCIsIioueG1sIl19LHsiZGVzY3JpcHRpb24iOiJDaXR5R01MIEZpbGVzIiwiZmlsdGVyIjpbIiouZ21sIl19LHsiZGVzY3JpcHRpb24iOiJDaXR5R01MIEZpbGVzIiwiZmlsdGVyIjpbIioueG1sIl19LHsiZGVzY3JpcHRpb24iOiJBbGwgRmlsZXMiLCJmaWx0ZXIiOlsiKiJdfV0sIml0ZW1zVG9TZWxlY3QiOiJmaWxlcyIsIm5hbWUiOiJEZXN0RGF0YXNldF9DSVRZR01MIiwicHJvbXB0IjoiRGVzdGluYXRpb24gQ2l0eUdNTCBEb2N1bWVudDoiLCJyZXF1aXJlZCI6dHJ1ZSwic2VsZWN0TXVsdGlwbGUiOmZhbHNlLCJzdXBwb3J0ZWRWYWx1ZVR5cGVzIjpbImdsb2JhbFBhcmFtZXRlciJdLCJ0eXBlIjoiZmlsZSIsInZhbGlkYXRlRXhpc3RlbmNlIjpmYWxzZSwidmFsdWVUeXBlIjoic3RyaW5nIn0seyJhY2Nlc3NNb2RlIjoicmVhZCIsImRlZmF1bHRWYWx1ZSI6IlwiXCJCOlxcbXVlbnppbmdlclxcUl9TdHVkaW9cXExpREFSLTNELVVyYmFuLUZvcmVzdC1NYXBwaW5nXFxkYXRhXFx0cmVlX3Byb3RvdHlwZXNcXGNyb3duXzFfdHJ1bmtfOS5za3BcIiBcIkI6XFxtdWVuemluZ2VyXFxSX1N0dWRpb1xcTGlEQVItM0QtVXJiYW4tRm9yZXN0LU1hcHBpbmdcXGRhdGFcXHRyZWVfcHJvdG90eXBlc1xcY3Jvd25fMl90cnVua184LnNrcFwiIFwiQjpcXG11ZW56aW5nZXJcXFJfU3R1ZGlvXFxMaURBUi0zRC1VcmJhbi1Gb3Jlc3QtTWFwcGluZ1xcZGF0YVxcdHJlZV9wcm90b3R5cGVzXFxjcm93bl8zX3RydW5rXzcuc2twXCIgXCJCOlxcbXVlbnppbmdlclxcUl9TdHVkaW9cXExpREFSLTNELVVyYmFuLUZvcmVzdC1NYXBwaW5nXFxkYXRhXFx0cmVlX3Byb3RvdHlwZXNcXGNyb3duXzRfdHJ1bmtfNi5za3BcIiBcIkI6XFxtdWVuemluZ2VyXFxSX1N0dWRpb1xcTGlEQVItM0QtVXJiYW4tRm9yZXN0LU1hcHBpbmdcXGRhdGFcXHRyZWVfcHJvdG90eXBlc1xcY3Jvd25fNV90cnVua181LnNrcFwiIFwiQjpcXG11ZW56aW5nZXJcXFJfU3R1ZGlvXFxMaURBUi0zRC1VcmJhbi1Gb3Jlc3QtTWFwcGluZ1xcZGF0YVxcdHJlZV9wcm90b3R5cGVzXFxjcm93bl82X3RydW5rXzQuc2twXCIgXCJCOlxcbXVlbnppbmdlclxcUl9TdHVkaW9cXExpREFSLTNELVVyYmFuLUZvcmVzdC1NYXBwaW5nXFxkYXRhXFx0cmVlX3Byb3RvdHlwZXNcXGNyb3duXzdfdHJ1bmtfMy5za3BcIiBcIkI6XFxtdWVuemluZ2VyXFxSX1N0dWRpb1xcTGlEQVItM0QtVXJiYW4tRm9yZXN0LU1hcHBpbmdcXGRhdGFcXHRyZWVfcHJvdG90eXBlc1xcY3Jvd25fOF90cnVua18yLnNrcFwiIFwiQjpcXG11ZW56aW5nZXJcXFJfU3R1ZGlvXFxMaURBUi0zRC1VcmJhbi1Gb3Jlc3QtTWFwcGluZ1xcZGF0YVxcdHJlZV9wcm90b3R5cGVzXFxjcm93bl85X3RydW5rXzEuc2twXCIgXCJCOlxcbXVlbnppbmdlclxcUl9TdHVkaW9cXExpREFSLTNELVVyYmFuLUZvcmVzdC1NYXBwaW5nXFxkYXRhXFx0cmVlX3Byb3RvdHlwZXNcXGNyb3duXzEwX3RydW5rXzAuc2twXCJcIiIsImZpbHRlcnMiOlt7ImRlc2NyaXB0aW9uIjoiU0tQIEZpbGVzIiwiZmlsdGVyIjpbIiouc2twIl19LHsiZGVzY3JpcHRpb24iOiJBcmNoaXZlIEZpbGVzIiwiZmlsdGVyIjpbIiouN3oiLCIqLjd6aXAiLCIqLnJhciIsIioucnZ6IiwiKi50YXIiLCIqLnRhci5iejIiLCIqLnRhci5neiIsIioudGd6IiwiKi56aXAiLCIqLnppcHgiXX0seyJkZXNjcmlwdGlvbiI6IkNvbXByZXNzZWQgRmlsZXMiLCJmaWx0ZXIiOlsiKi5iejIiLCIqLmd6Il19LHsiZGVzY3JpcHRpb24iOiJBbGwgRmlsZXMiLCJmaWx0ZXIiOlsiKiJdfV0sImluY2x1ZGVXZWJCcm93c2VyIjp0cnVlLCJpdGVtc1RvU2VsZWN0IjoiZmlsZXMiLCJuYW1lIjoiU291cmNlRGF0YXNldF9TS1BfMyIsInByb21wdCI6IlNvdXJjZSBUcmltYmxlIFNrZXRjaFVwIEZpbGU6IiwicmVxdWlyZWQiOnRydWUsInNlbGVjdE11bHRpcGxlIjp0cnVlLCJzdXBwb3J0ZWRWYWx1ZVR5cGVzIjpbImdsb2JhbFBhcmFtZXRlciJdLCJ0eXBlIjoiZmlsZSIsInZhbGlkYXRlRXhpc3RlbmNlIjpmYWxzZSwidmFsdWVUeXBlIjoic3RyaW5nIn0seyJjaG9pY2VTZXR0aW5ncyI6eyJjaG9pY2VTZXQiOiJyZWFkZXJWYWx1ZXMiLCJjb25maWd1cmF0aW9uIjpbeyJuYW1lIjoiX0RBVEFTRVRfT1ZFUlJJREVfIiwidmFsdWUiOiJTb3VyY2VEYXRhc2V0X1NLUF8zIn0seyJuYW1lIjoiRk1FX0dST1VQX05BTUVEMSIsInZhbHVlIjoiIn0seyJuYW1lIjoiUkVBRF9FREdFUyIsInZhbHVlIjoiTm8ifSx7Im5hbWUiOiJSRUFEX0hJRERFTl9FTEVNRU5UUyIsInZhbHVlIjoiQXV0byJ9LHsibmFtZSI6IkNPTE9SX0JZX0xBWUVSIiwidmFsdWUiOiJBdXRvIn0seyJuYW1lIjoiUkVBRF9URVhUVVJFUyIsInZhbHVlIjoiWWVzIn0seyJuYW1lIjoiS0VFUF9PUklHSU5BTF9URVhUVVJFUyIsInZhbHVlIjoiWWVzIn0seyJuYW1lIjoiRk1FX0dST1VQX05BTUVEMiIsInZhbHVlIjoiIn0seyJuYW1lIjoiQ09PUkRTWVNfREFUVU0iLCJ2YWx1ZSI6IldHUzg0In0seyJuYW1lIjoiTU9WRV9UT19XT1JMRF9DT09SRFNZUyIsInZhbHVlIjoiWWVzIn0seyJuYW1lIjoiVVNFX1NFQVJDSF9FTlZFTE9QRSIsInZhbHVlIjoiTk8ifSx7Im5hbWUiOiJTRUFSQ0hfRU5WRUxPUEVfTUlOWCIsInZhbHVlIjoiMCJ9LHsibmFtZSI6IlNFQVJDSF9FTlZFTE9QRV9NSU5ZIiwidmFsdWUiOiIwIn0seyJuYW1lIjoiU0VBUkNIX0VOVkVMT1BFX01BWFgiLCJ2YWx1ZSI6IjAifSx7Im5hbWUiOiJTRUFSQ0hfRU5WRUxPUEVfTUFYWSIsInZhbHVlIjoiMCJ9LHsibmFtZSI6IlNFQVJDSF9FTlZFTE9QRV9DT09SRElOQVRFX1NZU1RFTSIsInZhbHVlIjoiIn0seyJuYW1lIjoiQ0xJUF9UT19FTlZFTE9QRSIsInZhbHVlIjoiTk8ifSx7Im5hbWUiOiJORVRXT1JLX0FVVEhFTlRJQ0FUSU9OIiwidmFsdWUiOiIifSx7Im5hbWUiOiJDT09SRFNZUyIsInZhbHVlIjoiIn0seyJuYW1lIjoiU1RBUlRfRkVBVFVSRSIsInZhbHVlIjoiIn0seyJuYW1lIjoiTUFYX0ZFQVRVUkVTIiwidmFsdWUiOiIifSx7Im5hbWUiOiJNQVhfRkVBVFVSRVNfUEVSX0ZFQVRVUkVfVFlQRSIsInZhbHVlIjoiIn0seyJuYW1lIjoiTUlOX0ZFQVRVUkVTIiwidmFsdWUiOiIifSx7Im5hbWUiOiJfTUVSR0VfU0NIRU1BUyIsInZhbHVlIjoiWUVTIn0seyJuYW1lIjoiRFlOQU1JQ19XT1JLRkxPVyIsInZhbHVlIjoieWVzIn0seyJuYW1lIjoiX01FUkdFX1NDSEVNQVMiLCJ2YWx1ZSI6IllFUyJ9LHsibmFtZSI6IlJFVFJJRVZFX0FMTF9UQUJMRV9OQU1FUyIsInZhbHVlIjoiWUVTIn1dLCJkYXRhc2V0IjoiPHF1b3RlPjxxdW90ZT5COjxiYWNrc2xhc2g+bXVlbnppbmdlcjxiYWNrc2xhc2g+Ul9TdHVkaW88YmFja3NsYXNoPkxpREFSLTNELVVyYmFuLUZvcmVzdC1NYXBwaW5nPGJhY2tzbGFzaD5kYXRhPGJhY2tzbGFzaD50cmVlX3Byb3RvdHlwZXM8YmFja3NsYXNoPmNyb3duXzFfdHJ1bmtfOS5za3A8cXVvdGU+PHNwYWNlPjxxdW90ZT5COjxiYWNrc2xhc2g+bXVlbnppbmdlcjxiYWNrc2xhc2g+Ul9TdHVkaW88YmFja3NsYXNoPkxpREFSLTNELVVyYmFuLUZvcmVzdC1NYXBwaW5nPGJhY2tzbGFzaD5kYXRhPGJhY2tzbGFzaD50cmVlX3Byb3RvdHlwZXM8YmFja3NsYXNoPmNyb3duXzJfdHJ1bmtfOC5za3A8cXVvdGU+PHNwYWNlPjxxdW90ZT5COjxiYWNrc2xhc2g+bXVlbnppbmdlcjxiYWNrc2xhc2g+Ul9TdHVkaW88YmFja3NsYXNoPkxpREFSLTNELVVyYmFuLUZvcmVzdC1NYXBwaW5nPGJhY2tzbGFzaD5kYXRhPGJhY2tzbGFzaD50cmVlX3Byb3RvdHlwZXM8YmFja3NsYXNoPmNyb3duXzNfdHJ1bmtfNy5za3A8cXVvdGU+PHNwYWNlPjxxdW90ZT5COjxiYWNrc2xhc2g+bXVlbnppbmdlcjxiYWNrc2xhc2g+Ul9TdHVkaW88YmFja3NsYXNoPkxpREFSLTNELVVyYmFuLUZvcmVzdC1NYXBwaW5nPGJhY2tzbGFzaD5kYXRhPGJhY2tzbGFzaD50cmVlX3Byb3RvdHlwZXM8YmFja3NsYXNoPmNyb3duXzRfdHJ1bmtfNi5za3A8cXVvdGU+PHNwYWNlPjxxdW90ZT5COjxiYWNrc2xhc2g+bXVlbnppbmdlcjxiYWNrc2xhc2g+Ul9TdHVkaW88YmFja3NsYXNoPkxpREFSLTNELVVyYmFuLUZvcmVzdC1NYXBwaW5nPGJhY2tzbGFzaD5kYXRhPGJhY2tzbGFzaD50cmVlX3Byb3RvdHlwZXM8YmFja3NsYXNoPmNyb3duXzVfdHJ1bmtfNS5za3A8cXVvdGU+PHNwYWNlPjxxdW90ZT5COjxiYWNrc2xhc2g+bXVlbnppbmdlcjxiYWNrc2xhc2g+Ul9TdHVkaW88YmFja3NsYXNoPkxpREFSLTNELVVyYmFuLUZvcmVzdC1NYXBwaW5nPGJhY2tzbGFzaD5kYXRhPGJhY2tzbGFzaD50cmVlX3Byb3RvdHlwZXM8YmFja3NsYXNoPmNyb3duXzZfdHJ1bmtfNC5za3A8cXVvdGU+PHNwYWNlPjxxdW90ZT5COjxiYWNrc2xhc2g+bXVlbnppbmdlcjxiYWNrc2xhc2g+Ul9TdHVkaW88YmFja3NsYXNoPkxpREFSLTNELVVyYmFuLUZvcmVzdC1NYXBwaW5nPGJhY2tzbGFzaD5kYXRhPGJhY2tzbGFzaD50cmVlX3Byb3RvdHlwZXM8YmFja3NsYXNoPmNyb3duXzdfdHJ1bmtfMy5za3A8cXVvdGU+PHNwYWNlPjxxdW90ZT5COjxiYWNrc2xhc2g+bXVlbnppbmdlcjxiYWNrc2xhc2g+Ul9TdHVkaW88YmFja3NsYXNoPkxpREFSLTNELVVyYmFuLUZvcmVzdC1NYXBwaW5nPGJhY2tzbGFzaD5kYXRhPGJhY2tzbGFzaD50cmVlX3Byb3RvdHlwZXM8YmFja3NsYXNoPmNyb3duXzhfdHJ1bmtfMi5za3A8cXVvdGU+PHNwYWNlPjxxdW90ZT5COjxiYWNrc2xhc2g+bXVlbnppbmdlcjxiYWNrc2xhc2g+Ul9TdHVkaW88YmFja3NsYXNoPkxpREFSLTNELVVyYmFuLUZvcmVzdC1NYXBwaW5nPGJhY2tzbGFzaD5kYXRhPGJhY2tzbGFzaD50cmVlX3Byb3RvdHlwZXM8YmFja3NsYXNoPmNyb3duXzlfdHJ1bmtfMS5za3A8cXVvdGU+PHNwYWNlPjxxdW90ZT5COjxiYWNrc2xhc2g+bXVlbnppbmdlcjxiYWNrc2xhc2g+Ul9TdHVkaW88YmFja3NsYXNoPkxpREFSLTNELVVyYmFuLUZvcmVzdC1NYXBwaW5nPGJhY2tzbGFzaD5kYXRhPGJhY2tzbGFzaD50cmVlX3Byb3RvdHlwZXM8YmFja3NsYXNoPmNyb3duXzEwX3RydW5rXzAuc2twPHF1b3RlPjxxdW90ZT4iLCJmb3JtYXQiOiJTS1AiLCJ2YWx1ZXNUb1VzZSI6ImZlYXR1cmVUeXBlcyJ9LCJkZWZhdWx0VmFsdWUiOiIiLCJoaWRkZW4iOmZhbHNlLCJuYW1lIjoiRkVBVFVSRV9UWVBFUyIsInByb21wdCI6IkZlYXR1cmUgVHlwZXMgdG8gUmVhZCIsInJlcXVpcmVkIjpmYWxzZSwidHlwZSI6Imxpc3Rib3giLCJ2YWx1ZVR5cGUiOiJzdHJpbmdFbmNvZGVkUGFydHMifSx7ImFjY2Vzc01vZGUiOiJyZWFkIiwiYWxsb3dVUkwiOnRydWUsImRlZmF1bHRWYWx1ZSI6IkI6XFxtdWVuemluZ2VyXFxSX1N0dWRpb1xcTGlEQVItM0QtVXJiYW4tRm9yZXN0LU1hcHBpbmdcXHJlc3VsdHNcXHBhcmFtZXRlcml6ZWRfdHJlZV9jcm93bnNcXHRyZWVfcG9zaXRpb25zX3BhcmFtZXRlcml6ZWQuZ2VvanNvbiIsImZpbHRlcnMiOlt7ImRlc2NyaXB0aW9uIjoiR2VvSlNPTiBEb2N1bWVudHMiLCJmaWx0ZXIiOlsiKi5qc29uIiwiKi5nZW9qc29uIl19LHsiZGVzY3JpcHRpb24iOiJHZW9KU09OIERvY3VtZW50cyIsImZpbHRlciI6WyIqLmpzb24iXX0seyJkZXNjcmlwdGlvbiI6Ikdlb0pTT04gRG9jdW1lbnRzIiwiZmlsdGVyIjpbIiouZ2VvanNvbiJdfSx7ImRlc2NyaXB0aW9uIjoiQXJjaGl2ZSBGaWxlcyIsImZpbHRlciI6WyIqLjd6IiwiKi43emlwIiwiKi5yYXIiLCIqLnJ2eiIsIioudGFyIiwiKi50YXIuYnoyIiwiKi50YXIuZ3oiLCIqLnRneiIsIiouemlwIiwiKi56aXB4Il19LHsiZGVzY3JpcHRpb24iOiJDb21wcmVzc2VkIEZpbGVzIiwiZmlsdGVyIjpbIiouYnoyIiwiKi5neiJdfSx7ImRlc2NyaXB0aW9uIjoiQWxsIEZpbGVzIiwiZmlsdGVyIjpbIioiXX1dLCJpbmNsdWRlV2ViQnJvd3NlciI6dHJ1ZSwiaXRlbXNUb1NlbGVjdCI6ImZpbGVzIiwibmFtZSI6IlNvdXJjZURhdGFzZXRfR0VPSlNPTiIsInByb21wdCI6IlNvdXJjZSBHZW9KU09OIEZpbGUgb3IgVVJMOiIsInJlcXVpcmVkIjp0cnVlLCJzZWxlY3RNdWx0aXBsZSI6dHJ1ZSwic3VwcG9ydGVkVmFsdWVUeXBlcyI6WyJnbG9iYWxQYXJhbWV0ZXIiXSwidHlwZSI6ImZpbGUiLCJ2YWxpZGF0ZUV4aXN0ZW5jZSI6ZmFsc2UsInZhbHVlVHlwZSI6InN0cmluZyJ9LHsiY2hvaWNlU2V0dGluZ3MiOnsiY2hvaWNlU2V0IjoicmVhZGVyVmFsdWVzIiwiY29uZmlndXJhdGlvbiI6W3sibmFtZSI6Il9EQVRBU0VUX09WRVJSSURFXyIsInZhbHVlIjoiU291cmNlRGF0YXNldF9HRU9KU09OIn0seyJuYW1lIjoiVVNFX1NFQVJDSF9FTlZFTE9QRSIsInZhbHVlIjoiTk8ifSx7Im5hbWUiOiJTRUFSQ0hfRU5WRUxPUEVfTUlOWCIsInZhbHVlIjoiMCJ9LHsibmFtZSI6IlNFQVJDSF9FTlZFTE9QRV9NSU5ZIiwidmFsdWUiOiIwIn0seyJuYW1lIjoiU0VBUkNIX0VOVkVMT1BFX01BWFgiLCJ2YWx1ZSI6IjAifSx7Im5hbWUiOiJTRUFSQ0hfRU5WRUxPUEVfTUFYWSIsInZhbHVlIjoiMCJ9LHsibmFtZSI6IlNFQVJDSF9FTlZFTE9QRV9DT09SRElOQVRFX1NZU1RFTSIsInZhbHVlIjoiIn0seyJuYW1lIjoiQ0xJUF9UT19FTlZFTE9QRSIsInZhbHVlIjoiTk8ifSx7Im5hbWUiOiJORVRXT1JLX0FVVEhFTlRJQ0FUSU9OIiwidmFsdWUiOiIifSx7Im5hbWUiOiJDT09SRFNZUyIsInZhbHVlIjoiIn0seyJuYW1lIjoiU1RBUlRfRkVBVFVSRSIsInZhbHVlIjoiIn0seyJuYW1lIjoiTUFYX0ZFQVRVUkVTIiwidmFsdWUiOiIifSx7Im5hbWUiOiJNQVhfRkVBVFVSRVNfUEVSX0ZFQVRVUkVfVFlQRSIsInZhbHVlIjoiIn0seyJuYW1lIjoiTUlOX0ZFQVRVUkVTIiwidmFsdWUiOiIifSx7Im5hbWUiOiJfTUVSR0VfU0NIRU1BUyIsInZhbHVlIjoiWUVTIn0seyJuYW1lIjoiRkxBVFRFTl9NT0RFIiwidmFsdWUiOiJBTExfTEVWRUxTIn0seyJuYW1lIjoiRFlOQU1JQ19XT1JLRkxPVyIsInZhbHVlIjoieWVzIn0seyJuYW1lIjoiVVNFX0JBU0VOQU1FX0FTX0RFRkFVTFRfRkVBVFVSRV9UWVBFIiwidmFsdWUiOiJZZXMifSx7Im5hbWUiOiJfTUVSR0VfU0NIRU1BUyIsInZhbHVlIjoiWUVTIn0seyJuYW1lIjoiUkVUUklFVkVfQUxMX1RBQkxFX05BTUVTIiwidmFsdWUiOiJZRVMifV0sImRhdGFzZXQiOiJCOjxiYWNrc2xhc2g+bXVlbnppbmdlcjxiYWNrc2xhc2g+Ul9TdHVkaW88YmFja3NsYXNoPkxpREFSLTNELVVyYmFuLUZvcmVzdC1NYXBwaW5nPGJhY2tzbGFzaD5yZXN1bHRzPGJhY2tzbGFzaD5wYXJhbWV0ZXJpemVkX3RyZWVfY3Jvd25zPGJhY2tzbGFzaD50cmVlX3Bvc2l0aW9uc19wYXJhbWV0ZXJpemVkLmdlb2pzb24iLCJmb3JtYXQiOiJHRU9KU09OIiwidmFsdWVzVG9Vc2UiOiJmZWF0dXJlVHlwZXMifSwiZGVmYXVsdFZhbHVlIjoiIiwiaGlkZGVuIjpmYWxzZSwibmFtZSI6IkZFQVRVUkVfVFlQRVNfMyIsInByb21wdCI6IkZlYXR1cmUgVHlwZXMgdG8gUmVhZCIsInJlcXVpcmVkIjpmYWxzZSwidHlwZSI6Imxpc3Rib3giLCJ2YWx1ZVR5cGUiOiJzdHJpbmdFbmNvZGVkUGFydHMifV19"
+#! >
+#! <PARAMETER_INFO>
+#!     <INFO NAME="DestDataset_CITYGML" 
+#!   DEFAULT_VALUE="B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\results\semantic_3d_tree_models\semantic_3D_tree_model_berlin_test_area.gml"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="false"
+#!   GUI_LINE="GUI FILENAME DestDataset_CITYGML CityGML_Files(*.gml;*.xml)|*.gml;*.xml|CityGML_Files(*.gml)|*.gml|CityGML_Files(*.xml)|*.xml|All_Files|* Destination CityGML Document:"
+#! />
+#!     <INFO NAME="SourceDataset_SKP_3" 
+#!   DEFAULT_VALUE="&quot;&quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_1_trunk_9.skp&quot; &quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_2_trunk_8.skp&quot; &quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_3_trunk_7.skp&quot; &quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_4_trunk_6.skp&quot; &quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_5_trunk_5.skp&quot; &quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_6_trunk_4.skp&quot; &quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_7_trunk_3.skp&quot; &quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_8_trunk_2.skp&quot; &quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_9_trunk_1.skp&quot; &quot;B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_10_trunk_0.skp&quot;&quot;"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI MULTIFILE SourceDataset_SKP_3 INCLUDE_WEB_BROWSER%SKP_Files(*.skp)|*.skp|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|All_Files(*)|* Source Trimble SketchUp File:"
+#! />
+#!     <INFO NAME="FEATURE_TYPES" 
+#!   DEFAULT_VALUE=""
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="false"
+#!   GUI_LINE="GUI OPTIONAL FEATURE_TYPES_ENCODED FEATURE_TYPES &lt;quote&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_1_trunk_9.skp&lt;quote&gt;&lt;space&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_2_trunk_8.skp&lt;quote&gt;&lt;space&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_3_trunk_7.skp&lt;quote&gt;&lt;space&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_4_trunk_6.skp&lt;quote&gt;&lt;space&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_5_trunk_5.skp&lt;quote&gt;&lt;space&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_6_trunk_4.skp&lt;quote&gt;&lt;space&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_7_trunk_3.skp&lt;quote&gt;&lt;space&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_8_trunk_2.skp&lt;quote&gt;&lt;space&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_9_trunk_1.skp&lt;quote&gt;&lt;space&gt;&lt;quote&gt;B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;data&lt;backslash&gt;tree_prototypes&lt;backslash&gt;crown_10_trunk_0.skp&lt;quote&gt;&lt;quote&gt;,_FORMAT_OVERRIDE_,SKP,_DATASET_OVERRIDE_,SourceDataset_SKP_3,FME_GROUP_NAMED1,,READ_EDGES,No,READ_HIDDEN_ELEMENTS,Auto,COLOR_BY_LAYER,Auto,READ_TEXTURES,Yes,KEEP_ORIGINAL_TEXTURES,Yes,FME_GROUP_NAMED2,,COORDSYS_DATUM,WGS84,MOVE_TO_WORLD_COORDSYS,Yes,USE_SEARCH_ENVELOPE,NO,SEARCH_ENVELOPE_MINX,0,SEARCH_ENVELOPE_MINY,0,SEARCH_ENVELOPE_MAXX,0,SEARCH_ENVELOPE_MAXY,0,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,CLIP_TO_ENVELOPE,NO,NETWORK_AUTHENTICATION,,COORDSYS,,START_FEATURE,,MAX_FEATURES,,MAX_FEATURES_PER_FEATURE_TYPE,,MIN_FEATURES,,_MERGE_SCHEMAS,YES,DYNAMIC_WORKFLOW,yes,_MERGE_SCHEMAS,YES Feature Types to Read"
+#! />
+#!     <INFO NAME="SourceDataset_GEOJSON" 
+#!   DEFAULT_VALUE="B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\results\parameterized_tree_crowns\tree_positions_parameterized.geojson"
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="true"
+#!   GUI_LINE="GUI FILE_OR_URL SourceDataset_GEOJSON INCLUDE_WEB_BROWSER%GeoJSON_Documents(*.json;*.geojson)|*.json;*.geojson|GeoJSON_Documents(*.json)|*.json|GeoJSON_Documents(*.geojson)|*.geojson|Archive_Files(*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx)|*.7z;*.7zip;*.rar;*.rvz;*.tar;*.tar.bz2;*.tar.gz;*.tgz;*.zip;*.zipx|Compressed_Files(*.bz2;*.gz)|*.bz2;*.gz|All_Files(*)|* Source GeoJSON File or URL:"
+#! />
+#!     <INFO NAME="FEATURE_TYPES_3" 
+#!   DEFAULT_VALUE=""
+#!   SCOPE="DEPENDENT"
+#!   GENERATED_GUI_LINE="false"
+#!   GUI_LINE="GUI OPTIONAL FEATURE_TYPES_ENCODED FEATURE_TYPES_3 B:&lt;backslash&gt;muenzinger&lt;backslash&gt;R_Studio&lt;backslash&gt;LiDAR-3D-Urban-Forest-Mapping&lt;backslash&gt;results&lt;backslash&gt;parameterized_tree_crowns&lt;backslash&gt;tree_positions_parameterized.geojson,_FORMAT_OVERRIDE_,GEOJSON,_DATASET_OVERRIDE_,SourceDataset_GEOJSON,USE_SEARCH_ENVELOPE,NO,SEARCH_ENVELOPE_MINX,0,SEARCH_ENVELOPE_MINY,0,SEARCH_ENVELOPE_MAXX,0,SEARCH_ENVELOPE_MAXY,0,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,CLIP_TO_ENVELOPE,NO,NETWORK_AUTHENTICATION,,COORDSYS,,START_FEATURE,,MAX_FEATURES,,MAX_FEATURES_PER_FEATURE_TYPE,,MIN_FEATURES,,_MERGE_SCHEMAS,YES,FLATTEN_MODE,ALL_LEVELS,DYNAMIC_WORKFLOW,yes,USE_BASENAME_AS_DEFAULT_FEATURE_TYPE,Yes,_MERGE_SCHEMAS,YES Feature Types to Read"
+#! />
+#! </PARAMETER_INFO>
+#! </USER_PARAMETERS>
+#! <COMMENTS>
+#! <COMMENT
+#!   IDENTIFIER="31"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:600;&quot;&gt;Workspace description&lt;/span&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt;&quot;&gt;Creates CityGML SolitaryVegetationObjects from  parameterized tree positions and prototype tree models. &lt;/span&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt;&quot;&gt;3D tree models are created using space-efficient implicit modeling. &lt;/span&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt;&quot;&gt;Therefore the geometry of each tree model is stored only once and represented by an anchor point and a transformation matrix that unfolds the trees shape at the given positions. &lt;/span&gt;&lt;/p&gt;&#10;&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:600;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:600;&quot;&gt;Source data &lt;/span&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt;&quot;&gt;tree positions: &lt;/span&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt;&quot;&gt;&#9;- GeoJSON containing parameterized tree positions as points&lt;/span&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt;&quot;&gt;&#9;- tree height, crown diameter and x,y,z coordinates are mandatory&lt;/span&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt;&quot;&gt;&#9;- for modelling as ellipsoids width, height and orientation of tree crown are needed&lt;/span&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt;&quot;&gt;tree models:&lt;/span&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt;&quot;&gt;&#9;- Sketchup files with normalized prototypes &lt;/span&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt;&quot;&gt;&#9;- height and diameter of each model are always 1 m  which allows scaling via the transformation matix&lt;/span&gt;&lt;/p&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt;&quot;&gt;&#9;- models differ in their ration between crown height and trunk height&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="-3223.4515897040892 221.64959291354444"
+#!   TOP_LEFT="-3223.4515897040892 221.64959291354444"
+#!   BOTTOM_RIGHT="-1424.4015897040892 -690.35940708645558"
+#!   BOUNDING_RECT="-3223.4515897040892 221.64959291354444 1799.05 912.00900000000001"
+#!   ORDER="500000000000000"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{4a886feb-4c98-42fd-ba44-11c5074b48d0}"
+#!   COLOUR="1,1,0.95686274509803926,0.78431372549019607"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="0"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="32"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Merge parameterized tree positions with corresponding tree models&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="318.1047824277598 -279.01633806897598"
+#!   TOP_LEFT="318.1047824277598 -279.01633806897598"
+#!   BOTTOM_RIGHT="748.1047824277598 -280.01633806897598"
+#!   BOUNDING_RECT="318.1047824277598 -279.01633806897598 430 1"
+#!   ORDER="500000000000160"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{49201dca-f6fb-402e-b290-a008ba85b794}"
+#!   COLOUR="1,1,0.95686274509803926,0.78431372549019607"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="12"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="33"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Create anchor point to unfold geometry at tree positions&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="1658.6509065018977 -555.01683807397603"
+#!   TOP_LEFT="1658.6509065018977 -555.01683807397603"
+#!   BOTTOM_RIGHT="2089.6509065018977 -556.01683807397603"
+#!   BOUNDING_RECT="1658.6509065018977 -555.01683807397603 431 1"
+#!   ORDER="500000000000174"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{0ef02bb8-49d3-4082-b3e0-fb790624a427}"
+#!   COLOUR="1,1,0.95686274509803926,0.78431372549019607"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="13"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="34"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Create geometry instances&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="1658.6509065018977 -967.20533814079408"
+#!   TOP_LEFT="1658.6509065018977 -967.20533814079408"
+#!   BOTTOM_RIGHT="2122.6509065018977 -968.20533814079408"
+#!   BOUNDING_RECT="1658.6509065018977 -967.20533814079408 464 1"
+#!   ORDER="500000000000175"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{26ce400a-f854-4da9-8552-95bbbb805269}"
+#!   COLOUR="1,1,0.95686274509803926,0.78431372549019607"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="14"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="35"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Define transformation matrix (scale, offset, rotation)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="2387.3749137744867 -329.01683807397558"
+#!   TOP_LEFT="2387.3749137744867 -329.01683807397558"
+#!   BOTTOM_RIGHT="2878.8948319690985 -434.01758808147565"
+#!   BOUNDING_RECT="2387.3749137744867 -329.01683807397558 491.51991819461182 105.00075000750007"
+#!   ORDER="500000000000182"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{12bf4047-4b8b-4c04-9fcb-e34ebbc4beb3}"
+#!   COLOUR="1,1,0.95686274509803926,0.78431372549019607"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="15"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="36"
+#!   COMMENT_VALUE="&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;&#10;&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;&#10;p, li { white-space: pre-wrap; }&#10;&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Segoe UI&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;&#10;&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Calculate rotation and scaling for each crown&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;"
+#!   POSITION="-1090.3657543086983 -352.31954023680009"
+#!   TOP_LEFT="-1090.3657543086983 -352.31954023680009"
+#!   BOTTOM_RIGHT="-637.36575430869834 -353.31954023680009"
+#!   BOUNDING_RECT="-1090.3657543086983 -352.31954023680009 453 1"
+#!   ORDER="500000000000183"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="false"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{b194c656-fb9b-47f2-a304-a97206d3fbe4}"
+#!   COLOUR="1,1,0.95686274509803926,0.78431372549019607"
+#!   SIZE_POLICY="10"
+#!   ANCHORED_NODE="7"
+#! />
+#! <COMMENT
+#!   IDENTIFIER="37"
+#!   COMMENT_VALUE="General&amp;nbsp;Parameters:&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Writer&amp;nbsp;Type:&amp;nbsp;OGC&amp;nbsp;CityGML&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Feature&amp;nbsp;Type&amp;nbsp;Name:&amp;nbsp;SolitaryVegetationObject&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Writer:&amp;nbsp;semantic_3D_tree_model_berlin_test_area&amp;nbsp;[CITYGML]&lt;br&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;Allowed&amp;nbsp;Geometries:&amp;nbsp;All&lt;br&gt;Exposed Attributes:&lt;table border=0 cellspacing=0&gt;&lt;tr&gt;&lt;td valign=middle&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;&lt;table border=1 cellspacing=0 cellpadding=2&gt;&lt;tr&gt;&lt;td&gt;Name&lt;/td&gt;&lt;td&gt;Type&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;gml_id&lt;/td&gt;&lt;td&gt;xml_buffer&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;citygml_lod_name&lt;/td&gt;&lt;td&gt;xml_char(200)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;citygml_level_of_detail&lt;/td&gt;&lt;td&gt;xml_char(200)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;citygml_transformation_matrix&lt;/td&gt;&lt;td&gt;xml_char(200)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;citygml_height&lt;/td&gt;&lt;td&gt;xml_real64&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;citygml_height_units&lt;/td&gt;&lt;td&gt;xml_char(200)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;citygml_crown_diameter&lt;/td&gt;&lt;td&gt;xml_real64&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;citygml_crown_diameter_units&lt;/td&gt;&lt;td&gt;xml_char(200)&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;h_crown&lt;/td&gt;&lt;td&gt;xml_real64&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;h_trunk&lt;/td&gt;&lt;td&gt;xml_real64&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;X&lt;/td&gt;&lt;td&gt;xml_real64&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Y&lt;/td&gt;&lt;td&gt;xml_real64&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Z&lt;/td&gt;&lt;td&gt;xml_real64&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;"
+#!   POSITION="3134.6076511256429 -742.28205016186848"
+#!   TOP_LEFT="3134.6076511256429 -742.28205016186848"
+#!   BOTTOM_RIGHT="4031.4911199603312 -741.28205016186848"
+#!   BOUNDING_RECT="3134.6076511256429 -742.28205016186848 896.8834688346883 -1"
+#!   ORDER="500000000000180"
+#!   FOLLOW_ANCHOR="true"
+#!   INFO_NODE="true"
+#!   CUSTOM_USER_COLOR="false"
+#!   UUID="{02e429ed-6c47-4a72-b71d-623b79599737}"
+#!   ANCHORED_NODE="4"
+#! />
+#! </COMMENTS>
+#! <CONSTANTS>
+#! </CONSTANTS>
+#! <BOOKMARKS>
+#! <BOOKMARK
+#!   IDENTIFIER="38"
+#!   NAME="Parameterized Tree Positions"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="-3343.9865854948612 -559.05253128214872"
+#!   ORDER="500000000000165"
+#!   PALETTE_COLOR="Color4"
+#!   BOTTOM_RIGHT="-2709.9865854948612 -812.05253128214872"
+#!   BOUNDING_RECT="-3343.9865854948612 -559.05253128214872 634 253"
+#!   STICKY="true"
+#!   COLOUR="0.85098039215686272,0.92941176470588238,0.60392156862745094,1"
+#!   CONTENTS="3 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="39"
+#!   NAME="Tree Model Prototypes"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="-3343.9865854948612 -907.91427739960909"
+#!   ORDER="500000000000166"
+#!   PALETTE_COLOR="Color5"
+#!   BOTTOM_RIGHT="-2709.9865854948612 -1199.4142773996091"
+#!   BOUNDING_RECT="-3343.9865854948612 -907.91427739960909 634 291.5"
+#!   STICKY="true"
+#!   COLOUR="0.59607843137254901,0.91764705882352937,0.72549019607843135,1"
+#!   CONTENTS="2 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="40"
+#!   NAME="Prepare geometry instances"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="-2598.4102353069902 -885.66427739960909"
+#!   ORDER="500000000000168"
+#!   PALETTE_COLOR="Color6"
+#!   BOTTOM_RIGHT="146.82720493585657 -1221.6642773996091"
+#!   BOUNDING_RECT="-2598.4102353069902 -885.66427739960909 2745.2374402428468 336"
+#!   STICKY="true"
+#!   COLOUR="0.59215686274509804,0.8901960784313725,0.90980392156862744,1"
+#!   CONTENTS="24 11 22 10 8 9 23 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="41"
+#!   NAME="Prepare implicit modelling parameters"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="-2575.4102353069902 -547.55253128214827"
+#!   ORDER="500000000000169"
+#!   PALETTE_COLOR="Color7"
+#!   BOTTOM_RIGHT="-587.36575430869857 -853.55253128214872"
+#!   BOUNDING_RECT="-2575.4102353069902 -547.55253128214827 1988.0444809982916 306.00000000000045"
+#!   STICKY="true"
+#!   COLOUR="0.59215686274509804,0.75294117647058822,0.90980392156862744,1"
+#!   CONTENTS="6 7 20 19 5 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="42"
+#!   NAME="Create anchor points and set geometry instances "
+#!   DESCRIPTION=""
+#!   TOP_LEFT="996.55800871341535 -459.01858809147598"
+#!   ORDER="500000000000173.13"
+#!   PALETTE_COLOR="Color1"
+#!   BOTTOM_RIGHT="1565.5580087134153 -1217.5844972216419"
+#!   BOUNDING_RECT="996.55800871341535 -459.01858809147598 569 758.56590913016589"
+#!   STICKY="true"
+#!   COLOUR="0.59999999999999998,0.80000000000000004,0.80000000000000004,1"
+#!   CONTENTS="14 26 13 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="43"
+#!   NAME="Write to destination schema"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="3164.5488514141221 -329.01683807397558"
+#!   ORDER="500000000000179"
+#!   PALETTE_COLOR="Color2"
+#!   BOTTOM_RIGHT="3963.5499196718515 -582.01683807397558"
+#!   BOUNDING_RECT="3164.5488514141221 -329.01683807397558 799.00106825772946 253"
+#!   STICKY="true"
+#!   COLOUR="0.63529411764705879,0.80000000000000004,0.59999999999999998,1"
+#!   CONTENTS="4 "
+#! >
+#! </BOOKMARK>
+#! <BOOKMARK
+#!   IDENTIFIER="44"
+#!   NAME="Create CityGML specific attributes"
+#!   DESCRIPTION=""
+#!   TOP_LEFT="2282.7704770402374 -555.01683807397603"
+#!   ORDER="500000000000181"
+#!   PALETTE_COLOR="Color3"
+#!   BOTTOM_RIGHT="2937.7715452979669 -1119.9673834462305"
+#!   BOUNDING_RECT="2282.7704770402374 -555.01683807397603 655.00106825772946 564.95054537225451"
+#!   STICKY="true"
+#!   COLOUR="1,0.85490196078431369,0.59999999999999998,1"
+#!   CONTENTS="16 15 30 "
+#! >
+#! </BOOKMARK>
+#! </BOOKMARKS>
+#! <TRANSFORMERS>
+#! <TRANSFORMER
+#!   IDENTIFIER="5"
+#!   TYPE="AttributeManager"
+#!   VERSION="4"
+#!   POSITION="-1802.7382528540547 -687.55253128214872"
+#!   BOUNDING_RECT="-1802.7382528540547 -687.55253128214872 430 71"
+#!   ORDER="500000000000142"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22782"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="gml_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_tree" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_crown" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="d_crown" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_trunk" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="X" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Y" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Z" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ch_width" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ch_length" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ch_orientation" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="tree_model" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_GRP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_HANDLING" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_TABLE" PARM_VALUE="treeID treeID  REMOVE treeID_ioer gml_id  RENAME_SET_VALUE h_tree h_tree  NO_OP h_crown h_crown  NO_OP d_crown d_crown  NO_OP h_trunk h_trunk  NO_OP X X  NO_OP Y Y  NO_OP Z Z  NO_OP ch_width ch_width  NO_OP ch_length ch_length  NO_OP ch_orientation ch_orientation  NO_OP ch_area ch_area  REMOVE tree_model tree_model  NO_OP crownvolume crownvolume  REMOVE crownsurface crownsurface  REMOVE n_pulses n_pulses  REMOVE mean_nor mean_nor  REMOVE mean_ndvi mean_ndvi  REMOVE z_max z_max  REMOVE z_min z_min  REMOVE z_mean z_mean  REMOVE z_std z_std  REMOVE zq1 zq1  REMOVE zq2 zq2  REMOVE zq5 zq5  REMOVE zq95 zq95  REMOVE zq99 zq99  REMOVE"/>
+#!     <XFORM_PARM PARM_NAME="MULTI_FEATURE_MODE" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_MODE_DISPLAY" PARM_VALUE="No Substitution"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_VALUE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NUM_PRIOR_FEATURES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NUM_SUBSEQUENT_FEATURES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="USER_EXPOSED_ATTRIBUTES" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="AttributeManager"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="6"
+#!   TYPE="GeometryRemover"
+#!   VERSION="0"
+#!   POSITION="-2487.4102353069902 -657.55253128214827"
+#!   BOUNDING_RECT="-2487.4102353069902 -657.55253128214827 430 71"
+#!   ORDER="500000000000000"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22782"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="treeID" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="treeID_ioer" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_tree" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_crown" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="d_crown" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_trunk" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="X" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Y" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Z" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ch_width" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ch_length" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ch_orientation" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ch_area" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="tree_model" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="crownvolume" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="crownsurface" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="n_pulses" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="mean_nor" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="mean_ndvi" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="z_max" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="z_min" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="z_mean" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="z_std" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="zq1" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="zq2" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="zq5" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="zq95" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="zq99" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="GeometryRemover"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="7"
+#!   TYPE="AttributeCreator"
+#!   VERSION="9"
+#!   POSITION="-1090.3657543086983 -657.55253128214827"
+#!   BOUNDING_RECT="-1090.3657543086983 -657.55253128214827 453 71"
+#!   ORDER="500000000000076"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22782"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="Sx" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Sy" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="cosPhi" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="sinPhi" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="m_sinPhi" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="M11" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="M12" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="M21" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="M22" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="gml_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_tree" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_crown" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="d_crown" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_trunk" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="X" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Y" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Z" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ch_width" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ch_length" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ch_orientation" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="tree_model" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_GRP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_HANDLING" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_TABLE" PARM_VALUE="&quot;&quot; Sx SET_TO &lt;at&gt;Value&lt;openparen&gt;ch_length&lt;closeparen&gt;  Sy SET_TO &lt;at&gt;Value&lt;openparen&gt;ch_width&lt;closeparen&gt;  cosPhi SET_TO &lt;at&gt;Evaluate&lt;openparen&gt;&lt;at&gt;cos&lt;openparen&gt;&lt;at&gt;Value&lt;openparen&gt;ch_orientation&lt;closeparen&gt;&lt;closeparen&gt;&lt;closeparen&gt;  sinPhi SET_TO &lt;at&gt;Evaluate&lt;openparen&gt;&lt;at&gt;sin&lt;openparen&gt;&lt;at&gt;Value&lt;openparen&gt;ch_orientation&lt;closeparen&gt;&lt;closeparen&gt;&lt;closeparen&gt;  m_sinPhi SET_TO &lt;at&gt;Evaluate&lt;openparen&gt;-1*&lt;at&gt;Value&lt;openparen&gt;sinPhi&lt;closeparen&gt;&lt;closeparen&gt;  M11 SET_TO &lt;at&gt;Evaluate&lt;openparen&gt;&lt;at&gt;Value&lt;openparen&gt;cosPhi&lt;closeparen&gt;*&lt;at&gt;Value&lt;openparen&gt;Sx&lt;closeparen&gt;&lt;closeparen&gt;  M12 SET_TO &lt;at&gt;Evaluate&lt;openparen&gt;&lt;at&gt;Value&lt;openparen&gt;m_sinPhi&lt;closeparen&gt;*&lt;at&gt;Value&lt;openparen&gt;Sy&lt;closeparen&gt;&lt;closeparen&gt;  M21 SET_TO &lt;at&gt;Evaluate&lt;openparen&gt;&lt;at&gt;Value&lt;openparen&gt;sinPhi&lt;closeparen&gt;*&lt;at&gt;Value&lt;openparen&gt;Sx&lt;closeparen&gt;&lt;closeparen&gt;  M22 SET_TO &lt;at&gt;Evaluate&lt;openparen&gt;&lt;at&gt;Value&lt;openparen&gt;cosPhi&lt;closeparen&gt;*&lt;at&gt;Value&lt;openparen&gt;Sy&lt;closeparen&gt;&lt;closeparen&gt;"/>
+#!     <XFORM_PARM PARM_NAME="MULTI_FEATURE_MODE" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_MODE_DISPLAY" PARM_VALUE="No Substitution"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_VALUE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NUM_PRIOR_FEATURES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NUM_SUBSEQUENT_FEATURES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="AttributeCreator"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="8"
+#!   TYPE="AttributeCreator"
+#!   VERSION="9"
+#!   POSITION="-2510.4102353069902 -1033.4142773996091"
+#!   BOUNDING_RECT="-2510.4102353069902 -1033.4142773996091 453 71"
+#!   ORDER="500000000000000"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22782"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="tree_model_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_GRP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_HANDLING" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_TABLE" PARM_VALUE="&quot;&quot; tree_model_id SET_TO tree_prototype_&lt;at&gt;Count&lt;openparen&gt;1&lt;closeparen&gt;"/>
+#!     <XFORM_PARM PARM_NAME="MULTI_FEATURE_MODE" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_MODE_DISPLAY" PARM_VALUE="No Substitution"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_VALUE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NUM_PRIOR_FEATURES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NUM_SUBSEQUENT_FEATURES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="AttributeCreator_2"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="9"
+#!   TYPE="GeometryPropertySetter"
+#!   VERSION="4"
+#!   POSITION="-1840.7382528540547 -995.66427739960909"
+#!   BOUNDING_RECT="-1840.7382528540547 -995.66427739960909 553.00106825772946 71"
+#!   ORDER="500000000000000"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22782"
+#! >
+#!     <OUTPUT_FEAT NAME="SET"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="tree_model_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="UNTOUCHED"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="tree_model_id" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="CNT_ATTR" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="DOMAIN" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GEOM_NAME_FIELD" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GQUERY" PARM_VALUE="for&lt;space&gt;&lt;dollar&gt;geom&lt;space&gt;in&lt;space&gt;&lt;solidus&gt;&lt;solidus&gt;geometry&lt;lf&gt;where&lt;space&gt;&lt;dollar&gt;geom&lt;solidus&gt;count&lt;openparen&gt;parent::geometry&lt;closeparen&gt;&lt;space&gt;=&lt;space&gt;0&lt;lf&gt;return&lt;space&gt;number&lt;openparen&gt;&lt;dollar&gt;geom&lt;solidus&gt;&lt;at&gt;fme_id&lt;closeparen&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GQUERY_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="NAME_PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="OVERWRITE_CHOICE" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="REMOVE_ATTRIBUTE" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="SCOPE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="SETTYPE_PARAM" PARM_VALUE="Traits From Attributes"/>
+#!     <XFORM_PARM PARM_NAME="SRC_ATTRS" PARM_VALUE="tree_model_id"/>
+#!     <XFORM_PARM PARM_NAME="START" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="TRAIT_ATTR_PARAMETERS_GROUP" PARM_VALUE="FME_DISCLOSURE_OPEN"/>
+#!     <XFORM_PARM PARM_NAME="TRAIT_COUNTER_PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="GeometryPropertySetter_2"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="10"
+#!   TYPE="SharedItemAdder"
+#!   VERSION="0"
+#!   POSITION="-1090.3657543086983 -995.66427739960909"
+#!   BOUNDING_RECT="-1090.3657543086983 -995.66427739960909 453 71"
+#!   ORDER="500000000000000"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22782"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="tree_model_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_shared_item_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="tree_model_id" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="OAN_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="REF_ATTR" PARM_VALUE="_shared_item_id"/>
+#!     <XFORM_PARM PARM_NAME="SHARED_OBJECT_REF" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="SHARED_TYPE" PARM_VALUE="Geometry Definition"/>
+#!     <XFORM_PARM PARM_NAME="STORAGE_MODE" PARM_VALUE="Add New Item"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="SharedItemAdder"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="11"
+#!   TYPE="GeometryRemover"
+#!   VERSION="0"
+#!   POSITION="-356.17279506414297 -1017.5525312821483"
+#!   BOUNDING_RECT="-356.17279506414297 -1017.5525312821483 453 71"
+#!   ORDER="500000000000000"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22782"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="tree_model_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_shared_item_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="GeometryRemover_2"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="12"
+#!   TYPE="FeatureMerger"
+#!   VERSION="18"
+#!   POSITION="318.1047824277598 -657.55253128214827"
+#!   BOUNDING_RECT="318.1047824277598 -657.55253128214827 430 71"
+#!   ORDER="500000000000000"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22782"
+#! >
+#!     <OUTPUT_FEAT NAME="MERGED"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="Sx" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Sy" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="cosPhi" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="sinPhi" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="m_sinPhi" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="M11" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="M12" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="M21" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="M22" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="gml_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_tree" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_crown" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="d_crown" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_trunk" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="X" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Y" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Z" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ch_width" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ch_length" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ch_orientation" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="tree_model" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="tree_model_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_shared_item_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="UNMERGED_REQUESTOR"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="Sx" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Sy" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="cosPhi" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="sinPhi" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="m_sinPhi" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="M11" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="M12" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="M21" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="M22" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="gml_id" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="h_tree" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="h_crown" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="d_crown" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="h_trunk" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="X" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Y" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Z" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="ch_width" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="ch_length" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="ch_orientation" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="tree_model" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <OUTPUT_FEAT NAME="USED_SUPPLIER"/>
+#!     <FEAT_COLLAPSED COLLAPSED="2"/>
+#!     <XFORM_ATTR ATTR_NAME="tree_model_id" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_shared_item_id" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="numReferences" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <OUTPUT_FEAT NAME="UNUSED_SUPPLIER"/>
+#!     <FEAT_COLLAPSED COLLAPSED="3"/>
+#!     <XFORM_ATTR ATTR_NAME="tree_model_id" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <XFORM_ATTR ATTR_NAME="_shared_item_id" IS_USER_CREATED="false" FEAT_INDEX="3" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="4"/>
+#!     <XFORM_ATTR ATTR_NAME="Sx" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="Sy" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="cosPhi" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="sinPhi" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="m_sinPhi" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="M11" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="M12" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="M21" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="M22" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="gml_id" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="h_tree" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="h_crown" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="d_crown" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="h_trunk" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="X" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="Y" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="Z" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="ch_width" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="ch_length" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="ch_orientation" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="tree_model" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="tree_model_id" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="_shared_item_id" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="4" />
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_GROUP" PARM_VALUE="FME_DISCLOSURE_OPEN"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_ACCUM_MODE" PARM_VALUE="Merge Supplier"/>
+#!     <XFORM_PARM PARM_NAME="ATTR_CONFLICT_RES" PARM_VALUE="Use Requestor"/>
+#!     <XFORM_PARM PARM_NAME="CLEANING_TOLERANCE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="CONNECT_Z_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GENERATE_LIST_GROUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="GEOM_TYPE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_BY_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GROUP_PROCESSING_GROUP" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="IGNORE_NULLS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="JOIN_ATTRIBUTES_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="JOIN_KEYS" PARM_VALUE="&lt;at&gt;Value&lt;openparen&gt;tree_model&lt;closeparen&gt; &lt;at&gt;Value&lt;openparen&gt;fme_feature_type&lt;closeparen&gt; AUTO"/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTRS_TO_INCLUDE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="LIST_ATTRS_TO_INCLUDE_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="LIST_NAME" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="MERGE_COUNT_ATTR" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="MERGE_TYPE" PARM_VALUE="Attributes and Geometry"/>
+#!     <XFORM_PARM PARM_NAME="MODE_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PROCESS_DUPS" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="REJECT_NULL_MISSING_KEYS" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="SUPPLIERS_FIRST" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="SUPPLIER_PREFIX" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="FeatureMerger_2"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="13"
+#!   TYPE="VertexCreator"
+#!   VERSION="3"
+#!   POSITION="1084.5580087134153 -569.01858809147598"
+#!   BOUNDING_RECT="1084.5580087134153 -569.01858809147598 431 71"
+#!   ORDER="500000000000000"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22782"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="Sx" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Sy" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="cosPhi" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="sinPhi" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="m_sinPhi" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="M11" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="M12" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="M21" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="M22" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="gml_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_tree" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_crown" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="d_crown" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_trunk" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="X" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Y" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Z" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ch_width" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ch_length" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ch_orientation" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="tree_model" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="tree_model_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_shared_item_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="Sx" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Sy" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="cosPhi" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="sinPhi" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="m_sinPhi" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="M11" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="M12" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="M21" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="M22" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="gml_id" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="h_tree" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="h_crown" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="d_crown" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="h_trunk" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="X" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Y" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Z" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="ch_width" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="ch_length" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="ch_orientation" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="tree_model" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="tree_model_id" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_shared_item_id" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="ADVANCED_PARAMETERS" PARM_VALUE="FME_DISCLOSURE_OPEN"/>
+#!     <XFORM_PARM PARM_NAME="IGNORE_DUPLICATES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="INDEX" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="MEASURE_TYPE" PARM_VALUE="Continuous"/>
+#!     <XFORM_PARM PARM_NAME="MISSING_VAL_MODE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="MODE_NAME" PARM_VALUE="Replace with Point"/>
+#!     <XFORM_PARM PARM_NAME="PARAMETER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="VertexCreator_2"/>
+#!     <XFORM_PARM PARM_NAME="XVAL" PARM_VALUE="@Value(X)"/>
+#!     <XFORM_PARM PARM_NAME="YVAL" PARM_VALUE="@Value(Y)"/>
+#!     <XFORM_PARM PARM_NAME="ZVAL" PARM_VALUE="@Value(Z)"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="14"
+#!   TYPE="SharedItemIDSetter"
+#!   VERSION="1"
+#!   POSITION="1084.5580087134153 -931.58449722164187"
+#!   BOUNDING_RECT="1084.5580087134153 -931.58449722164187 431 71"
+#!   ORDER="500000000000000"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22782"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="Sx" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Sy" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="cosPhi" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="sinPhi" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="m_sinPhi" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="M11" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="M12" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="M21" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="M22" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="gml_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_tree" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_crown" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="d_crown" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_trunk" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="X" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Y" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Z" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ch_width" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ch_length" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="ch_orientation" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="tree_model" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="tree_model_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="_shared_item_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="UNMATCHED"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="Sx" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Sy" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="cosPhi" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="sinPhi" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="m_sinPhi" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="M11" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="M12" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="M21" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="M22" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="gml_id" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="h_tree" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="h_crown" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="d_crown" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="h_trunk" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="X" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Y" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Z" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="ch_width" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="ch_length" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="ch_orientation" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="tree_model" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="tree_model_id" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="_shared_item_id" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <OUTPUT_FEAT NAME="&lt;REJECTED&gt;"/>
+#!     <FEAT_COLLAPSED COLLAPSED="2"/>
+#!     <XFORM_ATTR ATTR_NAME="Sx" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="Sy" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="cosPhi" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="sinPhi" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="m_sinPhi" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="M11" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="M12" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="M21" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="M22" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="gml_id" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="h_tree" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="h_crown" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="d_crown" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="h_trunk" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="X" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="Y" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="Z" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="ch_width" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="ch_length" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="ch_orientation" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="tree_model" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="fme_feature_type" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="tree_model_id" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="_shared_item_id" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_ATTR ATTR_NAME="fme_rejection_code" IS_USER_CREATED="false" FEAT_INDEX="2" />
+#!     <XFORM_PARM PARM_NAME="GQUERY" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="PARAMETER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="REFERENCE_ATTRIBUTE" PARM_VALUE="_shared_item_id"/>
+#!     <XFORM_PARM PARM_NAME="REFERENCE_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="REFERENCE_TRAIT" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="SHARED_TYPE" PARM_VALUE="Geometry Definition"/>
+#!     <XFORM_PARM PARM_NAME="SIDE_TO_SET" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="STORAGE_MODE" PARM_VALUE="From Attribute"/>
+#!     <XFORM_PARM PARM_NAME="TEXTURE_APPLICATIONPARAMETER_GROUP" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="TEXTURE_MAPPING_TYPE_CHOICE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="TEXTURE_U_REPEAT_FACTOR" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="TEXTURE_V_REPEAT_FACTOR" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="USE_EXISTING_TEXTURE_COORDINATES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="U_ORIGIN_OFFSET" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="V_ORIGIN_OFFSET" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="SharedItemIDSetter_2"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="15"
+#!   TYPE="AttributeManager"
+#!   VERSION="4"
+#!   POSITION="2412.1285403122279 -665.01683807397603"
+#!   BOUNDING_RECT="2412.1285403122279 -665.01683807397603 442.00106825772946 71"
+#!   ORDER="500000000000151"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22782"
+#! >
+#!     <OUTPUT_FEAT NAME="OUTPUT"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="gml_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_lod_name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_level_of_detail" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_transformation_matrix" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_height" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_height_units" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_crown_diameter" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_crown_diameter_units" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_crown" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_trunk" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="X" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Y" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Z" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_GRP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTRIBUTE_HANDLING" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="ATTR_TABLE" PARM_VALUE="gml_id gml_id  NO_OP  citygml_lod_name lod2ImplicitRepresentation SET_TO  citygml_level_of_detail 2 SET_TO  citygml_transformation_matrix &lt;at&gt;Value&lt;openparen&gt;M11&lt;closeparen&gt;&lt;space&gt;&lt;at&gt;Value&lt;openparen&gt;M12&lt;closeparen&gt;&lt;space&gt;0.0&lt;space&gt;0.0&lt;space&gt;&lt;lf&gt;&lt;at&gt;Value&lt;openparen&gt;M21&lt;closeparen&gt;&lt;space&gt;&lt;at&gt;Value&lt;openparen&gt;M22&lt;closeparen&gt;&lt;space&gt;0.0&lt;space&gt;0.0&lt;space&gt;&lt;lf&gt;0.0&lt;space&gt;0.0&lt;space&gt;&lt;at&gt;Value&lt;openparen&gt;h_tree&lt;closeparen&gt;&lt;space&gt;0.0&lt;space&gt;&lt;lf&gt;0.0&lt;space&gt;0.0&lt;space&gt;0.0&lt;space&gt;1.0&lt;space&gt; SET_TO h_tree citygml_height &lt;at&gt;Value&lt;openparen&gt;citygml_height&lt;closeparen&gt; RENAME_SET_VALUE  citygml_height_units m SET_TO d_crown citygml_crown_diameter &lt;at&gt;Value&lt;openparen&gt;citygml_crown_diameter&lt;closeparen&gt; RENAME_SET_VALUE  citygml_crown_diameter_units m SET_TO h_crown h_crown  NO_OP h_trunk h_trunk  NO_OP Sx Sx  REMOVE Sy Sy  REMOVE cosPhi cosPhi  REMOVE sinPhi sinPhi  REMOVE m_sinPhi m_sinPhi  REMOVE M11 M11  REMOVE M12 M12  REMOVE M21 M21  REMOVE M22 M22  REMOVE X X  NO_OP Y Y  NO_OP Z Z  NO_OP ch_width ch_width  REMOVE ch_length ch_length  REMOVE ch_orientation ch_orientation  REMOVE tree_model tree_model  REMOVE tree_model_id tree_model_id  REMOVE fme_feature_type fme_feature_type  REMOVE _shared_item_id _shared_item_id  REMOVE"/>
+#!     <XFORM_PARM PARM_NAME="MULTI_FEATURE_MODE" PARM_VALUE="NO"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_MODE_DISPLAY" PARM_VALUE="No Substitution"/>
+#!     <XFORM_PARM PARM_NAME="NULL_ATTR_VALUE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NUM_PRIOR_FEATURES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="NUM_SUBSEQUENT_FEATURES" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="USER_EXPOSED_ATTRIBUTES" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="AttributeManager_2"/>
+#! </TRANSFORMER>
+#! <TRANSFORMER
+#!   IDENTIFIER="16"
+#!   TYPE="GeometryPropertySetter"
+#!   VERSION="4"
+#!   POSITION="2374.6285403122279 -893.96738344623054"
+#!   BOUNDING_RECT="2374.6285403122279 -893.96738344623054 517.00106825772946 71"
+#!   ORDER="500000000000000"
+#!   PARMS_EDITED="false"
+#!   ENABLED="true"
+#!   LAST_PARM_EDIT="22782"
+#! >
+#!     <OUTPUT_FEAT NAME="SET"/>
+#!     <FEAT_COLLAPSED COLLAPSED="0"/>
+#!     <XFORM_ATTR ATTR_NAME="gml_id" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_lod_name" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_level_of_detail" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_transformation_matrix" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_height" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_height_units" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_crown_diameter" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_crown_diameter_units" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_crown" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="h_trunk" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="X" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Y" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <XFORM_ATTR ATTR_NAME="Z" IS_USER_CREATED="false" FEAT_INDEX="0" />
+#!     <OUTPUT_FEAT NAME="UNTOUCHED"/>
+#!     <FEAT_COLLAPSED COLLAPSED="1"/>
+#!     <XFORM_ATTR ATTR_NAME="gml_id" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_lod_name" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_level_of_detail" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_transformation_matrix" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_height" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_height_units" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_crown_diameter" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="citygml_crown_diameter_units" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="h_crown" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="h_trunk" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="X" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Y" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_ATTR ATTR_NAME="Z" IS_USER_CREATED="false" FEAT_INDEX="1" />
+#!     <XFORM_PARM PARM_NAME="CNT_ATTR" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="DOMAIN" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GEOM_NAME_FIELD" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GQUERY" PARM_VALUE="for&lt;space&gt;&lt;dollar&gt;geom&lt;space&gt;in&lt;space&gt;&lt;solidus&gt;&lt;solidus&gt;geometry&lt;lf&gt;where&lt;space&gt;&lt;dollar&gt;geom&lt;solidus&gt;count&lt;openparen&gt;parent::geometry&lt;closeparen&gt;&lt;space&gt;=&lt;space&gt;0&lt;lf&gt;return&lt;space&gt;number&lt;openparen&gt;&lt;dollar&gt;geom&lt;solidus&gt;&lt;at&gt;fme_id&lt;closeparen&gt;"/>
+#!     <XFORM_PARM PARM_NAME="GQUERY_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="NAME_PARAMETERS_GROUP" PARM_VALUE="FME_DISCLOSURE_OPEN"/>
+#!     <XFORM_PARM PARM_NAME="OVERWRITE_CHOICE" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="PARAMETERS_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="REMOVE_ATTRIBUTE" PARM_VALUE="No"/>
+#!     <XFORM_PARM PARM_NAME="SCOPE" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="SETTYPE_PARAM" PARM_VALUE="Traits From Attributes"/>
+#!     <XFORM_PARM PARM_NAME="SRC_ATTRS" PARM_VALUE="citygml_level_of_detail citygml_height Z citygml_crown_diameter_units citygml_transformation_matrix citygml_crown_diameter citygml_height_units gml_id citygml_lod_name X Y h_crown h_trunk"/>
+#!     <XFORM_PARM PARM_NAME="START" PARM_VALUE="&lt;Unused&gt;"/>
+#!     <XFORM_PARM PARM_NAME="TRAIT_ATTR_PARAMETERS_GROUP" PARM_VALUE="FME_DISCLOSURE_OPEN"/>
+#!     <XFORM_PARM PARM_NAME="TRAIT_COUNTER_PARAMETERS_GROUP" PARM_VALUE="FME_DISCLOSURE_OPEN"/>
+#!     <XFORM_PARM PARM_NAME="TRANSFORMER_GROUP" PARM_VALUE=""/>
+#!     <XFORM_PARM PARM_NAME="XFORMER_NAME" PARM_VALUE="GeometryPropertySetter"/>
+#! </TRANSFORMER>
+#! </TRANSFORMERS>
+#! <FEAT_LINKS>
+#! <FEAT_LINK
+#!   IDENTIFIER="17"
+#!   SOURCE_NODE="2"
+#!   TARGET_NODE="8"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="18"
+#!   SOURCE_NODE="3"
+#!   TARGET_NODE="6"
+#!   SOURCE_PORT_DESC="-1"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="19"
+#!   SOURCE_NODE="5"
+#!   TARGET_NODE="7"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="20"
+#!   SOURCE_NODE="6"
+#!   TARGET_NODE="5"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="21"
+#!   SOURCE_NODE="7"
+#!   TARGET_NODE="12"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 REQUESTOR"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="22"
+#!   SOURCE_NODE="8"
+#!   TARGET_NODE="9"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="23"
+#!   SOURCE_NODE="9"
+#!   TARGET_NODE="10"
+#!   SOURCE_PORT_DESC="fo 0 SET"
+#!   TARGET_PORT_DESC="fi 0 INPUT"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="24"
+#!   SOURCE_NODE="10"
+#!   TARGET_NODE="11"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="27"
+#!   SOURCE_NODE="11"
+#!   TARGET_NODE="12"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 1 SUPPLIER"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="25"
+#!   SOURCE_NODE="12"
+#!   TARGET_NODE="13"
+#!   SOURCE_PORT_DESC="fo 0 MERGED"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="26"
+#!   SOURCE_NODE="13"
+#!   TARGET_NODE="14"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="28"
+#!   SOURCE_NODE="14"
+#!   TARGET_NODE="15"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="30"
+#!   SOURCE_NODE="15"
+#!   TARGET_NODE="16"
+#!   SOURCE_PORT_DESC="fo 0 OUTPUT"
+#!   TARGET_PORT_DESC="fi 0 "
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! <FEAT_LINK
+#!   IDENTIFIER="29"
+#!   SOURCE_NODE="16"
+#!   TARGET_NODE="4"
+#!   SOURCE_PORT_DESC="fo 0 SET"
+#!   TARGET_PORT_DESC="-1"
+#!   ENABLED="true"
+#!   EXECUTION_IDX="0"
+#!   HIDDEN="false"
+#!   COLOUR="0,0,0,1"
+#!   PEN_WIDTH="4"
+#!   PEN_STYLE="1"
+#!   LINK_STYLE_NAME="&lt;Default&gt;"
+#!   EXTRA_POINTS=""
+#! />
+#! </FEAT_LINKS>
+#! <BREAKPOINTS>
+#! </BREAKPOINTS>
+#! <ATTR_LINKS>
+#! </ATTR_LINKS>
+#! <SUBDOCUMENTS>
+#! </SUBDOCUMENTS>
+#! <LOOKUP_TABLES>
+#! </LOOKUP_TABLES>
+#! </WORKSPACE>
+
+FME_PYTHON_VERSION 37
+ARCGIS_COMPATIBILITY ARCGIS_AUTO
+GUI IGNORE SourceDataset_SKP_1,SKP_IN_FME_GROUP_NAMED1_SKP_1,SKP_IN_READ_EDGES_SKP_1,SKP_IN_READ_HIDDEN_ELEMENTS_SKP_1,SKP_IN_COLOR_BY_LAYER_SKP_1,SKP_IN_READ_TEXTURES_SKP_1,SKP_IN_KEEP_ORIGINAL_TEXTURES_SKP_1,SKP_IN_FME_GROUP_NAMED2_SKP_1,SKP_IN_COORDSYS_DATUM_SKP_1,SKP_IN_MOVE_TO_WORLD_COORDSYS_SKP_1,SKP_IN_USE_SEARCH_ENVELOPE_SKP_1,SKP_IN_SEARCH_ENVELOPE_MINX_SKP_1,SKP_IN_SEARCH_ENVELOPE_MINY_SKP_1,SKP_IN_SEARCH_ENVELOPE_MAXX_SKP_1,SKP_IN_SEARCH_ENVELOPE_MAXY_SKP_1,SKP_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SKP_1,SKP_IN_CLIP_TO_ENVELOPE_SKP_1,SKP_IN_NETWORK_AUTHENTICATION_SKP_1,SourceDataset_GEOJSON_1,GEOJSON_IN_USE_SEARCH_ENVELOPE_GEOJSON_1,GEOJSON_IN_SEARCH_ENVELOPE_MINX_GEOJSON_1,GEOJSON_IN_SEARCH_ENVELOPE_MINY_GEOJSON_1,GEOJSON_IN_SEARCH_ENVELOPE_MAXX_GEOJSON_1,GEOJSON_IN_SEARCH_ENVELOPE_MAXY_GEOJSON_1,GEOJSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEOJSON_1,GEOJSON_IN_CLIP_TO_ENVELOPE_GEOJSON_1,GEOJSON_IN_NETWORK_AUTHENTICATION_GEOJSON_1,DestDataset_CITYGML_1,CITYGML_OUT_FME_GROUP_NAMED1_CITYGML_1,CITYGML_OUT_VERSION_CITYGML_1,CITYGML_OUT_USE_CITYGML_SCHEMA_FILES_CITYGML_1,CITYGML_OUT_ADE_CITYGML_1,CITYGML_OUT_ADD_NAMESPACE_PREFIX_TO_FEATURE_TYPES_CITYGML_1,CITYGML_OUT_ADE_XSD_DOC_CITYGML_1,CITYGML_OUT_FME_GROUP_NAMED2_CITYGML_1,CITYGML_OUT_DOCUMENT_ENCODING_CITYGML_1,CITYGML_OUT_HEADER_COMMENTS_CITYGML_1,CITYGML_OUT_SCHEMA_LOCATION_CITYGML_1,CITYGML_OUT_RESTRICT_CURVES_TO_POLYLINES_CITYGML_1,CITYGML_OUT_REMOVE_AUTO_GENERATED_IDS_WHEN_POSSIBLE_CITYGML_1,CITYGML_OUT_USE_CORE_NAMESPACE_PREFIX_CITYGML_1,CITYGML_OUT_TEXTURE_DIRECTORY_CITYGML_1,CITYGML_OUT_THEME_NAME_CITYGML_1,CITYGML_OUT_FME_GROUP_NAMED3_CITYGML_1,CITYGML_OUT_CITYGML_VALIDATION_CITYGML_1,CITYGML_OUT_FME_GROUP_NAMED4_CITYGML_1,CITYGML_OUT_TEXTURE_OUTPUT_FORMAT_CITYGML_1,CITYGML_OUT_FME_GROUP_NAMED5_CITYGML_1,CITYGML_OUT_USE_XLINK_HREF_GEOMETRY_TRAITS_CITYGML_1,CITYGML_OUT_FME_GROUP_NAMED6_CITYGML_1,CITYGML_OUT_SRS_NAME_CITYGML_1,CITYGML_OUT_SRS_AXIS_ORDER_CITYGML_1,CITYGML_OUT_PRETTY_PRINT_SETTINGS_CITYGML_1,CITYGML_OUT_PRETTY_PRINT_CITYGML_1,CITYGML_OUT_INDENT_SIZE_CITYGML_1,CITYGML_OUT_REPLACE_TABS_WITH_SPACES_CITYGML_1
+# ============================================================================
+DEFAULT_MACRO DestDataset_CITYGML B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\results\semantic_3d_tree_models\semantic_3D_tree_model_berlin_test_area.gml
+
+DEFAULT_MACRO SourceDataset_SKP_3 ""B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_1_trunk_9.skp" "B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_2_trunk_8.skp" "B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_3_trunk_7.skp" "B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_4_trunk_6.skp" "B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_5_trunk_5.skp" "B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_6_trunk_4.skp" "B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_7_trunk_3.skp" "B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_8_trunk_2.skp" "B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_9_trunk_1.skp" "B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\data\tree_prototypes\crown_10_trunk_0.skp""
+
+DEFAULT_MACRO FEATURE_TYPES 
+
+DEFAULT_MACRO SourceDataset_GEOJSON B:\muenzinger\R_Studio\LiDAR-3D-Urban-Forest-Mapping\results\parameterized_tree_crowns\tree_positions_parameterized.geojson
+
+DEFAULT_MACRO FEATURE_TYPES_3 
+
+# ============================================================================
+INCLUDE [ if {{$(DestDataset_CITYGML$encode)} == {}} { puts_real {Parameter 'DestDataset_CITYGML' must be given a value.}; exit 1; }; ]
+INCLUDE [ if {{$(SourceDataset_SKP_3$encode)} == {}} { puts_real {Parameter 'SourceDataset_SKP_3' must be given a value.}; exit 1; }; ]
+INCLUDE [ if {{$(SourceDataset_GEOJSON$encode)} == {}} { puts_real {Parameter 'SourceDataset_GEOJSON' must be given a value.}; exit 1; }; ]
+#! START_HEADER
+#! START_WB_HEADER
+READER_TYPE MULTI_READER
+MULTI_READER_TYPE{0} SKP
+MULTI_READER_KEYWORD{0} SKP_1
+MULTI_READER_GEN_DIRECTIVES{0} SKP_EXPOSE_FORMAT_ATTRS,,READ_HIDDEN_ELEMENTS,Auto,READ_TEXTURES,Yes,KEEP_ORIGINAL_TEXTURES,Yes,SEARCH_ENVELOPE_MINX,0,_MERGE_SCHEMAS,YES,DYNAMIC_WORKFLOW,yes,MOVE_TO_WORLD_COORDSYS,Yes,COLOR_BY_LAYER,Auto,_EXTRA_DATASETS,B:<backslash>muenzinger<backslash>R_Studio<backslash>R_Project_Test<backslash>data<backslash>tree_prototypes<backslash>crown_2_trunk_8.skp<comma>B:<backslash>muenzinger<backslash>R_Studio<backslash>R_Project_Test<backslash>data<backslash>tree_prototypes<backslash>crown_3_trunk_7.skp<comma>B:<backslash>muenzinger<backslash>R_Studio<backslash>R_Project_Test<backslash>data<backslash>tree_prototypes<backslash>crown_4_trunk_6.skp<comma>B:<backslash>muenzinger<backslash>R_Studio<backslash>R_Project_Test<backslash>data<backslash>tree_prototypes<backslash>crown_5_trunk_5.skp<comma>B:<backslash>muenzinger<backslash>R_Studio<backslash>R_Project_Test<backslash>data<backslash>tree_prototypes<backslash>crown_6_trunk_4.skp<comma>B:<backslash>muenzinger<backslash>R_Studio<backslash>R_Project_Test<backslash>data<backslash>tree_prototypes<backslash>crown_7_trunk_3.skp<comma>B:<backslash>muenzinger<backslash>R_Studio<backslash>R_Project_Test<backslash>data<backslash>tree_prototypes<backslash>crown_8_trunk_2.skp<comma>B:<backslash>muenzinger<backslash>R_Studio<backslash>R_Project_Test<backslash>data<backslash>tree_prototypes<backslash>crown_9_trunk_1.skp<comma>B:<backslash>muenzinger<backslash>R_Studio<backslash>R_Project_Test<backslash>data<backslash>tree_prototypes<backslash>crown_10_trunk_0.skp,CLIP_TO_ENVELOPE,NO,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,COORDSYS_DATUM,WGS84,EXPOSE_ATTRS_GROUP,,SEARCH_ENVELOPE_MAXY,0,SEARCH_ENVELOPE_MAXX,0,READ_EDGES,No,USE_SEARCH_ENVELOPE,NO,SEARCH_ENVELOPE_MINY,0
+MULTI_READER_TYPE{1} GEOJSON
+MULTI_READER_KEYWORD{1} GEOJSON_1
+MULTI_READER_GEN_DIRECTIVES{1} CLIP_TO_ENVELOPE,NO,SEARCH_ENVELOPE_MINX,0,SEARCH_ENVELOPE_COORDINATE_SYSTEM,,_MERGE_SCHEMAS,YES,EXPOSE_ATTRS_GROUP,,SEARCH_ENVELOPE_MAXY,0,FLATTEN_MODE,ALL_LEVELS,SEARCH_ENVELOPE_MAXX,0,USE_SEARCH_ENVELOPE,NO,DYNAMIC_WORKFLOW,yes,USE_BASENAME_AS_DEFAULT_FEATURE_TYPE,Yes,GEOJSON_EXPOSE_FORMAT_ATTRS,,SEARCH_ENVELOPE_MINY,0
+WRITER_TYPE MULTI_WRITER
+MULTI_WRITER_DATASET_ORDER BY_ID
+MULTI_WRITER_FIRST_WRITER_ID 0
+MULTI_WRITER_TYPE{0} CITYGML
+MULTI_WRITER_KEYWORD{0} CITYGML_1
+#! END_WB_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "SKP_1"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER SKP SKP_1
+SKP_1_DYNAMIC_WORKFLOW YES
+# The dataset this mapping file was generated from was:
+GUI FILENAME SourceDataset_SKP_1 SKP_Files(*.skp)|*.skp|All_Files(*)|* Source Trimble SketchUp File:
+DEFAULT_MACRO SKP_IN_FME_GROUP_NAMED1_SKP_1 
+GUI OPTIONAL DISCLOSUREGROUP SKP_IN_FME_GROUP_NAMED1_SKP_1 SKP_IN_READ_EDGES_SKP_1%SKP_IN_READ_HIDDEN_ELEMENTS_SKP_1%SKP_IN_COLOR_BY_LAYER_SKP_1%SKP_IN_READ_TEXTURES_SKP_1%SKP_IN_KEEP_ORIGINAL_TEXTURES_SKP_1 Entity Handling
+DEFAULT_MACRO SKP_IN_READ_EDGES_SKP_1 No
+SKP_1_READ_EDGES "$(SKP_IN_READ_EDGES_SKP_1)"
+GUI LOOKUP_CHOICE SKP_IN_READ_EDGES_SKP_1 Auto,Auto%Yes,Yes%No,No%"Standalone<space>Only,Standalone Only" Read Edges:
+DEFAULT_MACRO SKP_IN_READ_HIDDEN_ELEMENTS_SKP_1 Auto
+SKP_1_READ_HIDDEN_ELEMENTS "$(SKP_IN_READ_HIDDEN_ELEMENTS_SKP_1)"
+GUI LOOKUP_CHOICE SKP_IN_READ_HIDDEN_ELEMENTS_SKP_1 Auto,Auto%Yes,Yes%No,No Read Invisible Geometry and Layers:
+DEFAULT_MACRO SKP_IN_COLOR_BY_LAYER_SKP_1 Auto
+SKP_1_COLOR_BY_LAYER "$(SKP_IN_COLOR_BY_LAYER_SKP_1)"
+GUI LOOKUP_CHOICE SKP_IN_COLOR_BY_LAYER_SKP_1 Auto,Auto%Yes,Yes%No,No Color by Layer:
+DEFAULT_MACRO SKP_IN_READ_TEXTURES_SKP_1 Yes
+SKP_1_READ_TEXTURES "$(SKP_IN_READ_TEXTURES_SKP_1)"
+GUI ACTIVECHOICE_LOOKUP SKP_IN_READ_TEXTURES_SKP_1 Yes,Yes%No,No,SKP_IN_KEEP_ORIGINAL_TEXTURES_SKP_1 Read Textures:
+DEFAULT_MACRO SKP_IN_KEEP_ORIGINAL_TEXTURES_SKP_1 Yes
+SKP_1_KEEP_ORIGINAL_TEXTURES "$(SKP_IN_KEEP_ORIGINAL_TEXTURES_SKP_1)"
+GUI LOOKUP_CHOICE SKP_IN_KEEP_ORIGINAL_TEXTURES_SKP_1 Yes,Yes%No,No Keep Original Textures:
+DEFAULT_MACRO SKP_IN_FME_GROUP_NAMED2_SKP_1 
+GUI OPTIONAL DISCLOSUREGROUP SKP_IN_FME_GROUP_NAMED2_SKP_1 SKP_IN_COORDSYS_DATUM_SKP_1%SKP_IN_MOVE_TO_WORLD_COORDSYS_SKP_1 Coordinate System
+DEFAULT_MACRO SKP_IN_COORDSYS_DATUM_SKP_1 WGS84
+SKP_1_COORDSYS_DATUM "$(SKP_IN_COORDSYS_DATUM_SKP_1)"
+GUI STRING_OR_CHOICE SKP_IN_COORDSYS_DATUM_SKP_1 WGS84%WGS72%NHRWN-O Coordinate System Datum:
+DEFAULT_MACRO SKP_IN_MOVE_TO_WORLD_COORDSYS_SKP_1 Yes
+SKP_1_MOVE_TO_WORLD_COORDSYS "$(SKP_IN_MOVE_TO_WORLD_COORDSYS_SKP_1)"
+GUI LOOKUP_CHOICE SKP_IN_MOVE_TO_WORLD_COORDSYS_SKP_1 Yes,Yes%No,No Move to World Coordinate System:
+DEFAULT_MACRO SKP_IN_EXPOSE_ATTRS_GROUP_SKP_1 
+SKP_1_EXPOSE_ATTRS_GROUP "$(SKP_IN_EXPOSE_ATTRS_GROUP_SKP_1)"
+# Include this file in source setting section to add external search envelope processing
+# Zero as a default means we don't do any search -- this makes workbench happier
+DEFAULT_MACRO SKP_IN_USE_SEARCH_ENVELOPE_SKP_1 NO
+SKP_1_USE_SEARCH_ENVELOPE "$(SKP_IN_USE_SEARCH_ENVELOPE_SKP_1)"
+GUI ACTIVEDISCLOSUREGROUP SKP_IN_USE_SEARCH_ENVELOPE_SKP_1 SKP_IN_SEARCH_ENVELOPE_MINX_SKP_1%SKP_IN_SEARCH_ENVELOPE_MINY_SKP_1%SKP_IN_SEARCH_ENVELOPE_MAXX_SKP_1%SKP_IN_SEARCH_ENVELOPE_MAXY_SKP_1%SKP_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SKP_1%SKP_IN_CLIP_TO_ENVELOPE_SKP_1%SKP_IN_SEARCH_METHOD%SKP_IN_SEARCH_METHOD_FILTER%SKP_IN_SEARCH_ORDER%SKP_IN_SEARCH_FEATURE%SKP_IN_DUMMY_SEARCH_ENVELOPE_PARAMETER Use Search Envelope
+# ===========================================================================
+GUI LOOKUP SKP_IN_SEARCH_ENVELOPE_MINX_SKP_1 <Unused>,0 
+DEFAULT_MACRO SKP_IN_SEARCH_ENVELOPE_MINX_SKP_1 0
+SKP_1_SEARCH_ENVELOPE "$(SKP_IN_SEARCH_ENVELOPE_MINX_SKP_1)"
+GUI OPTIONAL FLOAT SKP_IN_SEARCH_ENVELOPE_MINX_SKP_1 Minimum X:
+# ===========================================================================
+GUI LOOKUP SKP_IN_SEARCH_ENVELOPE_MINY_SKP_1 <Unused>,0 
+DEFAULT_MACRO SKP_IN_SEARCH_ENVELOPE_MINY_SKP_1 0
+SKP_1_SEARCH_ENVELOPE "$(SKP_IN_SEARCH_ENVELOPE_MINY_SKP_1)"
+GUI OPTIONAL FLOAT SKP_IN_SEARCH_ENVELOPE_MINY_SKP_1 Minimum Y:
+# ===========================================================================
+GUI LOOKUP SKP_IN_SEARCH_ENVELOPE_MAXX_SKP_1 <Unused>,0 
+DEFAULT_MACRO SKP_IN_SEARCH_ENVELOPE_MAXX_SKP_1 0
+SKP_1_SEARCH_ENVELOPE "$(SKP_IN_SEARCH_ENVELOPE_MAXX_SKP_1)"
+GUI OPTIONAL FLOAT SKP_IN_SEARCH_ENVELOPE_MAXX_SKP_1 Maximum X:
+# ===========================================================================
+GUI LOOKUP SKP_IN_SEARCH_ENVELOPE_MAXY_SKP_1 <Unused>,0 
+DEFAULT_MACRO SKP_IN_SEARCH_ENVELOPE_MAXY_SKP_1 0
+SKP_1_SEARCH_ENVELOPE "$(SKP_IN_SEARCH_ENVELOPE_MAXY_SKP_1)"
+GUI OPTIONAL FLOAT SKP_IN_SEARCH_ENVELOPE_MAXY_SKP_1 Maximum Y:
+# ===========================================================================
+GUI LOOKUP SKP_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SKP_1 <Unused>, 
+DEFAULT_MACRO SKP_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SKP_1 
+SKP_1_SEARCH_ENVELOPE "$(SKP_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SKP_1)"
+GUI OPTIONAL COORDSYS SKP_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_SKP_1 Search Envelope Coordinate System:
+# ===========================================================================
+# BUG18999: We now have a soft clip to fall back on like native spatial index
+# thus we are reintroducing the clip to envelop as an option for users.
+# Defualt to soft clip as per the existing database readers we are emulating
+GUI LOOKUP SKP_IN_CLIP_TO_ENVELOPE_SKP_1 <Unused>,NO 
+DEFAULT_MACRO SKP_IN_CLIP_TO_ENVELOPE_SKP_1 NO
+SKP_1_CLIP_TO_ENVELOPE "$(SKP_IN_CLIP_TO_ENVELOPE_SKP_1)"
+GUI OPTIONAL CHECKBOX SKP_IN_CLIP_TO_ENVELOPE_SKP_1 YES%NO Clip to Search Envelope
+# ===========================================================================
+DEFAULT_MACRO SKP_IN_NETWORK_AUTHENTICATION_SKP_1 
+SKP_1_NETWORK_AUTHENTICATION "$(SKP_IN_NETWORK_AUTHENTICATION_SKP_1)"
+GUI OPTIONAL AUTHENTICATOR SKP_IN_NETWORK_AUTHENTICATION_SKP_1 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================
+DEFAULT_MACRO SKP_IN_ATTRIBUTE_READING_SKP_1 ALL
+SKP_1_ATTRIBUTE_READING "$(SKP_IN_ATTRIBUTE_READING_SKP_1)"
+# ============================================================================
+SKP_1_GENERATE_FME_BUILD_NUM 22782
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_SKP_1 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER SKP SKP_1
+DEFAULT_MACRO SourceDataset_SKP_1 $(SourceDataset_SKP_3)
+SKP_1_DATASET "$(SourceDataset_SKP_1)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "GEOJSON_1"
+#! END_WB_HEADER
+#! START_SOURCE_HEADER GEOJSON GEOJSON_1
+GEOJSON_1_DYNAMIC_WORKFLOW YES
+# The dataset this mapping file was generated from was:
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO SourceDataset
+INCLUDE [ if {{$(SourceDataset)} != ""} {                        \
+ puts {DEFAULT_MACRO SourceDataset_GEOJSON_1 $(SourceDataset)}     \
+ } ]
+#! END_WB_HEADER
+#! START_SOURCE_HEADER GEOJSON GEOJSON_1
+DEFAULT_MACRO SourceDataset_GEOJSON_1 $(SourceDataset_GEOJSON)
+GUI FILE_OR_URL SourceDataset_GEOJSON_1 GeoJSON_Documents(*.json;*.geojson)|*.json;*.geojson|GeoJSON_Documents(*.json)|*.json|GeoJSON_Documents(*.geojson)|*.geojson|All_Files|* Source GeoJSON File or URL:
+DEFAULT_MACRO GEOJSON_IN_FLATTEN_MODE_GEOJSON_1 ALL_LEVELS
+GEOJSON_1_FLATTEN_MODE "$(GEOJSON_IN_FLATTEN_MODE_GEOJSON_1)"
+DEFAULT_MACRO GEOJSON_IN_EXPOSE_ATTRS_GROUP_GEOJSON_1 
+GEOJSON_1_EXPOSE_ATTRS_GROUP "$(GEOJSON_IN_EXPOSE_ATTRS_GROUP_GEOJSON_1)"
+DEFAULT_MACRO GEOJSON_IN_USE_BASENAME_AS_DEFAULT_FEATURE_TYPE_GEOJSON_1 Yes
+GEOJSON_1_USE_BASENAME_AS_DEFAULT_FEATURE_TYPE "$(GEOJSON_IN_USE_BASENAME_AS_DEFAULT_FEATURE_TYPE_GEOJSON_1)"
+# Include this file in source setting section to add external search envelope processing
+# Zero as a default means we don't do any search -- this makes workbench happier
+DEFAULT_MACRO GEOJSON_IN_USE_SEARCH_ENVELOPE_GEOJSON_1 NO
+GEOJSON_1_USE_SEARCH_ENVELOPE "$(GEOJSON_IN_USE_SEARCH_ENVELOPE_GEOJSON_1)"
+GUI ACTIVEDISCLOSUREGROUP GEOJSON_IN_USE_SEARCH_ENVELOPE_GEOJSON_1 GEOJSON_IN_SEARCH_ENVELOPE_MINX_GEOJSON_1%GEOJSON_IN_SEARCH_ENVELOPE_MINY_GEOJSON_1%GEOJSON_IN_SEARCH_ENVELOPE_MAXX_GEOJSON_1%GEOJSON_IN_SEARCH_ENVELOPE_MAXY_GEOJSON_1%GEOJSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEOJSON_1%GEOJSON_IN_CLIP_TO_ENVELOPE_GEOJSON_1%GEOJSON_IN_SEARCH_METHOD%GEOJSON_IN_SEARCH_METHOD_FILTER%GEOJSON_IN_SEARCH_ORDER%GEOJSON_IN_SEARCH_FEATURE%GEOJSON_IN_DUMMY_SEARCH_ENVELOPE_PARAMETER Use Search Envelope
+# ===========================================================================
+GUI LOOKUP GEOJSON_IN_SEARCH_ENVELOPE_MINX_GEOJSON_1 <Unused>,0 
+DEFAULT_MACRO GEOJSON_IN_SEARCH_ENVELOPE_MINX_GEOJSON_1 0
+GEOJSON_1_SEARCH_ENVELOPE "$(GEOJSON_IN_SEARCH_ENVELOPE_MINX_GEOJSON_1)"
+GUI OPTIONAL FLOAT GEOJSON_IN_SEARCH_ENVELOPE_MINX_GEOJSON_1 Minimum X:
+# ===========================================================================
+GUI LOOKUP GEOJSON_IN_SEARCH_ENVELOPE_MINY_GEOJSON_1 <Unused>,0 
+DEFAULT_MACRO GEOJSON_IN_SEARCH_ENVELOPE_MINY_GEOJSON_1 0
+GEOJSON_1_SEARCH_ENVELOPE "$(GEOJSON_IN_SEARCH_ENVELOPE_MINY_GEOJSON_1)"
+GUI OPTIONAL FLOAT GEOJSON_IN_SEARCH_ENVELOPE_MINY_GEOJSON_1 Minimum Y:
+# ===========================================================================
+GUI LOOKUP GEOJSON_IN_SEARCH_ENVELOPE_MAXX_GEOJSON_1 <Unused>,0 
+DEFAULT_MACRO GEOJSON_IN_SEARCH_ENVELOPE_MAXX_GEOJSON_1 0
+GEOJSON_1_SEARCH_ENVELOPE "$(GEOJSON_IN_SEARCH_ENVELOPE_MAXX_GEOJSON_1)"
+GUI OPTIONAL FLOAT GEOJSON_IN_SEARCH_ENVELOPE_MAXX_GEOJSON_1 Maximum X:
+# ===========================================================================
+GUI LOOKUP GEOJSON_IN_SEARCH_ENVELOPE_MAXY_GEOJSON_1 <Unused>,0 
+DEFAULT_MACRO GEOJSON_IN_SEARCH_ENVELOPE_MAXY_GEOJSON_1 0
+GEOJSON_1_SEARCH_ENVELOPE "$(GEOJSON_IN_SEARCH_ENVELOPE_MAXY_GEOJSON_1)"
+GUI OPTIONAL FLOAT GEOJSON_IN_SEARCH_ENVELOPE_MAXY_GEOJSON_1 Maximum Y:
+# ===========================================================================
+GUI LOOKUP GEOJSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEOJSON_1 <Unused>, 
+DEFAULT_MACRO GEOJSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEOJSON_1 
+GEOJSON_1_SEARCH_ENVELOPE "$(GEOJSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEOJSON_1)"
+GUI OPTIONAL COORDSYS GEOJSON_IN_SEARCH_ENVELOPE_COORDINATE_SYSTEM_GEOJSON_1 Search Envelope Coordinate System:
+# ===========================================================================
+# BUG18999: We now have a soft clip to fall back on like native spatial index
+# thus we are reintroducing the clip to envelop as an option for users.
+# Defualt to soft clip as per the existing database readers we are emulating
+GUI LOOKUP GEOJSON_IN_CLIP_TO_ENVELOPE_GEOJSON_1 <Unused>,NO 
+DEFAULT_MACRO GEOJSON_IN_CLIP_TO_ENVELOPE_GEOJSON_1 NO
+GEOJSON_1_CLIP_TO_ENVELOPE "$(GEOJSON_IN_CLIP_TO_ENVELOPE_GEOJSON_1)"
+GUI OPTIONAL CHECKBOX GEOJSON_IN_CLIP_TO_ENVELOPE_GEOJSON_1 YES%NO Clip to Search Envelope
+# ===========================================================================
+DEFAULT_MACRO GEOJSON_IN_NETWORK_AUTHENTICATION_GEOJSON_1 
+GEOJSON_1_NETWORK_AUTHENTICATION "$(GEOJSON_IN_NETWORK_AUTHENTICATION_GEOJSON_1)"
+GUI OPTIONAL AUTHENTICATOR GEOJSON_IN_NETWORK_AUTHENTICATION_GEOJSON_1 CONTAINER%GROUP%CONTAINER_TITLE%"Network Authentication"%PROMPT_TYPE%NETWORK Network Authentication
+# ============================================================================
+DEFAULT_MACRO GEOJSON_IN_ATTRIBUTE_READING_GEOJSON_1 ALL
+GEOJSON_1_ATTRIBUTE_READING "$(GEOJSON_IN_ATTRIBUTE_READING_GEOJSON_1)"
+# ============================================================================
+GEOJSON_1_GENERATE_FME_BUILD_NUM 22782
+GEOJSON_1_DATASET "$(SourceDataset_GEOJSON_1)"
+#! END_SOURCE_HEADER
+#! START_WB_HEADER
+MACRO WB_KEYWORD "CITYGML_1"
+#! END_WB_HEADER
+#! START_DEST_HEADER CITYGML CITYGML_1
+#! END_DEST_HEADER
+#! START_WB_HEADER
+DEFAULT_MACRO DestDataset
+INCLUDE [ if {"$(DestDataset)" != ""} {                          \
+ puts {DEFAULT_MACRO DestDataset_CITYGML_1 $(DestDataset)}         \
+ } ]
+#! END_WB_HEADER
+#! START_DEST_HEADER CITYGML CITYGML_1
+DEFAULT_MACRO DestDataset_CITYGML_1 $(DestDataset_CITYGML)
+GUI FILENAME DestDataset_CITYGML_1 CityGML_Files(*.gml;*.xml)|*.gml;*.xml|CityGML_Files(*.gml)|*.gml|CityGML_Files(*.xml)|*.xml|All_Files|* Destination CityGML Document:
+DEFAULT_MACRO CITYGML_OUT_FME_GROUP_NAMED1_CITYGML_1 FME_DISCLOSURE_OPEN
+GUI OPTIONAL DISCLOSUREGROUP CITYGML_OUT_FME_GROUP_NAMED1_CITYGML_1 CITYGML_OUT_VERSION_CITYGML_1%CITYGML_OUT_USE_CITYGML_SCHEMA_FILES_CITYGML_1%CITYGML_OUT_ADE_CITYGML_1%CITYGML_OUT_ADD_NAMESPACE_PREFIX_TO_FEATURE_TYPES_CITYGML_1%CITYGML_OUT_ADE_XSD_DOC_CITYGML_1 CityGML Schema Options
+DEFAULT_MACRO CITYGML_OUT_VERSION_CITYGML_1 2.0
+CITYGML_1_VERSION "$(CITYGML_OUT_VERSION_CITYGML_1)"
+GUI ACTIVECHOICE CITYGML_OUT_VERSION_CITYGML_1 0.4,CITYGML_OUT_USE_CITYGML_SCHEMA_FILES_CITYGML_1,CITYGML_OUT_ADE_CITYGML_1%1.0%2.0 CityGML Version:
+DEFAULT_MACRO CITYGML_OUT_USE_CITYGML_SCHEMA_FILES_CITYGML_1 Yes
+CITYGML_1_USE_CITYGML_SCHEMA_FILES "$(CITYGML_OUT_USE_CITYGML_SCHEMA_FILES_CITYGML_1)"
+GUI LOOKUP_CHOICE CITYGML_OUT_USE_CITYGML_SCHEMA_FILES_CITYGML_1 "\"Yes (Recommended)\",Yes"%"\"No (Deprecated - Backward-compatible)\",No" Writer Driven by CityGML Schema
+DEFAULT_MACRO CITYGML_OUT_ADE_CITYGML_1 None
+CITYGML_1_ADE "$(CITYGML_OUT_ADE_CITYGML_1)"
+GUI ACTIVECHOICE CITYGML_OUT_ADE_CITYGML_1 "\"None\",CITYGML_OUT_ADE_XSD_DOC_CITYGML_1"%NoiseADE,CITYGML_OUT_ADE_XSD_DOC_CITYGML_1%Other Application Domain Extension
+DEFAULT_MACRO CITYGML_OUT_ADD_NAMESPACE_PREFIX_TO_FEATURE_TYPES_CITYGML_1 No
+CITYGML_1_ADD_NAMESPACE_PREFIX_TO_FEATURE_TYPES "$(CITYGML_OUT_ADD_NAMESPACE_PREFIX_TO_FEATURE_TYPES_CITYGML_1)"
+GUI CHOICE CITYGML_OUT_ADD_NAMESPACE_PREFIX_TO_FEATURE_TYPES_CITYGML_1 Yes%No Add XML Namespace Prefix to Feature Types:
+GUI LOOKUP CITYGML_OUT_ADE_XSD_DOC_CITYGML_1 <Unused>, 
+DEFAULT_MACRO CITYGML_OUT_ADE_XSD_DOC_CITYGML_1 
+CITYGML_1_ADE_XSD_DOC "$(CITYGML_OUT_ADE_XSD_DOC_CITYGML_1)"
+GUI OPTIONAL MULTIFILE CITYGML_OUT_ADE_XSD_DOC_CITYGML_1 ADE_Schema_File(*.xsd)|*.xsd|All_Files(*)|* ADE Schema File(s):
+DEFAULT_MACRO CITYGML_OUT_FME_GROUP_NAMED2_CITYGML_1 FME_DISCLOSURE_OPEN
+GUI OPTIONAL DISCLOSUREGROUP CITYGML_OUT_FME_GROUP_NAMED2_CITYGML_1 CITYGML_OUT_DOCUMENT_ENCODING_CITYGML_1%CITYGML_OUT_HEADER_COMMENTS_CITYGML_1%CITYGML_OUT_SCHEMA_LOCATION_CITYGML_1%CITYGML_OUT_RESTRICT_CURVES_TO_POLYLINES_CITYGML_1%CITYGML_OUT_REMOVE_AUTO_GENERATED_IDS_WHEN_POSSIBLE_CITYGML_1%CITYGML_OUT_USE_CORE_NAMESPACE_PREFIX_CITYGML_1%CITYGML_OUT_TEXTURE_DIRECTORY_CITYGML_1%CITYGML_OUT_THEME_NAME_CITYGML_1 Output File Contents
+# ============================================================================
+DEFAULT_MACRO CITYGML_OUT_DOCUMENT_ENCODING_CITYGML_1 utf-8
+CITYGML_1_DOCUMENT_ENCODING "$(CITYGML_OUT_DOCUMENT_ENCODING_CITYGML_1)"
+GUI STRING_OR_ENCODING CITYGML_OUT_DOCUMENT_ENCODING_CITYGML_1 * Character Encoding:
+# ============================================================================
+DEFAULT_MACRO CITYGML_OUT_HEADER_COMMENTS_CITYGML_1 
+CITYGML_1_HEADER_COMMENTS "$(CITYGML_OUT_HEADER_COMMENTS_CITYGML_1)"
+GUI OPTIONAL TEXT_EDIT_XML CITYGML_OUT_HEADER_COMMENTS_CITYGML_1 Header Comments:
+# ============================================================================
+DEFAULT_MACRO CITYGML_OUT_SCHEMA_LOCATION_CITYGML_1 
+CITYGML_1_SCHEMA_LOCATION "$(CITYGML_OUT_SCHEMA_LOCATION_CITYGML_1)"
+GUI OPTIONAL TEXT_EDIT_ CITYGML_OUT_SCHEMA_LOCATION_CITYGML_1 xsi:schemaLocation:
+# ============================================================================
+DEFAULT_MACRO CITYGML_OUT_RESTRICT_CURVES_TO_POLYLINES_CITYGML_1 Yes
+CITYGML_1_RESTRICT_CURVES_TO_POLYLINES "$(CITYGML_OUT_RESTRICT_CURVES_TO_POLYLINES_CITYGML_1)"
+GUI LOOKUP_CHOICE CITYGML_OUT_RESTRICT_CURVES_TO_POLYLINES_CITYGML_1 "\"Yes (Recommended)\",Yes"%"\"No (Deprecated - Backward-compatible)\",No" Restrict Curves to Polylines
+# ============================================================================
+DEFAULT_MACRO CITYGML_OUT_REMOVE_AUTO_GENERATED_IDS_WHEN_POSSIBLE_CITYGML_1 Yes
+CITYGML_1_REMOVE_AUTO_GENERATED_IDS_WHEN_POSSIBLE "$(CITYGML_OUT_REMOVE_AUTO_GENERATED_IDS_WHEN_POSSIBLE_CITYGML_1)"
+GUI LOOKUP_CHOICE CITYGML_OUT_REMOVE_AUTO_GENERATED_IDS_WHEN_POSSIBLE_CITYGML_1 Yes%No Remove Auto Generated GML IDs When Possible:
+# ============================================================================
+DEFAULT_MACRO CITYGML_OUT_USE_CORE_NAMESPACE_PREFIX_CITYGML_1 Yes
+CITYGML_1_USE_CORE_NAMESPACE_PREFIX "$(CITYGML_OUT_USE_CORE_NAMESPACE_PREFIX_CITYGML_1)"
+GUI LOOKUP_CHOICE CITYGML_OUT_USE_CORE_NAMESPACE_PREFIX_CITYGML_1 Yes%No Use 'core' Namespace Prefix:
+# ============================================================================
+DEFAULT_MACRO CITYGML_OUT_TEXTURE_DIRECTORY_CITYGML_1 
+CITYGML_1_TEXTURE_DIRECTORY "$(CITYGML_OUT_TEXTURE_DIRECTORY_CITYGML_1)"
+GUI OPTIONAL TEXT CITYGML_OUT_TEXTURE_DIRECTORY_CITYGML_1 Texture subfolder
+# ============================================================================
+DEFAULT_MACRO CITYGML_OUT_THEME_NAME_CITYGML_1 FMETheme
+CITYGML_1_THEME_NAME "$(CITYGML_OUT_THEME_NAME_CITYGML_1)"
+GUI OPTIONAL TEXT CITYGML_OUT_THEME_NAME_CITYGML_1 Theme name
+DEFAULT_MACRO CITYGML_OUT_FME_GROUP_NAMED3_CITYGML_1 FME_DISCLOSURE_OPEN
+GUI OPTIONAL DISCLOSUREGROUP CITYGML_OUT_FME_GROUP_NAMED3_CITYGML_1 CITYGML_OUT_CITYGML_VALIDATION_CITYGML_1 Validation
+# ============================================================================
+DEFAULT_MACRO CITYGML_OUT_CITYGML_VALIDATION_CITYGML_1 Yes
+CITYGML_1_CITYGML_VALIDATION "$(CITYGML_OUT_CITYGML_VALIDATION_CITYGML_1)"
+GUI LOOKUP_CHOICE CITYGML_OUT_CITYGML_VALIDATION_CITYGML_1 Yes%No Validate Output File:
+DEFAULT_MACRO CITYGML_OUT_FME_GROUP_NAMED4_CITYGML_1 FME_DISCLOSURE_OPEN
+GUI OPTIONAL DISCLOSUREGROUP CITYGML_OUT_FME_GROUP_NAMED4_CITYGML_1 CITYGML_OUT_TEXTURE_OUTPUT_FORMAT_CITYGML_1 Texture
+# ============================================================================
+DEFAULT_MACRO CITYGML_OUT_TEXTURE_OUTPUT_FORMAT_CITYGML_1 NONE
+CITYGML_1_TEXTURE_OUTPUT_FORMAT "$(CITYGML_OUT_TEXTURE_OUTPUT_FORMAT_CITYGML_1)"
+GUI LOOKUP_CHOICE CITYGML_OUT_TEXTURE_OUTPUT_FORMAT_CITYGML_1 Auto,NONE%PNG,PNGRASTER%JPEG%GIF,GIFRASTER%BMP%ECW%ERDAS%GEOTIFF%INGR%JPEG2000%MRSID%PCIDSK%SGI%TIFF%XPM Preferred Texture Format:
+# ============================================================================
+DEFAULT_MACRO CITYGML_OUT_FME_GROUP_NAMED5_CITYGML_1 FME_DISCLOSURE_OPEN
+GUI OPTIONAL DISCLOSUREGROUP CITYGML_OUT_FME_GROUP_NAMED5_CITYGML_1 CITYGML_OUT_USE_XLINK_HREF_GEOMETRY_TRAITS_CITYGML_1 CityGML Options
+DEFAULT_MACRO CITYGML_OUT_USE_XLINK_HREF_GEOMETRY_TRAITS_CITYGML_1 Yes
+CITYGML_1_USE_XLINK_HREF_GEOMETRY_TRAITS "$(CITYGML_OUT_USE_XLINK_HREF_GEOMETRY_TRAITS_CITYGML_1)"
+GUI CHOICE CITYGML_OUT_USE_XLINK_HREF_GEOMETRY_TRAITS_CITYGML_1 Yes%No Use xlink_href Traits for Geometry References:
+# ============================================================================
+DEFAULT_MACRO CITYGML_OUT_FME_GROUP_NAMED6_CITYGML_1 FME_DISCLOSURE_CLOSED
+GUI OPTIONAL DISCLOSUREGROUP CITYGML_OUT_FME_GROUP_NAMED6_CITYGML_1 CITYGML_OUT_SRS_NAME_CITYGML_1%CITYGML_OUT_SRS_AXIS_ORDER_CITYGML_1 SRS Parameters
+# ============================================================================
+# Overwrites the GML srsName with the specified value. When left unspecified
+# the FME coordinate system name for the input features will be used as the
+# value for the srsName in the GML document.
+DEFAULT_MACRO CITYGML_OUT_SRS_NAME_CITYGML_1 
+CITYGML_1_SRS_NAME "$(CITYGML_OUT_SRS_NAME_CITYGML_1)"
+GUI OPTIONAL TEXT CITYGML_OUT_SRS_NAME_CITYGML_1 GML srsName:
+# ============================================================================
+# This keyword specifies the axis order for a coordinate tuple for the specified
+# SRS_NAME in the GML document. This keyword only applies when used conjunction
+# with the SRS_NAME keyword. The valid values for this keyword are 1,2, 2,1,
+# 1,2,3 and 2,1,3.
+DEFAULT_MACRO CITYGML_OUT_SRS_AXIS_ORDER_CITYGML_1 
+CITYGML_1_SRS_AXIS_ORDER "$(CITYGML_OUT_SRS_AXIS_ORDER_CITYGML_1)"
+GUI OPTIONAL CHOICE CITYGML_OUT_SRS_AXIS_ORDER_CITYGML_1 1,2%2,1%1,2,3%2,1,3 GML SRS Axis Order:
+# ============================================================================
+DEFAULT_MACRO CITYGML_OUT_PRETTY_PRINT_SETTINGS_CITYGML_1 FME_DISCLOSURE_OPEN
+GUI OPTIONAL DISCLOSUREGROUP CITYGML_OUT_PRETTY_PRINT_SETTINGS_CITYGML_1 CITYGML_OUT_PRETTY_PRINT_CITYGML_1%CITYGML_OUT_INDENT_SIZE_CITYGML_1%CITYGML_OUT_REPLACE_TABS_WITH_SPACES_CITYGML_1 Pretty Printing
+DEFAULT_MACRO CITYGML_OUT_PRETTY_PRINT_CITYGML_1 Yes
+CITYGML_1_PRETTY_PRINT "$(CITYGML_OUT_PRETTY_PRINT_CITYGML_1)"
+GUI CHOICE CITYGML_OUT_PRETTY_PRINT_CITYGML_1 Yes%No Pretty Print:
+DEFAULT_MACRO CITYGML_OUT_INDENT_SIZE_CITYGML_1 1
+CITYGML_1_INDENT_SIZE "$(CITYGML_OUT_INDENT_SIZE_CITYGML_1)"
+GUI CHOICE CITYGML_OUT_INDENT_SIZE_CITYGML_1 0%1%2%3%4%5%6%7%8%9 Indent Size:
+DEFAULT_MACRO CITYGML_OUT_REPLACE_TABS_WITH_SPACES_CITYGML_1 No
+CITYGML_1_REPLACE_TABS_WITH_SPACES "$(CITYGML_OUT_REPLACE_TABS_WITH_SPACES_CITYGML_1)"
+GUI CHOICE CITYGML_OUT_REPLACE_TABS_WITH_SPACES_CITYGML_1 Yes%No Replace Tabs with Spaces:
+# ============================================================================
+# Opt in for destination dataset type vs format type validation
+DEFAULT_MACRO CITYGML_OUT_DESTINATION_DATASETTYPE_VALIDATION_CITYGML_1 Yes
+CITYGML_1_DESTINATION_DATASETTYPE_VALIDATION "$(CITYGML_OUT_DESTINATION_DATASETTYPE_VALIDATION_CITYGML_1)"
+DEFAULT_MACRO CITYGML_OUT_COORDINATE_SYSTEM_GRANULARITY_CITYGML_1 DATASET
+CITYGML_1_COORDINATE_SYSTEM_GRANULARITY "$(CITYGML_OUT_COORDINATE_SYSTEM_GRANULARITY_CITYGML_1)"
+# ============================================================================ 
+CITYGML_1_GENERATE_FME_BUILD_NUM 19260
+CITYGML_1_DATASET "$(DestDataset_CITYGML_1)"
+#! END_DEST_HEADER
+#! START_WB_HEADER
+#! END_WB_HEADER
+#! END_HEADER
+
+LOG_FILENAME "$(FME_MF_DIR)Create_3D_Tree_Models_geojson2citygml.log"
+LOG_APPEND YES
+LOG_TIMINGS YES
+LOG_FILTER_MASK -20
+LOG_MAX_FEATURES 200
+LOG_MAX_RECORDED_FEATURES 200
+FME_REPROJECTION_ENGINE FME
+FME_IMPLICIT_CSMAP_REPROJECTION_MODE Auto
+FME_GEOMETRY_HANDLING Enhanced
+FME_STROKE_MAX_DEVIATION 0
+FME_NAMES_ENCODING UTF-8
+FME_BULK_MODE_THRESHOLD 2000
+LAST_SAVE_BUILD "FME 2022.2.2.0 (20230106 - Build 22782 - WIN64)"
+MAPPING_FILE_ID Parameterized<space>3D<space>tree<space>modeling<space>for<space>CityGML<space>SolitaryVegetationObjects
+DEFAULT_MACRO DATASET_KEYWORD_SKP_1 SKP_1
+DEFAULT_MACRO DATASET_KEYWORD_GEOJSON_1 GEOJSON_1
+DEFAULT_MACRO DATASET_KEYWORD_CITYGML_1 CITYGML_1
+# -------------------------------------------------------------------------
+
+SKP_1_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+GEOJSON_1_READER_META_ATTRIBUTES fme_feature_type
+
+# -------------------------------------------------------------------------
+
+SKP_1_FEATURE_TYPES $(FEATURE_TYPES)
+GEOJSON_1_FEATURE_TYPES $(FEATURE_TYPES_3)
+MULTI_READER_CONTINUE_ON_READER_FAILURE No
+
+# -------------------------------------------------------------------------
+
+MACRO WORKSPACE_NAME Create_3D_Tree_Models_geojson2citygml
+MACRO FME_VIEWER_APP fmedatainspector
+# -------------------------------------------------------------------------
+SKP_1_DEF crown_1_trunk_9
+# -------------------------------------------------------------------------
+GEOJSON_1_DEF tree_positions_parameterized   treeID                       int   treeID_ioer                  string   h_tree                       float   h_crown                      float   d_crown                      float   h_trunk                      float   X                            float   Y                            float   Z                            float   ch_width                     float   ch_length                    float   ch_orientation               float   ch_area                      float   tree_model                   string   crownvolume                  float   crownsurface                 float   n_pulses                     float   mean_nor                     float   mean_ndvi                    float   z_max                        float   z_min                        float   z_mean                       float   z_std                        float   zq1                          float   zq2                          float   zq5                          float   zq95                         float   zq99                         float
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory   FACTORY_NAME "Router and Unexpected Input Remover"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *    ROUTE SKP SKP_1::crown_1_trunk_9 multi_reader_keyword,$(DATASET_KEYWORD_SKP_1) TO FME_GENERIC ::crown_1_trunk_9 ALIAS_GEOMETRY    ROUTE GEOJSON GEOJSON_1::tree_positions_parameterized multi_reader_keyword,$(DATASET_KEYWORD_GEOJSON_1) TO FME_GENERIC ::tree_positions_parameterized ALIAS_GEOMETRY    MERGE_INPUT Yes   OUTPUT ROUTED FEATURE_TYPE *
+SKP_1_MERGE_DEF SKP_1::crown_1_trunk_9 GLOB *
+GEOJSON_1_MERGE_DEF GEOJSON_1::tree_positions_parameterized GLOB *
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "tree_positions_parameterized_GEOJSON_1 Splitter"    INPUT FEATURE_TYPE tree_positions_parameterized    OUTPUT FEATURE_TYPE tree_positions_parameterized_GEOJSON_1
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory    FACTORY_NAME "crown_1_trunk_9_SKP_1 Splitter"    INPUT FEATURE_TYPE crown_1_trunk_9    OUTPUT FEATURE_TYPE crown_1_trunk_9_SKP_1
+DEFAULT_MACRO WB_CURRENT_CONTEXT
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { GeometryRemover }    INPUT  FEATURE_TYPE tree_positions_parameterized_GEOJSON_1    OUTPUT { FEATURE_TYPE GeometryRemover_OUTPUT         @RemoveGeometry()          }
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} AttrSetFactory    COMMAND_PARM_EVALUATION SINGLE_PASS    FACTORY_NAME { AttributeManager }    INPUT  FEATURE_TYPE GeometryRemover_OUTPUT    MULTI_FEATURE_MODE { NO }    NULL_ATTR_MODE { NO_OP }    ATTRSET_CREATE_DIRECTIVES _PROPAGATE_MISSING_FDIV    ACTION_COLUMN 3    DEF_VAL_COLUMN 2    MISSING_INPUT_ATTR_HANDLING RENAME_SET_VALUE REMOVE    ATTR_ACTION { "treeID" "treeID" "" "REMOVE" }      ATTR_ACTION { "treeID_ioer" "gml_id" "" "RENAME_SET_VALUE" }      ATTR_ACTION { "ch_area" "ch_area" "" "REMOVE" }      ATTR_ACTION { "crownvolume" "crownvolume" "" "REMOVE" }      ATTR_ACTION { "crownsurface" "crownsurface" "" "REMOVE" }      ATTR_ACTION { "n_pulses" "n_pulses" "" "REMOVE" }      ATTR_ACTION { "mean_nor" "mean_nor" "" "REMOVE" }      ATTR_ACTION { "mean_ndvi" "mean_ndvi" "" "REMOVE" }      ATTR_ACTION { "z_max" "z_max" "" "REMOVE" }      ATTR_ACTION { "z_min" "z_min" "" "REMOVE" }      ATTR_ACTION { "z_mean" "z_mean" "" "REMOVE" }      ATTR_ACTION { "z_std" "z_std" "" "REMOVE" }      ATTR_ACTION { "zq1" "zq1" "" "REMOVE" }      ATTR_ACTION { "zq2" "zq2" "" "REMOVE" }      ATTR_ACTION { "zq5" "zq5" "" "REMOVE" }      ATTR_ACTION { "zq95" "zq95" "" "REMOVE" }      ATTR_ACTION { "zq99" "zq99" "" "REMOVE" }    OUTPUT { OUTPUT FEATURE_TYPE AttributeManager_OUTPUT        }
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} AttrSetFactory    FACTORY_NAME { AttributeCreator }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT  FEATURE_TYPE AttributeManager_OUTPUT    MULTI_FEATURE_MODE { NO }    NULL_ATTR_MODE { NO_OP }    ATTRSET_CREATE_DIRECTIVES _PROPAGATE_MISSING_FDIV    ATTR_ACTION { "" "Sx" "SET_TO" "<at>Value<openparen>ch_length<closeparen>" }      ATTR_ACTION { "" "Sy" "SET_TO" "<at>Value<openparen>ch_width<closeparen>" }      ATTR_ACTION { "" "cosPhi" "SET_TO" "<at>Evaluate<openparen><at>cos<openparen><at>Value<openparen>ch_orientation<closeparen><closeparen><closeparen>" }      ATTR_ACTION { "" "sinPhi" "SET_TO" "<at>Evaluate<openparen><at>sin<openparen><at>Value<openparen>ch_orientation<closeparen><closeparen><closeparen>" }      ATTR_ACTION { "" "m_sinPhi" "SET_TO" "<at>Evaluate<openparen>-1*<at>Value<openparen>sinPhi<closeparen><closeparen>" }      ATTR_ACTION { "" "M11" "SET_TO" "<at>Evaluate<openparen><at>Value<openparen>cosPhi<closeparen>*<at>Value<openparen>Sx<closeparen><closeparen>" }      ATTR_ACTION { "" "M12" "SET_TO" "<at>Evaluate<openparen><at>Value<openparen>m_sinPhi<closeparen>*<at>Value<openparen>Sy<closeparen><closeparen>" }      ATTR_ACTION { "" "M21" "SET_TO" "<at>Evaluate<openparen><at>Value<openparen>sinPhi<closeparen>*<at>Value<openparen>Sx<closeparen><closeparen>" }      ATTR_ACTION { "" "M22" "SET_TO" "<at>Evaluate<openparen><at>Value<openparen>cosPhi<closeparen>*<at>Value<openparen>Sy<closeparen><closeparen>" }    OUTPUT { OUTPUT FEATURE_TYPE AttributeCreator_OUTPUT        }
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} AttrSetFactory    FACTORY_NAME { AttributeCreator_2 }    COMMAND_PARM_EVALUATION SINGLE_PASS    INPUT  FEATURE_TYPE crown_1_trunk_9_SKP_1    MULTI_FEATURE_MODE { NO }    NULL_ATTR_MODE { NO_OP }    ATTRSET_CREATE_DIRECTIVES _PROPAGATE_MISSING_FDIV    ATTR_ACTION { "" "tree_model_id" "SET_TO" "tree_prototype_<at>Count<openparen>1<closeparen>" }    OUTPUT { OUTPUT FEATURE_TYPE AttributeCreator_2_OUTPUT        }
+# -------------------------------------------------------------------------
+# Create a FME_UUID_SAFE from the FME_UUID so we can use it for Tcl identifiers (FMEDESKTOP-11308)
+INCLUDE [ FME_CleanseFMEUUID {GeometryPropertySetter_2_bb8f777c_5a92_48cb_a63c_94392fc1ba926} ]
+Tcl2 proc $(FME_UUID_SAFE)_createDomain { in_domainName } {    set domainName $in_domainName;    if { {<Unused>} != {Global} }    {       set xFormName [FME_EncodeText {GeometryPropertySetter_2_}];       set domainName $xFormName$domainName;    };    return $domainName; }
+INCLUDE [    set macroLine "MACRO GeometryPropertySetter_2_SRC_ATTRS_EXP ";    foreach attr [split "tree_model_id"] { append macroLine ",$attr"; };    puts $macroLine; ]
+FACTORY_DEF {*} TestFactory    FACTORY_NAME { GeometryPropertySetter_2_Tester }    INPUT  FEATURE_TYPE AttributeCreator_2_OUTPUT    TEST { "<Unused>" TYPE NUM ENCODED }    TEST { NO != YES }    BOOLEAN_OPERATOR OR    OUTPUT { PASSED FEATURE_TYPE GeometryPropertySetter_2__toGQuery__ }
+FACTORY_DEF {*} GQueryFactory    FACTORY_NAME { GeometryPropertySetter_2_GQuery }    INPUT { FEATURE_TYPE GeometryPropertySetter_2__toGQuery__ }    GQUERY { "for<space><dollar>geom<space>in<space><solidus><solidus>geometry<lf>where<space><dollar>geom<solidus>count<openparen>parent::geometry<closeparen><space>=<space>0<lf>return<space>number<openparen><dollar>geom<solidus><at>fme_id<closeparen>" }    ACTION { SET_TRAITS }    PARAMETER { no tree_model_id }    OUTPUT { RESULT FEATURE_TYPE GeometryPropertySetter_2___RemoveAttrs___ }
+FACTORY_DEF {NOT_THIS_TIME} TeeFactory    FACTORY_NAME { GeometryPropertySetter_2_AttrRemover }    INPUT { FEATURE_TYPE GeometryPropertySetter_2___RemoveAttrs___ }    OUTPUT { FEATURE_TYPE *       @RemoveAttributes(fme_encoded"$(GeometryPropertySetter_2_SRC_ATTRS_EXP)") }
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { GeometryPropertySetter_2_Outputter }    INPUT { FEATURE_TYPE GeometryPropertySetter_2___RemoveAttrs___ }    OUTPUT { FEATURE_TYPE GeometryPropertySetter_2_SET        }
+# -------------------------------------------------------------------------
+INCLUDE [ if {{<Unused>} == {<Unused>}} {    puts {MACRO SHARED_OBJECT_REFERENCE_CLAUSE REFERENCE_ATTR { _shared_item_id } }; } else {    puts {MACRO SHARED_OBJECT_REFERENCE_CLAUSE REFERENCE_ATTR { "<Unused>" } }; } ]
+FACTORY_DEF {*} SharedObjectFactory    FACTORY_NAME { SharedItemAdder }    INPUT DEFINITION_FRONT FEATURE_TYPE GeometryPropertySetter_2_SET    MODE ADD_NO_REF    STORAGE_MODE { ADD }    $(SHARED_OBJECT_REFERENCE_CLAUSE)    SHARED_OBJECT_TYPE { GEOMETRY_DEFINITION }    OUTPUT { INVALID_GEOMETRY FEATURE_TYPE SharedItemAdder_<REJECTED> fme_rejection_code INVALID_GEOMETRY_TYPE  }    OUTPUT { INVALID_DEFINITION FEATURE_TYPE SharedItemAdder_<REJECTED> fme_rejection_code INVALID_GEOMETRY_TYPE  }    OUTPUT { SUCCESSFUL FEATURE_TYPE SharedItemAdder_OUTPUT  }
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME SharedItemAdder_<Rejected> INPUT FEATURE_TYPE SharedItemAdder_<REJECTED>  NO_LOGGING   OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, SharedItemAdder<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { GeometryRemover_2 }    INPUT  FEATURE_TYPE SharedItemAdder_OUTPUT    OUTPUT { FEATURE_TYPE GeometryRemover_2_OUTPUT         @RemoveGeometry()          }
+# -------------------------------------------------------------------------
+INCLUDE [if { {GEOM_AND_ATTRS} == {ATTRIBUTES} } {                puts "MACRO FeatureMerger_2_REFERENCE_INFO ATTRIBUTES";             }          elseif { {GEOM_AND_ATTRS} == {GEOM_BUILD} && {<Unused>} == {POLYGONS}} {                puts "MACRO FeatureMerger_2_REFERENCE_INFO GEOM_BUILD_POLYS";             }          elseif { {GEOM_AND_ATTRS} == {GEOM_BUILD} && {<Unused>} == {AGGREGATES}} {                puts "MACRO FeatureMerger_2_REFERENCE_INFO GEOM_BUILD_AGGREGATES";             }          elseif { {GEOM_AND_ATTRS} == {GEOM_BUILD} && {<Unused>} == {LINESFROMPOINTS}} {                puts "MACRO FeatureMerger_2_REFERENCE_INFO GEOM_BUILD_LINES_FROM_POINTS";             }          elseif { {GEOM_AND_ATTRS} == {GEOM_AND_ATTRS} && {<Unused>} == {POLYGONS}} {                puts "MACRO FeatureMerger_2_REFERENCE_INFO GEOM_AND_ATTR_BUILD_POLYS";             }          elseif { {GEOM_AND_ATTRS} == {GEOM_AND_ATTRS} && {<Unused>} == {AGGREGATES}} {                puts "MACRO FeatureMerger_2_REFERENCE_INFO GEOM_AND_ATTR_BUILD_AGGREGATES";             }          elseif { {GEOM_AND_ATTRS} == {GEOM_AND_ATTRS} && {<Unused>} == {LINESFROMPOINTS}} {                puts "MACRO FeatureMerger_2_REFERENCE_INFO GEOM_AND_ATTR_BUILD_LINES_FROM_POINTS";             }          elseif { {GEOM_AND_ATTRS} == {GEOM_BUILD} } {                puts "MACRO FeatureMerger_2_REFERENCE_INFO GEOM_BUILD_AGGREGATES";             }          elseif { {GEOM_AND_ATTRS} == {GEOM_AND_ATTRS} } {                puts "MACRO FeatureMerger_2_REFERENCE_INFO GEOM_AND_ATTR_BUILD_AGGREGATES";             }          else {}; ]
+FACTORY_DEF {*} ReferenceFactory    FACTORY_NAME { FeatureMerger_2 }    FLUSH_WHEN_GROUPS_CHANGE { <Unused> }    INPUT REFERENCER FEATURE_TYPE AttributeCreator_OUTPUT    INPUT REFERENCEE FEATURE_TYPE GeometryRemover_2_OUTPUT    REFERENCE_INFO { $(FeatureMerger_2_REFERENCE_INFO) }    REFERENCE_TABLE { @EvaluateExpression(FDIV,STRING_ENCODED,<at>Value<openparen>tree_model<closeparen>,FeatureMerger_2) @EvaluateExpression(FDIV,STRING_ENCODED,<at>Value<openparen>fme_feature_type<closeparen>,FeatureMerger_2) AUTO }    ATTR_ACCUM_MODE { "HANDLE_CONFLICT" }    ATTR_CONFLICT_RES { "REQUESTOR_IF_CONFLICT" }    IGNORE_NULLS { "No" }    HANDLE_NULL_MISSING_KEYS_LIKE_FME2013 { No }    LIST_ATTRS_TO_INCLUDE { <Unused> }    LIST_ATTRS_TO_INCLUDE_MODE { <Unused> }    MERGE_ATTRIBUTES Yes    MANAGE_FME_TYPE Yes    MODE COMPLETE    PROCESS_DUPLICATE_REFERENCEES { NO }    REFERENCEES_FIRST { No }    REJECT_INVALID_GEOM YES    CLEANING_TOLERANCE { <Unused> }    OUTPUT { COMPLETE FEATURE_TYPE FeatureMerger_2_MERGED         }    OUTPUT { REJECTED FEATURE_TYPE FeatureMerger_2_<REJECTED>         }
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME FeatureMerger_2_<Rejected> INPUT FEATURE_TYPE FeatureMerger_2_<REJECTED>  NO_LOGGING   OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, FeatureMerger_2<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} VertexCreatorFactory    FACTORY_NAME { VertexCreator_2 }    INPUT  FEATURE_TYPE FeatureMerger_2_MERGED    MODE { REPLACE }    INDEX { "<Unused>" }    CONTINUE_ON_ERROR YES    XVAL { "@EvaluateExpression(FDIV,FLOAT,<at>Value<openparen>X<closeparen>,VertexCreator_2)" }    YVAL { "@EvaluateExpression(FDIV,FLOAT,<at>Value<openparen>Y<closeparen>,VertexCreator_2)" }    ZVAL { "@EvaluateExpression(FDIV,FLOAT,<at>Value<openparen>Z<closeparen>,VertexCreator_2)" }    USE_EXISTING_Z YES    ALLOW_DUPLICATES { "<Unused>" }    MISSING_VAL_MODE { <Unused> }    COMPUTE_MEASURES_MODE { CONTINUOUS }    OUTPUT { OUTPUT FEATURE_TYPE VertexCreator_2_OUTPUT        }    OUTPUT { REJECTED FEATURE_TYPE VertexCreator_2_<REJECTED>        }
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME VertexCreator_2_<Rejected> INPUT FEATURE_TYPE VertexCreator_2_<REJECTED>  NO_LOGGING   OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, VertexCreator_2<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} GQueryFactory    FACTORY_NAME { SharedItemIDSetter_2 }    INPUT  FEATURE_TYPE VertexCreator_2_OUTPUT    ROUTE_UNMATCHED_FEATURES YES    ACTION SET_SHARED_OBJECT    PARAMETER { REFERENCE_ATTRIBUTE _shared_item_id REFERENCE_TRAIT <Unused> SHARED_OBJECT_TYPE GEOMETRY_DEFINITION SIDE_OPTION <Unused> STORAGE_MODE ATTRIBUTE TEXTURE_COORD_PARMS <Unused> <Unused> <Unused> <Unused> <Unused> USE_EXISTING_TEXTURE_COORDINATES <Unused>  }    OUTPUT { UNTOUCHED FEATURE_TYPE SharedItemIDSetter_2_<REJECTED> fme_rejection_code INVALID_SHARED_ITEM  }    OUTPUT { RESULT FEATURE_TYPE SharedItemIDSetter_2_OUTPUT  }
+DEFAULT_MACRO _WB_BYPASS_TERMINATION No
+FACTORY_DEF * TeeFactory FACTORY_NAME SharedItemIDSetter_2_<Rejected> INPUT FEATURE_TYPE SharedItemIDSetter_2_<REJECTED>  NO_LOGGING   OUTPUT FAILED FEATURE_TYPE * @Abort(ENCODED, SharedItemIDSetter_2<space>output<space>a<space><lt>Rejected<gt><space>feature.<space><space>To<space>continue<space>translation<space>when<space>features<space>are<space>rejected<comma><space>change<space><apos>Workspace<space>Parameters<apos><space><gt><space>Translation<space><gt><space><apos>Rejected<space>Feature<space>Handling<apos><space>to<space><apos>Continue<space>Translation<apos>)
+# -------------------------------------------------------------------------
+FACTORY_DEF {*} AttrSetFactory    COMMAND_PARM_EVALUATION SINGLE_PASS    FACTORY_NAME { AttributeManager_2 }    INPUT  FEATURE_TYPE SharedItemIDSetter_2_OUTPUT    MULTI_FEATURE_MODE { NO }    NULL_ATTR_MODE { NO_OP }    ATTRSET_CREATE_DIRECTIVES _PROPAGATE_MISSING_FDIV    ACTION_COLUMN 3    DEF_VAL_COLUMN 2    MISSING_INPUT_ATTR_HANDLING RENAME_SET_VALUE REMOVE    ATTR_ACTION { "" "citygml_lod_name" "lod2ImplicitRepresentation" "SET_TO" }      ATTR_ACTION { "" "citygml_level_of_detail" "2" "SET_TO" }      ATTR_ACTION { "" "citygml_transformation_matrix" "<at>Value<openparen>M11<closeparen><space><at>Value<openparen>M12<closeparen><space>0.0<space>0.0<space><lf><at>Value<openparen>M21<closeparen><space><at>Value<openparen>M22<closeparen><space>0.0<space>0.0<space><lf>0.0<space>0.0<space><at>Value<openparen>h_tree<closeparen><space>0.0<space><lf>0.0<space>0.0<space>0.0<space>1.0<space>" "SET_TO" }      ATTR_ACTION { "h_tree" "citygml_height" "<at>Value<openparen>citygml_height<closeparen>" "RENAME_SET_VALUE" }      ATTR_ACTION { "" "citygml_height_units" "m" "SET_TO" }      ATTR_ACTION { "d_crown" "citygml_crown_diameter" "<at>Value<openparen>citygml_crown_diameter<closeparen>" "RENAME_SET_VALUE" }      ATTR_ACTION { "" "citygml_crown_diameter_units" "m" "SET_TO" }      ATTR_ACTION { "Sx" "Sx" "" "REMOVE" }      ATTR_ACTION { "Sy" "Sy" "" "REMOVE" }      ATTR_ACTION { "cosPhi" "cosPhi" "" "REMOVE" }      ATTR_ACTION { "sinPhi" "sinPhi" "" "REMOVE" }      ATTR_ACTION { "m_sinPhi" "m_sinPhi" "" "REMOVE" }      ATTR_ACTION { "M11" "M11" "" "REMOVE" }      ATTR_ACTION { "M12" "M12" "" "REMOVE" }      ATTR_ACTION { "M21" "M21" "" "REMOVE" }      ATTR_ACTION { "M22" "M22" "" "REMOVE" }      ATTR_ACTION { "ch_width" "ch_width" "" "REMOVE" }      ATTR_ACTION { "ch_length" "ch_length" "" "REMOVE" }      ATTR_ACTION { "ch_orientation" "ch_orientation" "" "REMOVE" }      ATTR_ACTION { "tree_model" "tree_model" "" "REMOVE" }      ATTR_ACTION { "tree_model_id" "tree_model_id" "" "REMOVE" }      ATTR_ACTION { "fme_feature_type" "fme_feature_type" "" "REMOVE" }      ATTR_ACTION { "_shared_item_id" "_shared_item_id" "" "REMOVE" }    OUTPUT { OUTPUT FEATURE_TYPE AttributeManager_2_OUTPUT        }
+# -------------------------------------------------------------------------
+# Create a FME_UUID_SAFE from the FME_UUID so we can use it for Tcl identifiers (FMEDESKTOP-11308)
+INCLUDE [ FME_CleanseFMEUUID {GeometryPropertySetter_c258ec59_44b0_44d1_86b4_2bad7fbdfba06} ]
+Tcl2 proc $(FME_UUID_SAFE)_createDomain { in_domainName } {    set domainName $in_domainName;    if { {<Unused>} != {Global} }    {       set xFormName [FME_EncodeText {GeometryPropertySetter_}];       set domainName $xFormName$domainName;    };    return $domainName; }
+INCLUDE [    set macroLine "MACRO GeometryPropertySetter_SRC_ATTRS_EXP ";    foreach attr [split "citygml_level_of_detail citygml_height Z citygml_crown_diameter_units citygml_transformation_matrix citygml_crown_diameter citygml_height_units gml_id citygml_lod_name X Y h_crown h_trunk"] { append macroLine ",$attr"; };    puts $macroLine; ]
+FACTORY_DEF {*} TestFactory    FACTORY_NAME { GeometryPropertySetter_Tester }    INPUT  FEATURE_TYPE AttributeManager_2_OUTPUT    TEST { "<Unused>" TYPE NUM ENCODED }    TEST { NO != YES }    BOOLEAN_OPERATOR OR    OUTPUT { PASSED FEATURE_TYPE GeometryPropertySetter__toGQuery__ }
+FACTORY_DEF {*} GQueryFactory    FACTORY_NAME { GeometryPropertySetter_GQuery }    INPUT { FEATURE_TYPE GeometryPropertySetter__toGQuery__ }    GQUERY { "for<space><dollar>geom<space>in<space><solidus><solidus>geometry<lf>where<space><dollar>geom<solidus>count<openparen>parent::geometry<closeparen><space>=<space>0<lf>return<space>number<openparen><dollar>geom<solidus><at>fme_id<closeparen>" }    ACTION { SET_TRAITS }    PARAMETER { no citygml_level_of_detail citygml_height Z citygml_crown_diameter_units citygml_transformation_matrix citygml_crown_diameter citygml_height_units gml_id citygml_lod_name X Y h_crown h_trunk }    OUTPUT { RESULT FEATURE_TYPE GeometryPropertySetter___RemoveAttrs___ }
+FACTORY_DEF {NOT_THIS_TIME} TeeFactory    FACTORY_NAME { GeometryPropertySetter_AttrRemover }    INPUT { FEATURE_TYPE GeometryPropertySetter___RemoveAttrs___ }    OUTPUT { FEATURE_TYPE *       @RemoveAttributes(fme_encoded"$(GeometryPropertySetter_SRC_ATTRS_EXP)") }
+FACTORY_DEF {*} TeeFactory    FACTORY_NAME { GeometryPropertySetter_Outputter }    INPUT { FEATURE_TYPE GeometryPropertySetter___RemoveAttrs___ }    OUTPUT { FEATURE_TYPE GeometryPropertySetter_SET        }
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * RoutingFactory FACTORY_NAME "Destination Feature Type Routing Correlator"   COMMAND_PARM_EVALUATION SINGLE_PASS   INPUT FEATURE_TYPE *    ROUTE FME_GENERIC GeometryPropertySetter_SET TO CITYGML __GO_TO_FINAL_OUTPUT_ROUTER__ multi_writer_id,0,<at>SupplyAttributes<openparen>ENCODED<comma>__wb_out_feat_type__<comma>SolitaryVegetationObject<closeparen> GEOMETRY   FEATURE_TYPE_ATTRIBUTE __wb_out_feat_type__   OUTPUT ROUTED FEATURE_TYPE *    OUTPUT NOT_ROUTED FEATURE_TYPE __nuke_me__ @Tcl2("FME_StatMessage 818059 [FME_GetAttribute fme_template_feature_type] 818060 818061 fme_warn")
+# -------------------------------------------------------------------------
+
+FACTORY_DEF * TeeFactory   FACTORY_NAME "Final Output Nuker"   INPUT FEATURE_TYPE __nuke_me__
+
+# -------------------------------------------------------------------------
+CITYGML_1_DEF SolitaryVegetationObject   citygml_height               xml_real64   citygml_height_units         xml_char(200)   citygml_crown_diameter       xml_real64   citygml_crown_diameter_units xml_char(200)   h_crown                      xml_real64   h_trunk                      xml_real64   X                            xml_real64   Y                            xml_real64   Z                            xml_real64

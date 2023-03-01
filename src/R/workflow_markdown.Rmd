@@ -1,0 +1,492 @@
+---
+title: "Urban forest classification and individual crown parameterization"
+author: "markusmnzngr"
+date: "2023-02-17"
+output: html_document
+---
+
+
+Ready-to-use workflow for urban forest classification and individual crown parameterization based on LiDAR point clouds with a density of at least 4 pts/m².
+Initially, the urban forest is classified in the point cloud, followed by the segmentation of individual trees and the derivation of parameters for tree crown reconstruction using geometric primitives. 
+Processing of 3D point clouds is memory-intensive, therefore larger areas should be processed in separate tiles. 
+
+
+## Setup workflow requirements
+
+### Check packages
+
+Check if required packages are installed, otherwise install them.
+The workflow is mainly based on the packages *lidR* for point cloud processing and terra for spatial data manipulations.
+Some functions are also provided by the packages *imager*, *EBImage*, *ForestTools* and *raster*.
+
+```{r check packages, eval=FALSE, include=FALSE}
+if (!requireNamespace("lidR", quietly = TRUE))
+  install.packages("lidR")
+if (!requireNamespace("data.table", quietly = TRUE))
+  install.packages("data.table")
+if (!requireNamespace("imager", quietly = TRUE))
+  install.packages("imager")
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("EBImage")
+if (!requireNamespace("terra", quietly = TRUE))
+  install.packages("terra")
+if (!requireNamespace("ForestTools", quietly = TRUE))
+  install.packages("ForestTools")
+if (!requireNamespace("raster", quietly = TRUE))
+  install.packages("raster")
+if (!requireNamespace("here", quietly = TRUE))
+  install.packages("here")
+```
+
+
+### Define input data paths
+The repository contains example data for a small test area in Berlin (Germany) with a tile size of 200 m x 200 m. 
+```{r input paths}
+raw_lidar_path <- here::here("data/raw", "lidar_point_cloud_berlin_test_area.las")
+ndvi_tif_path <- here::here("data/processed","truedop20ndvi_berlin_test_area.tif")
+lod2_roof_heights_xyz_path <- here::here("data/processed","lod2_roof_heights_berlin_test_area.csv")
+```
+
+
+### Set workflow variables
+variables may vary according to input LiDAR data specifications or available multispectral image
+
+```{r workflow variables}
+#### input data ####
+# coordinate reference system
+tile_crs <- "epsg:25833"
+
+# cell size (m) for point cloud rasterization
+cell_size <- 0.5
+
+# LiDAR maximum number of returns
+max_nor <- 7
+
+#### roof point classification ####
+# buffer roof point classification via LoD2 roof heights
+delta_roofheight <- 1.5
+
+# parameters for coplanar point detection
+k_cop <-8
+th1_cop <- 25
+th2_cop <- 6
+
+#### urban forest classification ####
+# tree height range (m)
+max_h_trees <- 40
+min_h_trees <- 2
+
+# watershed segmentation thresholds
+ws_th_tree <- 2
+ws_tol <- 0.3
+ws_ext <- 1
+
+# threshold urban tree mask classification
+threshold_combined_metrics <- 0.55
+
+#### individual tree detection
+# sigma for Gaussian filtering
+sigma_chm <- 0.3
+
+# variable window function for mixed forests from Popescu & Wynne (2004) - https://doi.org/10.14358/PERS.70.5.589
+vwf_fun <- function(x){2.51503 + 0.00901 * x^2}
+```
+
+
+### Source custom functions
+The repository contains custom functions for specific tasks. 
+```{r source functions}
+source(here::here("src/R/functions","buffer_gridded_roof_surfaces.R"))
+source(here::here("src/R/functions","clean_polygon_parts.R"))
+source(here::here("src/R/functions","classify_coplanar_regions.R"))
+source(here::here("src/R/functions","calculate_zonal_stats.R"))
+source(here::here("src/R/functions","tree_crown_metrics.R"))
+source(here::here("src/R/functions","compute_crown_orientation.R"))
+source(here::here("src/R/functions","determine_tree_model_prototype.R"))
+
+```
+
+## Data pre-processing 
+
+Read all surface points into a LAS object. It is assumed that that ground points are pre-classified and have the class code 2. If not, they can be classified using ``` lidR::classify_ground() ```.
+In the test data provided, outliers are assigned to class 7 and filtered as well.
+
+Tile extent is derived from the point cloud and used to define an empty raster template for point cloud and vector rasterizations.
+
+During the workflow the mean number of returns as well as the Digital Terrain Model (DTM) are needed. Both are derived from the point cloud. 
+The DTM is calculated interpolating all ground points to a raster surface. 
+The NDVI as a spectral metric indicates vegetation cover.
+
+```{r data pre-processing}
+lidar_surface_points <- lidR::readLAS(raw_lidar_path, filter = "-drop_class 2 7")
+terra::crs(lidar_surface_points) <- tile_crs
+
+tile_ext <- terra::ext(lidar_surface_points)
+tile_id <- paste0(terra::xmin(tile_ext), "_", terra::ymin(tile_ext))
+
+# define template 
+template <- terra::rast(extent = tile_ext, crs = tile_crs, resolution = cell_size)
+
+# calculate mean number of returns for grid template
+mean_nor_grid <- lidR::template_metrics(lidar_surface_points, mean(NumberOfReturns), template)
+
+# filter ground points (LAS classification code 2)
+lidar_ground_points <- lidR::readLAS(raw_lidar_path, filter =  "-keep_class 2")
+terra::crs(lidar_ground_points) <- tile_crs
+
+# calculate DTM using Delaunay triangulation for spatial interpolation
+dtm_grid <- lidR::rasterize_terrain(lidar_ground_points, resolution = cell_size, algorithm =  lidR::tin())
+
+# read NDVI raster 
+ndvi_grid <- terra::rast(ndvi_tif_path)
+
+rm(lidar_ground_points)
+gc(verbose = FALSE)
+```
+
+## Classification of the urban forest
+The classification of the urban forest is done in two steps. 
+First, buildings as the predominant element in the urban space are filtered from the urban point cloud. 
+Subsequently, an urban tree mask is classified by fusing the point cloud with aerial imagery in an object-based image analysis approach 
+
+### Roof point filtering 
+If available, existing 3D building models with standardized roofs are used to classify roof points. Therefore the rasterized roof heights are buffered to account for roof overhangs and merged with the point cloud. All points that are less than the specified delta (here 1.5 m) above a roof are filtered.
+
+```{r merge roof heights}
+# import LoD2 roof heights xyz file and convert to raster
+lod2_roofs_grid <- terra::rast(read.table(lod2_roof_heights_xyz_path, header = TRUE), type = "xyz", crs = tile_crs)
+
+# buffer roofs with custom function to account for roof overhangs
+lod2_roofs_grid <- buffer_roof_surfaces(lod2_roofs_grid)
+
+# join buffered roof heights to point cloud 
+lidar_surface_points <- lidR::merge_spatial(lidar_surface_points, lod2_roofs_grid, "RoofHeight")
+
+# Assign the user-defined class 30 to points identified as a roof via LoD2 roof height
+# delta_roofheight to compensate model inaccuracies
+lidar_surface_points@data[(Z-RoofHeight) <= delta_roofheight & RoofHeight > 0, Classification := 30L]
+
+# delete intermediate data
+rm(lod2_roofs_grid)
+gc(verbose = FALSE)
+```
+
+
+Furthermore, rooftops may also be detected as planar shapes in the point cloud. Thereby they differ well from non-planar objects like trees.
+
+```{r coplanar points classification}
+# classify coplanar points as potential roof points
+lidar_surface_points <- lidR::segment_shapes(lidar_surface_points, lidR::shp_plane(th1 = th1_cop, th2 = th2_cop,k = k_cop), "Coplanar")
+
+# assign the user-defined class 31 to coplanar points if they have not already been classified as roof
+lidar_surface_points@data[Coplanar == TRUE & Classification != 30L, Classification := 31L]
+
+# call custom function to build coplanar regions and to detect all points below z_max of such a region 
+lidar_surface_points <- classify_coplanar_regions(lidar_surface_points)
+
+# filter all detected roof points from point cloud
+lidar_surface_points <- lidR::filter_poi(lidar_surface_points, Classification != 30L, Classification != 31L & Classification !=32L)
+```
+
+### Classification of the urban tree mask ### 
+
+For data fusion the filtered point cloud is rasterized to a normalized Digital Surface Model (nDSM). Watershed Segmentation on the nDSM is used to build segments which approximate tree crown shapes. 
+Classification of the individual segments is based on 3 metrics:
+* Mean Number of Returns
+* Mean NDVI
+* Segment compactness
+
+```{r nDSM interpolation}
+# height normalize the point cloud with the calculated DTM
+lidar_surface_points <- lidR::normalize_height(lidar_surface_points, dtm_grid)
+
+# reclassify negative z-values to 0
+lidar_surface_points@data[Z < 0, Z := 0]
+
+# subset points that are higher than user-defined max height for trees
+lidar_surface_points <- lidR::filter_poi(lidar_surface_points, Z <= max_h_trees)
+
+# compute nDSM from filtered point cloud 
+# usage of point2raster algorithm with subcircle option to densify the point cloud with approximate LiDAR footprint diameter
+ndsm_grid <- lidR::rasterize_canopy(lidar_surface_points, res = cell_size, algorithm = lidR::p2r(subcircle = 0.3, na.fill = NULL))
+
+# set all raster cells beneath user-defined minimum tree height to NA
+ndsm_grid <- terra::ifel(ndsm_grid < min_h_trees, NA, ndsm_grid)
+```
+
+
+Watershed segmentation may result in fragmented and splintered polygons which are cleaned up before classification.
+```{r watershed segmentation}
+# perform watershed segmentation with defined parameters
+ws_segments_grid <- lidR::watershed(ndsm_grid, th_tree = as.numeric(ws_th_tree), tol=as.numeric(ws_tol), ext=as.numeric(ws_ext))()
+
+# convert segments to polygons - results in multipart polygons
+ws_segments_poly <- terra::as.polygons(ws_segments_grid, dissolve = TRUE, values = TRUE, na.rm = TRUE)
+
+# assign a unique id for each polygon
+ws_segments_poly[, "obj_id_mp"] <-seq.int(nrow(ws_segments_poly))
+ws_segments_poly[, "Z"] <- NULL
+
+# conversion to singlepart polygons
+ws_segments_poly <- terra::disagg(ws_segments_poly)
+
+# assign a unique id for each polygon
+ws_segments_poly[, "obj_id_sp"] <- seq.int(nrow(ws_segments_poly))
+# calculate polygon perimeter and area
+ws_segments_poly[, "area"] <- terra::expanse(ws_segments_poly, unit = "m", transform = FALSE)
+ws_segments_poly[, "perim"] <- terra::perim(ws_segments_poly)
+
+# clean segments using custom function
+ws_segments_cleaned <- clean_segmentation_results(ws_segments_poly)
+
+# delete intermediate data
+rm(ws_segments_grid, ws_segments_poly)
+gc(verbose = FALSE)
+```
+
+For classification the metrics are calculated for each segment and combined to a tree criteria. All segments which exceed the defined threshold for this criteria are classified as tree. 
+Based on the classified segments the point cloud can be filtered once more and the Canopy Height Model (CHM) can be extracted from the nDSM. 
+
+```{r tree mask classification}
+# calculate mean NDVI for segments with custom function
+zonal_ndvi_df <- zonal_stats_as_df(ws_segments_cleaned, "obj_id_aggr", ndvi_grid, "mean_ndvi", "mean")
+
+# calculate mean number of returns for segments with custom function
+zonal_mean_nor_df <- zonal_stats_as_df(ws_segments_cleaned, "obj_id_aggr", mean_nor_grid, "mean_nor", "mean")
+# scale values to range 0 to 1
+zonal_mean_nor_df[, "zonal_mean_nor_weighted"] <- with(zonal_mean_nor_df, mean_nor/max_nor)
+
+# calculate Isoperimetric Quotient (IPQ) as shape metric and weight with shape area
+# retrieve segment area and perimeter from attribute table
+ws_segments_ipq_df <- terra::as.data.frame(ws_segments_cleaned)
+# calculate IPQ
+ws_segments_ipq_df[, "ipq"] <- with(ws_segments_ipq_df,(4*pi*area)/(perim*perim))
+# weight IPQ based on shape area, smallest area is one cell
+ws_segments_ipq_df[, "area_weighted"] <- with(ws_segments_ipq_df,ifelse(area < 30, round((area - (cell_size*cell_size))/(30 - (cell_size*cell_size)), digits = 2), 1))
+ws_segments_ipq_df[, "ipq_area_weighted"] <- with(ws_segments_ipq_df,ipq * area_weighted)
+# clean data.frame columns
+ws_segments_ipq_df <- ws_segments_ipq_df[c("obj_id_aggr", "ipq", "area_weighted", "ipq_area_weighted")]
+
+# combine the metric tables
+criteria_join_df <- merge(ws_segments_ipq_df, merge(zonal_ndvi_df, zonal_mean_nor_df, by = "obj_id_aggr", all.x = TRUE), by = "obj_id_aggr", all.x = TRUE)
+# combine the metrics to one tree criteria
+criteria_join_df[, "tree_criteria"] <- with(criteria_join_df, zonal_mean_nor_weighted + ipq_area_weighted + mean_ndvi)
+
+# join metrics to segments
+ws_segments_cleaned <- terra::merge(ws_segments_cleaned, criteria_join_df, by = "obj_id_aggr")
+
+# classify segments through subset
+ws_segments_cleaned <- terra::subset(ws_segments_cleaned,  ws_segments_cleaned$tree_criteria >= threshold_combined_metrics)
+
+# Extract CHM with classified tree segments
+ndsm_grid <- terra::mask(ndsm_grid, ws_segments_cleaned, inverse=FALSE, updatevalue=NA, touches=FALSE)
+
+# store as raster GeoTIFF
+ndsm_grid_out_path <- here::here("results/urban_forest_classification", paste0("chm_", tile_id, ".tif"))
+terra::writeRaster(ndsm_grid, ndsm_grid_out_path, overwrite = TRUE)
+
+# merge CHM to point cloud
+lidar_surface_points <- lidR::merge_spatial(lidar_surface_points, ndsm_grid, attribute = "CHM")
+
+# filter point cloud with classified segments 
+lidar_surface_points <- lidR::filter_poi(lidar_surface_points, !is.na(CHM))
+
+# store LiDAR point cloud as LAS
+lidar_chm_points_out_path <- here::here("results/urban_forest_classification", paste0("lidar_chm_points", tile_id, ".las"))
+lidR::writeLAS(lidar_surface_points, lidar_chm_points_out_path)
+
+# delete intermediate data
+rm(zonal_ndvi_df, zonal_mean_nor_df, ws_segments_ipq_df, criteria_join_df, ws_segments_cleaned)
+gc(verbose = FALSE)
+
+```
+
+
+## Individual crown segmentation 
+
+Individual trees are detected by filtering local maxima (LM) on the Gaussian smoothed CHM as treetops. 
+Starting from the treetops, tree crowns are derived with marker-controlled watershed segmentation (MCWS).
+MCWS may result in fragmented and splintered polygons which are cleaned up before further processing.
+```{r crown segmentation}
+# define focal weight matrix with Gaussian filter
+gf03 <- terra::focalMat(ndsm_grid, sigma_chm, 'Gauss')
+# smooth CHM with focal matix - no na.rm to "thin out" tree segments
+ndsm_gaussian_grid <- terra::focal(ndsm_grid, w=gf03)
+
+# filter for local maxima with variable window of circular shape
+# convert results from sf to SpatVector
+ttops_vwf <- terra::vect(lidR::locate_trees(ndsm_gaussian_grid, lidR::lmf(vwf_fun, hmin = 2, shape = "circular")))
+
+# use MCWS function from package ForestTools
+# convert tree tops to SpatialPointsDataFrame
+# https://stackoverflow.com/questions/64035643/converting-spatvector-to-sf-or-sp
+ttops_vwf <- sf::as_Spatial(sf::st_as_sf(ttops_vwf))
+# segment crowns with mcws
+mcws_segments_grid = terra::rast(ForestTools::mcws(ttops_vwf, raster::raster(ndsm_grid), minHeight = 2, format = "raster"))
+
+# Convert crown segments to polygon - results in multipart polygons
+mcws_segments_poly <- terra::as.polygons(mcws_segments_grid, dissolve = TRUE, values = TRUE, na.rm = TRUE)
+
+# assign a unique id for each polygon
+mcws_segments_poly[, "obj_id_mp"] <- seq.int(nrow(mcws_segments_poly))
+mcws_segments_poly[, "Z"]<- NULL
+
+
+#### clean MCWS segments ####
+# conversion to singlepart polygons
+mcws_segments_poly <- terra::disagg(mcws_segments_poly)
+
+# assign a unique id for each polygon
+mcws_segments_poly[, "obj_id_sp"] <- seq.int(nrow(mcws_segments_poly))
+# calculate perimeter and area
+mcws_segments_poly[, "area"] <- terra::expanse(mcws_segments_poly, unit = "m", transform = FALSE)
+mcws_segments_poly[, "perim"] <- terra::perim(mcws_segments_poly)
+
+# clean segments using custom function
+crowns_mcws_poly <- clean_segmentation_results(mcws_segments_poly)
+
+# convert to raster 
+crowns_mcws_grid <- terra::rasterize(crowns_mcws_poly, template, field = "obj_id_aggr", background = NA, touches = FALSE, update = TRUE)
+
+# delete intermediate data
+rm(gf03, ndsm_gaussian_grid, vwf_fun, ttops_vwf,mcws_segments_grid, mcws_segments_poly)
+gc()
+```
+
+
+
+## Tree crown parameterization
+Geometric tree crown parameters are derived from the 3D point cloud. Therefore the point cloud is filtered and segemnted according to the MCWS segments. Crown extents are approximated 
+by the 2D convex hull around tree points. 3D convex hulls are calculated to retrieve volume and surface area of the crowns. 
+
+```{r tree crown parameterization}
+# segment point cloud according to MCWS segments
+lidar_surface_points <- lidR::merge_spatial(lidar_surface_points, crowns_mcws_grid, "treeID_temp")
+
+# subset points that don't belong to a tree crown
+lidar_surface_points <- lidR::filter_poi(lidar_surface_points, !is.na(treeID_temp))
+
+# join NDVI grid to point cloud
+lidar_surface_points <- lidR::merge_spatial(lidar_surface_points, ndvi_grid, "ndvi")
+
+# calculate 3D convex hulls around segmented tree points
+# retrieve volume and surface area of the hulls
+crown_volumes_df <- compute_crown_volumes(lidar_surface_points, "treeID_temp")
+
+# assign variable names for 2D crown metrics function 
+ccm = ~calculate_crown_metrics(z = Z, nor = NumberOfReturns, ndvi = ndvi)
+
+# compute 2D convex hull for each tree crown and calculate 2D crown metrics
+crowns_convex_hull_poly <- terra::vect(lidR::crown_metrics(lidar_surface_points, func = ccm, geom = "convex", attribute = "treeID_temp"))
+
+# calculate area of convex hulls
+crowns_convex_hull_poly[, "ch_area"] <- terra::expanse(crowns_convex_hull_poly, unit = "m", transform = FALSE)
+
+# join 3D crown volumes to 2D convex hulls
+crowns_convex_hull_poly <- terra::merge(crowns_convex_hull_poly, crown_volumes_df, by = "treeID_temp")
+
+# filter tree crowns that are to small to build volume or where neither NDVI or Mean Number of Returns are above thresholds
+crowns_convex_hull_poly <- terra::subset(crowns_convex_hull_poly,(crowns_convex_hull_poly$mean_ndvi > 0.1 | crowns_convex_hull_poly$mean_nor  >= 2) & crowns_convex_hull_poly$crownvolume != 0)
+
+# create final sequential treeID
+crowns_convex_hull_poly[, "treeID"] <- seq.int(nrow(crowns_convex_hull_poly))
+
+# create column treeID based on tile extent
+crowns_convex_hull_poly[, "treeID_tile"] <- paste0('tile_', tile_id, '_tree_', crowns_convex_hull_poly$treeID)
+```
+
+
+
+## Tree crown reconstruction and prototype assignment 
+Individually scaled prototypes enable efficient modeling for numerous tree objects. 
+This repository contains 10 prototypes composed of geometric primitives. Tree crowns are approximated with ellipsoids and trunks with cylinders. The 10 pre-defined prototypes differ in their ratio of crown height to trunk height. Depending on the identified parameters, a prototype is assigned to each tree.
+To individually scale and rotate the prototypes, the crown extent is approximated by an ellipse fitted to the 2D convex hull. 
+Height parameters have been derived in the previous step. 
+Finally the parameterized tree positions and convex hulls are output.
+
+
+```{r tree crown reconstruction}
+# calculate shortest distance between two vertices of the convex hulls as data.frame
+ch_width_df <- as.data.frame(terra::width(crowns_convex_hull_poly, as.lines = FALSE))
+# rename data.frame column 
+names(ch_width_df)[1] <- "ch_width"
+# add column treeID 
+ch_width_df[, "treeID"] <- seq.int(nrow(ch_width_df))
+# join to features 
+crowns_convex_hull_poly <- terra::merge(crowns_convex_hull_poly, ch_width_df, by = "treeID")
+
+# call custom function to compute antipodal pair as longest distance between two vertices and get orientation of the line connecting the antipodal pair
+crown_orientation_df <- compute_crown_orientation(crowns_convex_hull_poly)
+# join to features 
+crowns_convex_hull_poly <- terra::merge(crowns_convex_hull_poly, crown_orientation_df, by = "treeID")
+
+# derive tree trunk position as centroid of the convex hull
+tree_positions_point <- terra::centroids(crowns_convex_hull_poly)
+
+# calculate x and y of tree position as data.frame
+tree_positions_xy_df <- terra::crds(tree_positions_point, df = TRUE)
+# add column treeID 
+tree_positions_xy_df[, "treeID"] <-  seq.int(nrow(tree_positions_xy_df))
+#rename data.frame columns
+names(tree_positions_xy_df) <- c("X", "Y", "treeID")
+
+# calculate Z as tree base height from DTM
+# use custom zonal statistics function to derive Z-Value for each position
+tree_positions_z_df <- zonal_stats_as_df(tree_positions_point, "treeID", dtm_grid, "Z", "max") 
+
+# combine xy and z data.frames
+tree_positions_xyz_df <- merge(tree_positions_xy_df, tree_positions_z_df, by = "treeID")
+
+# join to tree positions
+tree_positions_point <- terra::merge(tree_positions_point, tree_positions_xyz_df, by = "treeID")
+
+# get all attributes as data.frame
+tree_attribs_df <- terra::values(tree_positions_point)
+
+# calculate crown metrics 
+tree_attribs_df[, "h_tree"] <- tree_attribs_df[, "z_max"]
+tree_attribs_df[, "h_crown"] <- tree_attribs_df$z_max - tree_attribs_df$zq5
+tree_attribs_df[, "d_crown"] <- (tree_attribs_df$ch_width + tree_attribs_df$ch_length)/2
+tree_attribs_df[, "h_trunk"] <- tree_attribs_df[, "zq5"]
+
+# call custom function to define modeling prototype based on ratio of crown height to trunk height
+thresholds <- define_prototype_thresholds(count_prototypes = 10)
+
+# call custom function to assign a prototype
+tree_attribs_df[, "tree_model"] <- assign_tree_model_ifelse(h_trunk = tree_attribs_df$h_trunk, h_crown = tree_attribs_df$h_crown, thresholds = thresholds)
+
+# list all numeric columns
+num_cols <- vapply(tree_attribs_df, is.numeric, FUN.VALUE = logical(1))
+# round all numeric columns to two digits
+tree_attribs_df[,num_cols] <- round(tree_attribs_df[,num_cols], digits = 2)
+
+# reorder columns
+tree_attribs_df <- tree_attribs_df[, c("treeID", "treeID_tile", "h_tree", "h_crown", "d_crown", "h_trunk", "X", "Y", "Z",
+  "ch_width", "ch_length", "ch_orientation", "ch_area",
+  "tree_model", "crownvolume", "crownsurface", "n_pulses", "mean_nor", "mean_ndvi",
+  "z_max", "z_min", "z_mean", "z_std", "zq1", "zq2", "zq5", "zq95", "zq99")]
+
+# delete the temporary attribute tables 
+tree_positions_point <- tree_positions_point[,"treeID"]
+crowns_convex_hull_poly <- crowns_convex_hull_poly[, "treeID"]
+
+# join final attribute table to the geometries
+tree_positions_point <- terra::merge(tree_positions_point, tree_attribs_df, by = "treeID")
+crowns_convex_hull_poly <- terra::merge(crowns_convex_hull_poly, tree_attribs_df, by = "treeID")
+
+# store tree positions as geojson
+tree_positions_out_path <-  here::here("results/parameterized_tree_crowns",paste0("tree_positions_parameterized.geojson"))
+terra::writeVector(tree_positions_point, tree_positions_out_path, filetype = "GeoJSON", overwrite = TRUE)
+
+# store tree crowns as geojson
+crowns_convex_hull_parameterized_out_path <-  here::here("results/parameterized_tree_crowns",paste0("crowns_convex_hull_parameterized.geojson"))
+terra::writeVector(crowns_convex_hull_poly, crowns_convex_hull_parameterized_out_path, filetype = "GeoJSON", overwrite = TRUE)
+```
+
+
+
+
+
+
+
