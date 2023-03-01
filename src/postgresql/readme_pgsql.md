@@ -16,7 +16,7 @@ Roof heights are calculated as absolute height value as well as normalized to th
 ## Workflow
 
 * Setup 3D City Database as described in this [tutorial](https://3dcitydb-docs.readthedocs.io/en/release-v4.2.3/intro/index.html)
-* Import CityGML data to 3D City Database
+* [Import](https://3dcitydb-docs.readthedocs.io/en/release-v4.2.3/impexp/index.html) CityGML data to 3D City Database
   + if necessary, use tiled export to generate smaller tiles
 * Run [rasterize roof heights](/src/postgresql/3DCityDB_rasterize_lod2_roof_heights.pgsql) script on database
 * Export table to space delimited CSV 

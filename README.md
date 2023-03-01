@@ -4,7 +4,7 @@
 This repository contains scripts for high-resolution area-wide mapping and 3D modeling of urban forests based on LiDAR point clouds. 
 The workflow is designed for widely available LiDAR point clouds with a density of at least 4 pts/m² and has been published in this [research article](https://doi.org/10.1016/j.ufug.2022.127637).
 
-** Processing steps: ** 
+**Processing steps:** 
 
 * Classification of the urban forest in an object-based data fusion approach combining the point cloud with multispectral aerial imagery and a 3D building model
 * Detection, segmentation and parameterization of individual tree crowns 
