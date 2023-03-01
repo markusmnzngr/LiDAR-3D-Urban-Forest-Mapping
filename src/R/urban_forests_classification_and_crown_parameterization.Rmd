@@ -17,7 +17,7 @@ Processing of 3D point clouds is memory-intensive, therefore larger areas should
 
 Check if required packages are installed, otherwise install them.
 The workflow is mainly based on the packages *lidR* for point cloud processing and terra for spatial data manipulations.
-Some functions are also provided by the packages *imager*, *EBImage*, *ForestTools* and *raster*.
+Some functions are also provided by the packages *imager*, *EBImage*, *ForestTools*, *rLiDAR* and *raster*.
 
 ```{r check packages}
 if (!requireNamespace("lidR", quietly = TRUE))
@@ -33,6 +33,8 @@ if (!requireNamespace("terra", quietly = TRUE))
   install.packages("terra")
 if (!requireNamespace("ForestTools", quietly = TRUE))
   install.packages("ForestTools")
+if (!requireNamespace("rLiDAR", quietly = TRUE))
+  install.packages("rLiDAR")
 if (!requireNamespace("raster", quietly = TRUE))
   install.packages("raster")
 if (!requireNamespace("here", quietly = TRUE))
