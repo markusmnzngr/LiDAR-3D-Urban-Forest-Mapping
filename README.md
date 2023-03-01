@@ -49,9 +49,9 @@ The repository contains [test data](/data) for a small area of Berlin (Germany).
 
 The supplied data was made freely available by the [“Geoportal Berlin”](https://fbinter.stadt-berlin.de/fb/index.jsp) under the license ["Data license Germany - attribution - Version 2.0"](https://www.govdata.de/dl-de/by-2-0) and can be downloaded at the following links:
 
-* [LiDAR](https://fbinter.stadt-berlin.de/fb/feed/senstadt/a_als)
-* [3D Building Model](https://fbinter.stadt-berlin.de/fb/feed/senstadt/a_lod2)
-* [Aerial Imagery](https://fbinter.stadt-berlin.de/fb/feed/senstadt/a_luftbild2020_true_cir)
+* [LiDAR](https://fbinter.stadt-berlin.de/fb/berlin/service_intern.jsp?id=a_als@senstadt&type=FEED)
+* [3D Building Model](https://fbinter.stadt-berlin.de/fb/berlin/service_intern.jsp?id=a_lod2@senstadt&type=FEED)
+* [Aerial Imagery](https://fbinter.stadt-berlin.de/fb/berlin/service_intern.jsp?id=a_luftbild2020_true_cir@senstadt&type=FEED)
 
 In addition to the LiDAR point cloud, the NDVI as multispectral index and roof heights derived from a 3D building model are used for the urban forest classification.   
 Both data sets were prepared from raw data. While calculating the NDVI from multispectral imagery can be done in most GIS environments, GIS ususally have limitations when dealing with 3D city models.  

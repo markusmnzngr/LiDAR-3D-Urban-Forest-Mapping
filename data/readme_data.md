@@ -20,6 +20,6 @@ The prototypes differ in their ratio of crown height to trunk height. The variet
 ## License
 The supplied data was made freely available by the [“Geoportal Berlin”](https://fbinter.stadt-berlin.de/fb/index.jsp) under the license ["Data license Germany - attribution - Version 2.0"](https://www.govdata.de/dl-de/by-2-0) and can be downloaded at the following links:
 
-* [LiDAR](https://fbinter.stadt-berlin.de/fb/feed/senstadt/a_als)
-* [3D Building Model](https://fbinter.stadt-berlin.de/fb/feed/senstadt/a_lod2)
-* [Aerial Imagery](https://fbinter.stadt-berlin.de/fb/feed/senstadt/a_luftbild2020_true_cir)
+* [LiDAR](https://fbinter.stadt-berlin.de/fb/berlin/service_intern.jsp?id=a_als@senstadt&type=FEED)
+* [3D Building Model](https://fbinter.stadt-berlin.de/fb/berlin/service_intern.jsp?id=a_lod2@senstadt&type=FEED)
+* [Aerial Imagery](https://fbinter.stadt-berlin.de/fb/berlin/service_intern.jsp?id=a_luftbild2020_true_cir@senstadt&type=FEED)
