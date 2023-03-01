@@ -2,13 +2,19 @@
 
 ## Overview
 This repository contains scripts for high-resolution area-wide mapping and 3D modeling of urban forests based on LiDAR point clouds. 
-The workflow is designed for widely available LiDAR point clouds with a density of at least 4 pts/m² and has been published in this article.
-https://doi.org/10.1016/j.ufug.2022.127637
+The workflow is designed for widely available LiDAR point clouds with a density of at least 4 pts/m² and has been published in this [research article](https://doi.org/10.1016/j.ufug.2022.127637).
+
 Processing steps: 
 
 * Classification of the urban forest in an object-based data fusion approach combining the point cloud with multispectral aerial imagery and a 3D building model
 * Detection, segmentation and parameterization of individual tree crowns 
 * Efficient reconstruction and 3D modeling of tree crowns using geometric primitives
+
+Data generated with the workflow for an entire city can be downloaded for Dresden (Germany) at the following links.
+
+* [Canopy Height Model](https://zenodo.org/record/7536524)
+* [Parameterized Tree Positions](https://zenodo.org/record/7536550)
+* [Semantic 3D Tree Model](https://zenodo.org/record/7536562)
 
 ## Software 
 The algorithms for the urban forest classification up to the parameterization of individual tree crowns are implemented as [ready-to-use workflow](/src/R/workflow_markdown.Rmd) in *R*.  
