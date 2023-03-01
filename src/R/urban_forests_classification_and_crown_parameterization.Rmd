@@ -19,7 +19,7 @@ Check if required packages are installed, otherwise install them.
 The workflow is mainly based on the packages *lidR* for point cloud processing and terra for spatial data manipulations.
 Some functions are also provided by the packages *imager*, *EBImage*, *ForestTools* and *raster*.
 
-```{r check packages, eval=FALSE, include=FALSE}
+```{r check packages}
 if (!requireNamespace("lidR", quietly = TRUE))
   install.packages("lidR")
 if (!requireNamespace("data.table", quietly = TRUE))
