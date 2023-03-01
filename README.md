@@ -24,16 +24,37 @@ Gridded building roof heights can be used as supplementary data for the identifi
 
 ## Key features
 ### Urban forest classification
-The classified point cloud and a canopy height model are generated as output.
 
 <img src="images/classification.jpg" height="400">
 
+The classified point cloud and a canopy height model are generated as output.
+
+
 ### Individual crown parameterization
-Tree positions as point features and crown segments as polygon features are generated as output.
 
 <img src="images/parameterization.jpg" height="400">
 
+Tree positions as point features and crown segments as polygon features are generated as output.
+
+
 ### 3D tree modeling
-Tree Models as CityGML Solitary Vegetation Objects are generated as output.
 
 <img src="images/modeling.jpg" height="400">
+
+Tree Models as CityGML Solitary Vegetation Objects are generated as output.
+
+
+## Input data
+The repository contains test data for a small area of Berlin (Germany). 
+Data License
+The source data used was made freely available by the “Geoportal Berlin” under the license ["Data license Germany - attribution - Version 2.0"](https://www.govdata.de/dl-de/by-2-0) and can be downloaded at the following links:
+
+* [LiDAR](https://fbinter.stadt-berlin.de/fb/feed/senstadt/a_als)
+* [3D Building Model](https://fbinter.stadt-berlin.de/fb/feed/senstadt/a_lod2)
+* [Aerial Imagery](https://fbinter.stadt-berlin.de/fb/feed/senstadt/a_luftbild2020_true_cir)
+
+In addition to the LiDAR point cloud, the NDVI as multispectral index and roof heights derived from a 3D building model are used for the urban forest classification. 
+Both data sets were prepared from raw data. While calculating the NDVI from multispectral imagery can be done in most GIS environments, GIS ususally have limitations when dealing with 3D city models. 
+Therefore, a PostgreSQL script to  [rasterize building roof heights](/src/postgresql/3DCityDB_rasterize_lod2_roof_heights.pgsql) from 3D building models stored in a 3D City Database is also available in this repository. 
+The 3D City Database is an Open Source spatial relational database schema to store, represent, and manage semantic 3D city models in the CityGML schema.
+
