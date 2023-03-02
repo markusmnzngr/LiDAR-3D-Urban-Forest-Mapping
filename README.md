@@ -19,19 +19,12 @@ Our published research data for a case study area - city of Dresden (Germany) ca
 * [Parameterized Tree Positions](https://zenodo.org/record/7536550)
 * [Semantic 3D Tree Model](https://zenodo.org/record/7536562)
 
-<<<<<<< HEAD
-
-
-=======
 
 ## Softwares Description 
 
 * The algorithms for urban forest classification up to the parameterization of individual tree crowns are implemented as [ready-to-use workflow](/src/R/urban_forests_classification_and_crown_parameterization.Rmd) in *R*. Detailed instructions how to set up the workflow environment and run the script are given in [this readme](/src/R/how-to-run_workflow.md).  
 * Solely for the last step, the 3D modeling of trees in the CityGML schema, the proprietary software *FME* from *Safe Software* is used. The [FME Workbench](/src/fme_workbench/Create_3D_Tree_Models_geojson2citygml.fmw) created to generate the semantic 3D tree models as well as [prototypic 3D tree models](/data/tree_prototypes) are available in this repository.  
 * Gridded building roof heights can be used as supplementary data for the identification of roof points. A *PostgreSQL* script to [rasterize roofs heights](/src/postgresql/3DCityDB_rasterize_lod2_roof_heights.pgsql) for 3D city models stored in a [3D City Database](https://www.3dcitydb.org/3dcitydb/) is included in the repository.
-
->>>>>>> e59947a974973e5e106f69d7a28b96c55f9fb67b
-
 
 ## Key features
 ### Urban forest classification
