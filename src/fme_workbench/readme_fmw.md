@@ -6,11 +6,12 @@ Therefore the geometry of each tree model is stored only once and represented by
 
 ## Workflow
 
-* Setup 3D City Database as described in this [tutorial](https://3dcitydb-docs.readthedocs.io/en/release-v4.2.3/intro/index.html)
-* Import CityGML data to 3D City Database
-  + if necessary, use tiled export to generate smaller tiles
-* Run [rasterize roof heights](/src/postgresql/3DCityDB_rasterize_lod2_roof_heights.pgsql) script on database
-* Export table to space delimited CSV 
+* Open [FME Workbench](/src/fme_workbench/Create_3D_Tree_Models_geojson2citygml.fmw)
+* Specify source data paths
+  + Select the parameterized tree positions. [Example test data](/results/parameterized_tree_crowns/tree_positions_parameterized.geojson)
+  + Select all [tree model prototypes](/data/tree_prototypes)
+* Define output path for CityGML-file
+* Run the workbench 
 
 ## Required source data 
 
