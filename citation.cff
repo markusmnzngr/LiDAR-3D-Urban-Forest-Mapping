@@ -4,7 +4,7 @@ authors:
 - family-names: "Münzinger"
   given-names: "Markus"
   orcid: "https://orcid.org/0000-0002-4377-2815"
-title: "iDAR-3D-Urban-Forest-Mapping"
+title: "LiDAR-3D-Urban-Forest-Mapping"
 version: 1.0.0
 doi: 10.5281/zenodo.7692182
 date-released: 2023-03-02
