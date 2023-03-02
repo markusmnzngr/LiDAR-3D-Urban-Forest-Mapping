@@ -26,7 +26,7 @@ Our published research data for a case study area - city of Dresden (Germany) ca
 * Solely for the last step, the 3D modeling of trees in the CityGML schema, the proprietary software *FME* from *Safe Software* is used. The [FME Workbench](/src/fme_workbench/Create_3D_Tree_Models_geojson2citygml.fmw) created to generate the semantic 3D tree models as well as [prototypic 3D tree models](/data/tree_prototypes) are available in this repository.See [this Readme](/src/fme_workbench/readme_fmw.md) for further information.  
 * Gridded building roof heights can be used as supplementary data for the identification of roof points. A *PostgreSQL* script to [rasterize roofs heights](/src/postgresql/3DCityDB_rasterize_lod2_roof_heights.pgsql) for 3D city models stored in a [3D City Database](https://www.3dcitydb.org/3dcitydb/) is included in the repository.Information on how to set up the database and run the script is given in [this readme](/src/postgresql/readme_pgsql.md)
 
-## Key features
+## Key Features
 ### Urban forest classification
 
 <img src="images/classification.jpg" height="400">
@@ -48,7 +48,7 @@ Tree positions as point features and crown segments as polygon features are gene
 Tree Models as CityGML Solitary Vegetation Objects are generated as output.
 
 
-## Input data
+## Input Data
 The repository contains [test data](/data) for a small area of Berlin (Germany). 
 
 The supplied data was made freely available by the [“Geoportal Berlin”](https://fbinter.stadt-berlin.de/fb/index.jsp) under the license ["Data license Germany - attribution - Version 2.0"](https://www.govdata.de/dl-de/by-2-0) and can be downloaded at the following links:
