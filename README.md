@@ -4,7 +4,7 @@ The workflow is designed for widely available LiDAR point clouds with a density 
 
 Our published research article:
 
-Münzinger, M., Prechtel, N., & Behnisch, M. (2021). *Mapping the Urban Forest in Detail: From LiDAR Point Clouds to 3D Tree Models.* Available at [http://dx.doi.org/10.2139/ssrn.3978876.](http://dx.doi.org/10.2139/ssrn.3978876) 
+Münzinger, M., Prechtel, N., & Behnisch, M. (2022). *Mapping the Urban Forest in Detail: From LiDAR Point Clouds to 3D Tree Models.* Available at [https://doi.org/10.1016/j.ufug.2022.127637](https://doi.org/10.1016/j.ufug.2022.127637).
 
 **Processing Tasks:** 
 
