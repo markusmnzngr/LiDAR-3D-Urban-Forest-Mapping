@@ -1,8 +1,6 @@
 ---
 title: "Urban forest classification and individual crown parameterization"
 author: "markusmnzngr"
-date: "2023-02-17"
-output: html_document
 ---
 
 

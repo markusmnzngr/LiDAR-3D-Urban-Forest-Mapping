@@ -1,4 +1,4 @@
-# Setting up Urban forest classification and individual crown parameterization
+# Setting up the workflow fo urban forest classification and individual crown parameterization
 
 The *R*-workflow for urban forest classification and individual crown parameterization is implemented as a standalone script containing the individual processing steps and generating output files for the results.
 
@@ -16,7 +16,7 @@ The *R*-workflow for urban forest classification and individual crown parameteri
 * Run either the complete script or individual chunks of code
 * The first chunk of codes checks if all required packages are installed 
   + If the installation causes trouble, you might try a stepwise installation of the required packages
-* The second chunk of code defines the input path
+* The second chunk of code defines the input paths
   + By default, the paths point to the supplied [test data](/data/readme_data.md)
 * The third chunk of code sets the workflow variables
   + Variables may need adjustment according to input LiDAR data specifications or the available multispectral image

@@ -27,21 +27,21 @@ Our published research data for a case study area - city of Dresden (Germany) ca
 * Gridded building roof heights can be used as supplementary data for the identification of roof points. A *PostgreSQL* script to [rasterize roofs heights](/src/postgresql/3DCityDB_rasterize_lod2_roof_heights.pgsql) for 3D city models stored in a [3D City Database](https://www.3dcitydb.org/3dcitydb/) is included in the repository.Information on how to set up the database and run the script is given in [this readme](/src/postgresql/readme_pgsql.md)
 
 ## Key Features
-### Urban forest classification
+### Urban Forest Classification
 
 <img src="images/classification.jpg" height="400">
 
 The classified point cloud and a canopy height model are generated as output.
 
 
-### Individual crown parameterization
+### Individual Crown Parameterization
 
 <img src="images/parameterization.jpg" height="400">
 
 Tree positions as point features and crown segments as polygon features are generated as output.
 
 
-### 3D tree modeling
+### 3D Tree Modeling
 
 <img src="images/modeling.jpg" height="400">
 

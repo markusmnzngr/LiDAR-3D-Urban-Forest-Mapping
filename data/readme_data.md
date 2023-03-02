@@ -1,4 +1,4 @@
-# Input data
+# Test Data
 
 The supplied data for a small test area in Berlin is structured in 3 directories. 
 
@@ -14,10 +14,10 @@ The supplied data for a small test area in Berlin is structured in 3 directories
 
 [Tree Prototype](/data/tree_prototypes) contains 10 pre-defined tree prototypes.   
 
-All of them have height/width/depth of 1 m. In this way they can be scaled individually depending on specific parameters.  
+All of them are normalized to a height/width/depth of 1 m. In this way they can be scaled individually depending on specific parameters.  
 The prototypes differ in their ratio of crown height to trunk height. The variety ranges from only crown to almost exclusively trunk. 
 
-## License
+## Data License
 The supplied data was made freely available by the [“Geoportal Berlin”](https://fbinter.stadt-berlin.de/fb/index.jsp) under the license ["Data license Germany - attribution - Version 2.0"](https://www.govdata.de/dl-de/by-2-0) and can be downloaded at the following links:
 
 * [LiDAR](https://fbinter.stadt-berlin.de/fb/berlin/service_intern.jsp?id=a_als@senstadt&type=FEED)
