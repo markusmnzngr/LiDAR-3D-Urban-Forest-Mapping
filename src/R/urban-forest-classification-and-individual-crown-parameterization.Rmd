@@ -122,9 +122,11 @@ The DTM is calculated interpolating all ground points to a raster surface.
 The NDVI as a spectral metric indicates vegetation cover.
 
 ```{r data pre-processing}
+# import all surface points from point cloud
 lidar_surface_points <- lidR::readLAS(raw_lidar_path, filter = "-drop_class 2 7")
 terra::crs(lidar_surface_points) <- tile_crs
 
+# derive tile extent
 tile_ext <- terra::ext(lidar_surface_points)
 tile_id <- paste0(terra::xmin(tile_ext), "_", terra::ymin(tile_ext))
 
@@ -134,16 +136,19 @@ template <- terra::rast(extent = tile_ext, crs = tile_crs, resolution = cell_siz
 # calculate mean number of returns for grid template
 mean_nor_grid <- lidR::template_metrics(lidar_surface_points, mean(NumberOfReturns), template)
 
-# filter ground points (LAS classification code 2)
+# import all ground points from point cloud (LAS classification code 2)
 lidar_ground_points <- lidR::readLAS(raw_lidar_path, filter =  "-keep_class 2")
 terra::crs(lidar_ground_points) <- tile_crs
 
 # calculate DTM using Delaunay triangulation for spatial interpolation
 dtm_grid <- lidR::rasterize_terrain(lidar_ground_points, resolution = cell_size, algorithm =  lidR::tin())
+# replace NA values with 0
+dtm_grid <- terra::ifel(is.na(dtm_grid), 0, dtm_grid)
 
 # read NDVI raster 
 ndvi_grid <- terra::rast(ndvi_tif_path)
 
+# remove 
 rm(lidar_ground_points)
 gc(verbose = FALSE)
 ```
@@ -289,11 +294,14 @@ ndsm_grid <- terra::mask(ndsm_grid, ws_segments_cleaned, inverse=FALSE, updateva
 ndsm_grid_out_path <- here::here("results/urban_forest_classification", "chm_grid.tif")
 terra::writeRaster(ndsm_grid, ndsm_grid_out_path, overwrite = TRUE)
 
-# merge CHM to point cloud
+# merge CHM to point cloud - identify points intersecting the CHM
 lidar_surface_points <- lidR::merge_spatial(lidar_surface_points, ndsm_grid, attribute = "CHM")
 
-# filter point cloud with classified segments 
+# filter point cloud - keep only points intersecting the CHM  
 lidar_surface_points <- lidR::filter_poi(lidar_surface_points, !is.na(CHM))
+
+# remove duplicate points based on their XYZ-coordinates
+lidar_surface_points <- lidR::filter_duplicates(lidar_surface_points)
 
 # store LiDAR point cloud as LAS
 lidar_chm_points_out_path <- here::here("results/urban_forest_classification", "lidar_chm_points.las")
@@ -313,9 +321,9 @@ Starting from the treetops, tree crowns are derived with marker-controlled water
 MCWS may result in fragmented and splintered polygons which are cleaned up before further processing.
 ```{r crown segmentation}
 # define focal weight matrix with Gaussian filter
-gf03 <- terra::focalMat(ndsm_grid, sigma_chm, 'Gauss')
+gf <- terra::focalMat(ndsm_grid, sigma_chm, 'Gauss')
 # smooth CHM with focal matix - no na.rm to "thin out" tree segments
-ndsm_gaussian_grid <- terra::focal(ndsm_grid, w=gf03)
+ndsm_gaussian_grid <- terra::focal(ndsm_grid, w=gf)
 
 # filter for local maxima with variable window of circular shape
 # convert results from sf to SpatVector
@@ -353,7 +361,7 @@ crowns_mcws_poly <- clean_segmentation_results(mcws_segments_poly)
 crowns_mcws_grid <- terra::rasterize(crowns_mcws_poly, template, field = "obj_id_aggr", background = NA, touches = FALSE, update = TRUE)
 
 # delete intermediate data
-rm(gf03, ndsm_gaussian_grid, vwf_fun, ttops_vwf,mcws_segments_grid, mcws_segments_poly)
+rm(gf, ndsm_gaussian_grid, vwf_fun, ttops_vwf,mcws_segments_grid, mcws_segments_poly)
 gc()
 ```
 
@@ -367,16 +375,28 @@ by the 2D convex hull around tree points. 3D convex hulls are calculated to retr
 # segment point cloud according to MCWS segments
 lidar_surface_points <- lidR::merge_spatial(lidar_surface_points, crowns_mcws_grid, "treeID_temp")
 
-# subset points that don't belong to a tree crown
-lidar_surface_points <- lidR::filter_poi(lidar_surface_points, !is.na(treeID_temp))
+# count pulses per crown and crown dimensions
+pulse_count <- lidar_surface_points@data[, .(count=.N, delta_x = max(X) - min(X), delta_y = max(Y) - min(Y), delta_z = max(Z) - min(Z)), by = "treeID_temp"]
+  
+# join pulse count to lidar data
+lidar_surface_points@data <- merge(lidar_surface_points@data, pulse_count, by = "treeID_temp")
 
-# join NDVI grid to point cloud
-lidar_surface_points <- lidR::merge_spatial(lidar_surface_points, ndvi_grid, "ndvi")
+ # subset crowns with less than 4 points or are not shaped in all 3 dimensions to avoid mistakes in metric calculations and points that don't belong to a tree crown 
+  lidar_surface_points <- lidR::filter_poi(lidar_surface_points, !is.na(treeID_temp) & count > 4 & delta_x > 0.1 & delta_y > 0.1 & delta_z > 0.1)
 
 # calculate 3D convex hulls around segmented tree points
 # retrieve volume and surface area of the hulls
 crown_volumes_df <- compute_crown_volumes(lidar_surface_points, "treeID_temp")
 
+# join volumes to point cloud
+lidar_surface_points@data <- merge(lidar_surface_points@data, crown_volumes_df, by = "treeID_temp")
+  
+# filter "trees" without volume to avoid errors in polygon construction
+lidar_surface_points <- lidR::filter_poi(lidar_surface_points, crownvolume > 0)
+
+# join NDVI grid to point cloud
+lidar_surface_points <- lidR::merge_spatial(lidar_surface_points, ndvi_grid, "ndvi")
+  
 # assign variable names for 2D crown metrics function 
 ccm = ~calculate_crown_metrics(z = Z, nor = NumberOfReturns, ndvi = ndvi)
 
@@ -397,8 +417,8 @@ crowns_convex_hull_poly[, "treeID"] <- seq.int(nrow(crowns_convex_hull_poly))
 
 # create column treeID based on tile extent
 crowns_convex_hull_poly[, "treeID_tile"] <- paste0('tile_', tile_id, '_tree_', crowns_convex_hull_poly$treeID)
-```
 
+```
 
 
 ## Tree crown reconstruction and prototype assignment 
