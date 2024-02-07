@@ -1,3 +1,7 @@
+
+[![DOI](https://zenodo.org/badge/607566763.svg)](https://zenodo.org/badge/latestdoi/607566763)
+
+
 # LiDAR-3D-Urban-Forest-Mapping
 This repository contains scripts for high-resolution area-wide mapping and 3D modeling of urban forests based on LiDAR point clouds. 
 The workflow is designed for widely available LiDAR point clouds with a density of at least 4 pts/m². 
